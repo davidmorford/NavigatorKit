@@ -17,9 +17,9 @@
 */
 @interface NKSplitDividerView : UIView
 
-	@property (nonatomic, assign) NKSplitViewController *splitViewController;
-	@property (nonatomic, assign) BOOL allowsDragging;
+@property (nonatomic, assign) NKSplitViewController *splitViewController;
+@property (nonatomic, assign) BOOL allowsDragging;
 
-	-(void) drawGripThumbInRect:(CGRect)rect;
+-(void) drawGripThumbInRect:(CGRect)rect;
 
 @end

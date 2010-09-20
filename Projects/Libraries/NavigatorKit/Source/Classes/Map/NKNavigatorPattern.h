@@ -26,8 +26,8 @@ enum {
 #pragma mark -
 
 @protocol NKURLPatternText <NSObject>
-	-(BOOL) match:(NSString *)aTextString;
-	-(NSString *) convertPropertyOfObject:(id)anObject;
+-(BOOL) match:(NSString *)aTextString;
+-(NSString *) convertPropertyOfObject:(id)anObject;
 @end
 
 #pragma mark -
@@ -38,77 +38,58 @@ enum {
 @abstract
 @discussion
 */
-@interface NKURLNavigatorPattern : NSObject {
-	NSString *URL;
-	NSString *scheme;
-	NSMutableArray *path;
-	NSMutableDictionary *query;
-	id <NKURLPatternText> fragment;
-	NSInteger specificity;
-	SEL selector;
-}
+@interface NKURLNavigatorPattern : NSObject
 
-	@property (nonatomic, copy) NSString *URL;
-	@property (nonatomic, readonly) NSString *scheme;
-	@property (nonatomic, readonly) NSInteger specificity;
-	@property (nonatomic, readonly) Class classForInvocation;
-	@property (nonatomic, assign) SEL selector;
+@property (nonatomic, copy) NSString *URL;
+@property (nonatomic, readonly) NSString *scheme;
+@property (nonatomic, readonly) NSInteger specificity;
+@property (nonatomic, readonly) Class classForInvocation;
+@property (nonatomic, assign) SEL selector;
 
-	#pragma mark -
+#pragma mark -
 
-	-(void) compileURL;
+-(void) compileURL;
 
-	-(void) setSelectorIfPossible:(SEL)aSelector;
-	-(void) setSelectorWithNames:(NSArray *)names;
+-(void) setSelectorIfPossible:(SEL)aSelector;
+-(void) setSelectorWithNames:(NSArray *)names;
 
 @end
 
 #pragma mark -
 
-@interface NKURLLiteral : NSObject <NKURLPatternText> {
-	NSString *name;
-}
+@interface NKURLLiteral : NSObject <NKURLPatternText>
 
-	@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *name;
 
 @end
 
 #pragma mark -
 
-@interface NKURLSelector : NSObject {
-	NSString *name;
-	SEL selector;
-	NKURLSelector *next;
-}
+@interface NKURLSelector : NSObject
 
-	@property (nonatomic, readonly) NSString *name;
-	@property (nonatomic, retain) NKURLSelector *next;
+@property (nonatomic, readonly) NSString *name;
+@property (nonatomic, retain) NKURLSelector *next;
 
-	#pragma mark -
+#pragma mark -
 
-	-(id) initWithName:(NSString *)aName;
+-(id) initWithName:(NSString *)aName;
 
-	-(NSString *) perform:(id)anObject returnType:(NKNavigatorArgumentType)aTeturnType;
+-(NSString *) perform:(id)anObject returnType:(NKNavigatorArgumentType)aTeturnType;
 
 @end
 
 #pragma mark -
 
-@interface NKURLWildcard : NSObject <NKURLPatternText> {
-	NSString *name;
-	NSInteger argIndex;
-	NKNavigatorArgumentType argType;
-	NKURLSelector *selector;
-}
+@interface NKURLWildcard : NSObject <NKURLPatternText>
 
-	@property (nonatomic, copy) NSString *name;
-	@property (nonatomic, assign) NSInteger argIndex;
-	@property (nonatomic, assign) NKNavigatorArgumentType argType;
-	@property (nonatomic, retain) NKURLSelector *selector;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, assign) NSInteger argIndex;
+@property (nonatomic, assign) NKNavigatorArgumentType argType;
+@property (nonatomic, retain) NKURLSelector *selector;
 
-	#pragma mark -
+#pragma mark -
 
-	-(void) deduceSelectorForClass:(Class)cls;
+-(void) deduceSelectorForClass:(Class)cls;
 
 @end
 
@@ -121,20 +102,18 @@ enum {
 @abstract
 @discussion
 */
-@interface NKURLGeneratorPattern : NKURLNavigatorPattern {
-	Class targetClass;
-}
+@interface NKURLGeneratorPattern : NKURLNavigatorPattern
 
-	@property (nonatomic, assign) Class targetClass;
+@property (nonatomic, assign) Class targetClass;
 
-	#pragma mark -
+#pragma mark -
 
-	-(id) initWithTargetClass:(Class)aTargetClass;
+-(id) initWithTargetClass:(Class)aTargetClass;
 
-	#pragma mark -
+#pragma mark -
 
-	-(void) compile;
-	-(NSString *) generateURLFromObject:(id)object;
+-(void) compile;
+-(NSString *) generateURLFromObject:(id)object;
 
 @end
 
@@ -146,46 +125,38 @@ enum {
 @abstract
 @discussion
 */
-@interface NKNavigatorPattern : NKURLNavigatorPattern {
-	Class targetClass;
-	id targetObject;
-	NKNavigatorMode navigationMode;
-	NSString *parentURL;
-	NSInteger transition;
-	NSInteger argumentCount;
-	UIModalPresentationStyle modalPresentationStyle;
-}
+@interface NKNavigatorPattern : NKURLNavigatorPattern
 
-	@property (nonatomic, assign) Class targetClass;
-	@property (nonatomic, assign) id targetObject;
-	@property (nonatomic, assign) NKNavigatorMode navigationMode;
-	@property (nonatomic, copy) NSString *parentURL;
-	@property (nonatomic, assign) NSInteger transition;
-	@property (nonatomic, assign) NSInteger argumentCount;
-	@property (nonatomic, readonly) BOOL isUniversal;
-	@property (nonatomic, readonly) BOOL isFragment;
-	@property (nonatomic, assign) UIModalPresentationStyle modalPresentationStyle;
+@property (nonatomic, assign) Class targetClass;
+@property (nonatomic, assign) id targetObject;
+@property (nonatomic, assign) NKNavigatorMode navigationMode;
+@property (nonatomic, copy) NSString *parentURL;
+@property (nonatomic, assign) NSInteger transition;
+@property (nonatomic, assign) NSInteger argumentCount;
+@property (nonatomic, readonly) BOOL isUniversal;
+@property (nonatomic, readonly) BOOL isFragment;
+@property (nonatomic, assign) UIModalPresentationStyle modalPresentationStyle;
 
-	#pragma mark -
+#pragma mark -
 
-	-(id) initWithTarget:(id)aTarget;
-	-(id) initWithTarget:(id)aTarget mode:(NKNavigatorMode)aNavigationMode;
+-(id) initWithTarget:(id)aTarget;
+-(id) initWithTarget:(id)aTarget mode:(NKNavigatorMode)aNavigationMode;
 
-	#pragma mark -
+#pragma mark -
 
-	-(void) compile;
+-(void) compile;
 
-	-(BOOL) matchURL:(NSURL *)aURL;
+-(BOOL) matchURL:(NSURL *)aURL;
 
-	-(id) invoke:(id)target withURL:(NSURL *)aURL query:(NSDictionary *)aQuery;
-	-(id) createObjectFromURL:(NSURL *)aURL query:(NSDictionary *)aQuery /*NS_RETURNS_RETAINED*/;
+-(id) invoke:(id)target withURL:(NSURL *)aURL query:(NSDictionary *)aQuery;
+-(id) createObjectFromURL:(NSURL *)aURL query:(NSDictionary *)aQuery /*NS_RETURNS_RETAINED*/;
 
 @end
 
 #pragma mark -
 
 @interface NSString (NKString)
-	-(NSDictionary *) queryDictionaryUsingEncoding:(NSStringEncoding)encoding;
+-(NSDictionary *) queryDictionaryUsingEncoding:(NSStringEncoding)encoding;
 @end
 
 #pragma mark -

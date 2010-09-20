@@ -16,6 +16,6 @@ view controllers UIToolbar or UINavigationBar or the UINavigationItem for the
 view controller if within a navigation controllers.
 */
 @protocol NKSplitViewPopoverButtonDelegate <NSObject>
-	-(void) showMasterPopoverButtonItem:(UIBarButtonItem *)barButtonItem;
-	-(void) invalidateMasterPopoverButtonItem:(UIBarButtonItem *)barButtonItem;
+-(void) showMasterPopoverButtonItem:(UIBarButtonItem *)barButtonItem;
+-(void) invalidateMasterPopoverButtonItem:(UIBarButtonItem *)barButtonItem;
 @end

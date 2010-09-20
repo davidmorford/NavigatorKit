@@ -13,5 +13,5 @@
 @discussion
 */
 @interface UINavigationController (NKNavigator)
-	@property (nonatomic, readonly) UIViewController *rootViewController;
+@property (nonatomic, readonly) UIViewController *rootViewController;
 @end

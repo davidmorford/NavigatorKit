@@ -12,6 +12,12 @@
 	// weak refs retained by Navigators
 	@property (nonatomic, assign) UISplitViewController *splitViewController;
 	@property (nonatomic, assign) UITabBarController *tabBarController;
+	-(UIViewController *) openExternalURLActionSheet;
+	-(UIViewController *) helloDaveAlert;
+	-(UIViewController *) alertViewControllerWithTitle:(NSString *)aTitle message:(NSString *)aMessage 
+										   okButtonURL:(NSString *)okURL 
+									   hasCancelButton:(BOOL)cancelFlag 
+									   cancelButtonURL:(NSString *)cancelURL;
 @end
 
 #pragma mark -
@@ -47,9 +53,9 @@
 
 		NKNavigatorMap *sharedNavigationMap = sharedNavigator.navigationMap;
 		[sharedNavigationMap from:@"navigatorcatalog://splitView"	toObject:sharedNavigator.rootViewController];
-		[sharedNavigationMap from:@"navigatorcatalog://settings"	toModalViewController:[NVCSettingsViewController class] 
-																	    presentationStyle:UIModalPresentationFormSheet];
-		
+		[sharedNavigationMap from:@"navigatorcatalog://settings"	toModalViewController:[NVCSettingsViewController class] presentationStyle:UIModalPresentationFormSheet];
+		[sharedNavigationMap from:@"navigatorcatalog:///hello/dave"	toObject:self selector:@selector(helloDaveAlert)];		
+
 		//
 		// Master Navigator
 		//
@@ -57,11 +63,12 @@
 		sharedNavigator.masterNavigator.delegate = self;
 		sharedNavigator.masterNavigator.wantsNavigationControllerForRoot = FALSE;
 		
-		[masterNavigationMap from:@"navigatorcatalog://tabbar" toSharedViewController:[UITabBarController class]];
+		[masterNavigationMap from:@"navigatorcatalog://tabbar"			toSharedViewController:[UITabBarController class]];
 		[masterNavigationMap from:@"navigatorcatalog://content/(initWithTitle:)" toViewController:[NVCContentTableViewController class]];
-		[masterNavigationMap from:@"navigatorcatalog://mappings" toViewController:[NVCMappingTableViewController class]];
-		[masterNavigationMap from:@"navigatorcatalog://history" toViewController:[NVCHistoryViewController class]];
-
+		[masterNavigationMap from:@"navigatorcatalog://mappings"		toViewController:[NVCMappingTableViewController class]];
+		[masterNavigationMap from:@"navigatorcatalog://history"			toViewController:[NVCHistoryViewController class]];
+		[masterNavigationMap from:@"navigatorcatalog://confirm/openURL"	toObject:self selector:@selector(openExternalURLActionSheet)];
+		
 		//
 		// Detail Navigator
 		//
@@ -73,6 +80,7 @@
 		
 		self.tabBarController = (UITabBarController *)[sharedNavigator.masterNavigator viewControllerForURL:@"navigatorcatalog://tabbar"];
 		self.tabBarController.delegate = self;
+		self.tabBarController.contentSizeForViewInPopover = CGSizeMake(320, 500);
 		[self.tabBarController setTabViewControllerURLs:[NSArray arrayWithObjects:@"navigatorcatalog://content/navigation", 
 																				  @"navigatorcatalog://content/modal", 
 																				  @"navigatorcatalog://content/popup", 
@@ -157,6 +165,12 @@
 	
 }
 
+-(NSString *) applicationDocumentsDirectoryPath {
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *basePath	= ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+	return basePath;
+}
+
 
 #pragma mark <NKNavigatorDelegate>
 
@@ -216,13 +230,54 @@
 }
 
 
+#pragma mark <NKActionSheetControllerDelegate>
+
+-(BOOL) actionSheetController:(NKActionSheetController *)asc didDismissWithButtonIndex:(NSInteger)anIndex URL:(NSString *)aURLString {
+	if (anIndex == 0) {
+		//[[UIApplication sharedApplication] openURL:[NSURL URLWithString:aURLString]];
+	}
+	else if (anIndex == 1) {
+	}
+	return TRUE;
+}
+
+#pragma mark <NKAlertViewControllerDelegate>
+
+-(BOOL) alertViewController:(NKAlertViewController *)aController didDismissWithButtonIndex:(NSInteger)aButtonIndex URL:(NSString *)aURLString {
+	if (aButtonIndex == 0) {
+	}
+	else if (aButtonIndex == 1) {
+	}
+	return TRUE;
+}
+
 #pragma mark -
 
--(NSString *) applicationDocumentsDirectoryPath {
-	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString *basePath	= ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
-	return basePath;
+-(UIViewController *) openExternalURLActionSheet {
+	NKActionSheetController *actionSheet = [[[NKActionSheetController alloc] initWithTitle:@"Visit apple.com?" delegate:self] autorelease];
+	[actionSheet addButtonWithTitle:@"Sure"			URL:@"http://www.apple.com"];
+	[actionSheet addCancelButtonWithTitle:@"No Way" URL:nil];
+	[actionSheet showInView:self.tabBarController.tabBar animated:TRUE];
+	return actionSheet;
 }
+
+-(UIViewController *) helloDaveAlert {
+	return [self alertViewControllerWithTitle:@"A Title" message:@"Hello Dave. Your looking well today." okButtonURL:nil hasCancelButton:FALSE cancelButtonURL:nil];
+}
+
+-(UIViewController *) alertViewControllerWithTitle:(NSString *)aTitle message:(NSString *)aMessage 
+									   okButtonURL:(NSString *)okURL 
+								   hasCancelButton:(BOOL)cancelFlag 
+								   cancelButtonURL:(NSString *)cancelURL {
+	NKAlertViewController *alert;
+	alert = [[[NKAlertViewController alloc] initWithTitle:aTitle message:aMessage delegate:self] autorelease];
+	[alert addButtonWithTitle:@"OK" URL:okURL];
+	if (cancelFlag) {
+		[alert addCancelButtonWithTitle:@"Cancel" URL:cancelURL];
+	}
+	return alert;
+}
+
 
 #pragma mark -
 

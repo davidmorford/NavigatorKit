@@ -57,7 +57,8 @@
 	return TRUE;
 }
 
-#pragma mark -
+
+#pragma mark <UITableViewDataSource>
 
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
 	NSInteger sectionCount = 1;
@@ -91,7 +92,7 @@
 		rowCount = 2;
 	}
 	else if ([self.title compare:@"Actions" options:NSLiteralSearch] == NSOrderedSame) {
-		rowCount = 2;
+		rowCount = 0;
 	}
 	else if ([self.title compare:@"External" options:NSLiteralSearch] == NSOrderedSame) {
 		rowCount = 1;
@@ -128,21 +129,17 @@
 	else if ([self.title compare:@"Popup" options:NSLiteralSearch] == NSOrderedSame) {
 		if (indexPath.row == 0) {
 			textLabelString = @"Alert View";
-			detailTextLabelString = @"...";
+			detailTextLabelString = @"Display a simple alert view hello mesage.";
 		}
 		else if (indexPath.row == 1) {
 			textLabelString = @"Action Sheet";
-			detailTextLabelString = @"...";
+			detailTextLabelString = @"Display an Action Sheet that opens a URL in Safari.";
 		}
 	}
 	else if ([self.title compare:@"Actions" options:NSLiteralSearch] == NSOrderedSame) {
 		if (indexPath.row == 0) {
-			textLabelString = @"Alert View";
-			detailTextLabelString = @"...";
 		}
 		else if (indexPath.row == 1) {
-			textLabelString = @"Action Sheet";
-			detailTextLabelString = @"...";
 		}
 	}
 	else if ([self.title compare:@"External" options:NSLiteralSearch] == NSOrderedSame) {
@@ -156,6 +153,7 @@
 	cell.detailTextLabel.numberOfLines = 2;
 	return cell;
 }
+
 
 #pragma mark <UITableViewDelegate>
 
@@ -177,7 +175,12 @@
 		}
 	}
 	else if ([self.title compare:@"Popup" options:NSLiteralSearch] == NSOrderedSame) {
-
+		if (indexPath.row == 0) {
+			targetURL = @"navigatorcatalog:///hello/dave";
+		}
+		else if (indexPath.row == 1) {
+			targetURL = @"navigatorcatalog://confirm/openURL";
+		}
 	}
 	else if ([self.title compare:@"Actions" options:NSLiteralSearch] == NSOrderedSame) {
 
@@ -202,7 +205,6 @@
 	}
 	[action release];
 }
-
 
 #pragma mark Memory management
 

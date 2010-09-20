@@ -2,7 +2,7 @@
 #import <UIKit/UIKit.h>
 
 @interface UIDevice (NKSystemVersionValue)
-	@property (nonatomic, readonly) NSNumber *systemVersionNumber;
+@property (nonatomic, readonly) NSNumber *systemVersionNumber;
 @end
 
 #pragma mark -

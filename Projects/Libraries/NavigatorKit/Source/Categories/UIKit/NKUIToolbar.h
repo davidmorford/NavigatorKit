@@ -14,10 +14,10 @@
 */
 @interface UIToolbar (NKToolbar)
 
-	-(UIBarButtonItem *) itemWithTag:(NSInteger)aTag;
+-(UIBarButtonItem *) itemWithTag:(NSInteger)aTag;
 
-	-(void) replaceItemWithTag:(NSInteger)tag withItem:(UIBarButtonItem *)anItem;
-	
-	-(void) replaceItem:(UIBarButtonItem *)oldItem withItem:(UIBarButtonItem *)newItem;
+-(void) replaceItemWithTag:(NSInteger)tag withItem:(UIBarButtonItem *)anItem;
+
+-(void) replaceItem:(UIBarButtonItem *)oldItem withItem:(UIBarButtonItem *)newItem;
 
 @end

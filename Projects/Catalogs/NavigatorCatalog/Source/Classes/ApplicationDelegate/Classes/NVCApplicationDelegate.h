@@ -17,7 +17,7 @@
 @abstract
 @discussion
 */
-@interface NVCApplicationDelegate : NSObject <UIApplicationDelegate, NKNavigatorDelegate, UITabBarControllerDelegate>
+@interface NVCApplicationDelegate : NSObject <UIApplicationDelegate, NKNavigatorDelegate, UITabBarControllerDelegate, NKAlertViewControllerDelegate, NKActionSheetControllerDelegate>
 
 +(NVCApplicationDelegate *) sharedApplicationDelegate;
 

@@ -33,12 +33,12 @@ enum {
 */
 @interface NKSplitCornersView : UIView
 
-	@property (nonatomic, assign) float cornerRadius;
-	@property (nonatomic, assign) NKSplitViewController *splitViewController;
+@property (nonatomic, assign) float cornerRadius;
+@property (nonatomic, assign) NKSplitViewController *splitViewController;
 
-	// don't change this manually; let the splitViewController manage it.
-	@property (nonatomic, assign) NKCornersPosition cornersPosition;
-	@property (nonatomic, retain) UIColor *cornerBackgroundColor;
+// don't change this manually; let the splitViewController manage it.
+@property (nonatomic, assign) NKCornersPosition cornersPosition;
+@property (nonatomic, retain) UIColor *cornerBackgroundColor;
 
 @end
 

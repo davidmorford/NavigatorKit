@@ -20,32 +20,32 @@ via the apply* methods. Each of these methods returns self, allowing you to chai
 */
 @interface NKNavigatorAction : NSObject <NSCopying>
 	
-	@property (nonatomic, copy) NSString *URLPath;
-	@property (nonatomic, copy) NSString *parentURLPath;
-	@property (nonatomic, retain) NSDictionary *query;
+@property (nonatomic, copy) NSString *URLPath;
+@property (nonatomic, copy) NSString *parentURLPath;
+@property (nonatomic, retain) NSDictionary *query;
 
-	@property (nonatomic, retain) id sender;
-	@property (nonatomic, assign) BOOL animated;
-	@property (nonatomic, assign) BOOL withDelay;
-	@property (nonatomic, assign) UIViewAnimationTransition transition;
-	@property (nonatomic, assign) UIModalPresentationStyle modalPresentationStyle;
+@property (nonatomic, retain) id sender;
+@property (nonatomic, assign) BOOL animated;
+@property (nonatomic, assign) BOOL withDelay;
+@property (nonatomic, assign) UIViewAnimationTransition transition;
+@property (nonatomic, assign) UIModalPresentationStyle modalPresentationStyle;
 
-	#pragma mark -
+#pragma mark -
 
-	/*!
-	@abstract Create an autoreleased NKNavigatorAction object with a URL path. The path is required.
-	*/
-	+(id) actionWithURLPath:(NSString *)aURLPath;
+/*!
+@abstract Create an autoreleased NKNavigatorAction object with a URL path. The path is required.
+*/
++(id) actionWithURLPath:(NSString *)aURLPath;
 
-	#pragma mark Initializers
+#pragma mark Initializers
 
-	/*!
-	@abstract Initialize a NKNavigatorAction object with a URL path. The path is required.
-	*/
-	-(id) initWithURLPath:(NSString *)aURLPath;
-	-(id) initWithURLPath:(NSString *)aURLPath query:(NSDictionary *)aQuery;
-	-(id) initWithURLPath:(NSString *)aURLPath animated:(BOOL)animatedFlag;
-	-(id) initWithURLPath:(NSString *)aURLPath parentURLPath:(NSString *)aParentPath;
-	-(id) initWithURLPath:(NSString *)aURLPath parentURLPath:(NSString *)aParentPath query:(NSDictionary *)aQuery;
+/*!
+@abstract Initialize a NKNavigatorAction object with a URL path. The path is required.
+*/
+-(id) initWithURLPath:(NSString *)aURLPath;
+-(id) initWithURLPath:(NSString *)aURLPath query:(NSDictionary *)aQuery;
+-(id) initWithURLPath:(NSString *)aURLPath animated:(BOOL)animatedFlag;
+-(id) initWithURLPath:(NSString *)aURLPath parentURLPath:(NSString *)aParentPath;
+-(id) initWithURLPath:(NSString *)aURLPath parentURLPath:(NSString *)aParentPath query:(NSDictionary *)aQuery;
 
 @end

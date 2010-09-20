@@ -16,6 +16,6 @@
 	UIViewController *viewController;
 }
 
-	-(id) initWithViewController:(UIViewController *)controller;
+-(id) initWithViewController:(UIViewController *)controller;
 
 @end

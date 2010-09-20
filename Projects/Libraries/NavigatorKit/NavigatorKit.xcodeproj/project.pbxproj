@@ -19,8 +19,6 @@
 		638654471204C703002ED89B /* NKUITabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 638654091204C703002ED89B /* NKUITabBarController.m */; };
 		6386544E1204C703002ED89B /* NKUIViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 638654101204C703002ED89B /* NKUIViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6386544F1204C703002ED89B /* NKUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 638654111204C703002ED89B /* NKUIViewController.m */; };
-		638654501204C703002ED89B /* NKUIWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 638654121204C703002ED89B /* NKUIWindow.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		638654511204C703002ED89B /* NKUIWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 638654131204C703002ED89B /* NKUIWindow.m */; };
 		638654521204C703002ED89B /* NKActionSheetController.h in Headers */ = {isa = PBXBuildFile; fileRef = 638654161204C703002ED89B /* NKActionSheetController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		638654531204C703002ED89B /* NKActionSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 638654171204C703002ED89B /* NKActionSheetController.m */; };
 		638654541204C703002ED89B /* NKAlertViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 638654181204C703002ED89B /* NKAlertViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -92,8 +90,6 @@
 		638654091204C703002ED89B /* NKUITabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKUITabBarController.m; sourceTree = "<group>"; };
 		638654101204C703002ED89B /* NKUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKUIViewController.h; path = Source/Categories/UIKit/NKUIViewController.h; sourceTree = SOURCE_ROOT; };
 		638654111204C703002ED89B /* NKUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKUIViewController.m; sourceTree = "<group>"; };
-		638654121204C703002ED89B /* NKUIWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKUIWindow.h; path = Source/Categories/UIKit/NKUIWindow.h; sourceTree = SOURCE_ROOT; };
-		638654131204C703002ED89B /* NKUIWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKUIWindow.m; sourceTree = "<group>"; };
 		638654161204C703002ED89B /* NKActionSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKActionSheetController.h; path = Source/Classes/ViewControllers/NKActionSheetController.h; sourceTree = SOURCE_ROOT; };
 		638654171204C703002ED89B /* NKActionSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NKActionSheetController.m; path = Source/Classes/ViewControllers/NKActionSheetController.m; sourceTree = SOURCE_ROOT; };
 		638654181204C703002ED89B /* NKAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKAlertViewController.h; path = Source/Classes/ViewControllers/NKAlertViewController.h; sourceTree = SOURCE_ROOT; };
@@ -234,7 +230,6 @@
 				638654081204C703002ED89B /* NKUITabBarController.h */,
 				638654101204C703002ED89B /* NKUIViewController.h */,
 				63FC0C401225A67C00ADF936 /* NKUIToolbar.h */,
-				638654121204C703002ED89B /* NKUIWindow.h */,
 				6386547A1204C770002ED89B /* Source */,
 			);
 			name = UIKit;
@@ -290,7 +285,6 @@
 				638654091204C703002ED89B /* NKUITabBarController.m */,
 				638654111204C703002ED89B /* NKUIViewController.m */,
 				63FC0C411225A67C00ADF936 /* NKUIToolbar.m */,
-				638654131204C703002ED89B /* NKUIWindow.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -434,7 +428,6 @@
 				638654441204C703002ED89B /* NKUISplitViewController.h in Headers */,
 				638654461204C703002ED89B /* NKUITabBarController.h in Headers */,
 				6386544E1204C703002ED89B /* NKUIViewController.h in Headers */,
-				638654501204C703002ED89B /* NKUIWindow.h in Headers */,
 				638654521204C703002ED89B /* NKActionSheetController.h in Headers */,
 				638654541204C703002ED89B /* NKAlertViewController.h in Headers */,
 				638654561204C703002ED89B /* NKNavigationController.h in Headers */,
@@ -536,7 +529,6 @@
 				638654451204C703002ED89B /* NKUISplitViewController.m in Sources */,
 				638654471204C703002ED89B /* NKUITabBarController.m in Sources */,
 				6386544F1204C703002ED89B /* NKUIViewController.m in Sources */,
-				638654511204C703002ED89B /* NKUIWindow.m in Sources */,
 				638654531204C703002ED89B /* NKActionSheetController.m in Sources */,
 				638654551204C703002ED89B /* NKAlertViewController.m in Sources */,
 				638654571204C703002ED89B /* NKNavigationController.m in Sources */,

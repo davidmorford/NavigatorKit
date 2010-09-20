@@ -23,27 +23,27 @@ enum {
 */
 @interface NKSplitViewNavigator : NKNavigator <NKSplitViewControllerDelegate, UIPopoverControllerDelegate>
 	
-	+(NKSplitViewNavigator *) splitViewNavigator;	
++(NKSplitViewNavigator *) splitViewNavigator;	
 
-	#pragma mark SplitView
+#pragma mark SplitView
 
-	@property (nonatomic, readonly) NKSplitViewController *splitViewController;
-	
-	-(void) setViewControllersWithNavigationURLs:(NSArray *)aURLArray;
-	
-	#pragma mark Popover
-	
-	@property (nonatomic, retain) UIPopoverController *popoverController;
-	@property (nonatomic, retain) UIBarButtonItem *masterPopoverButtonItem;
-	@property (nonatomic, retain) NSString *masterPopoverButtonTitle;
+@property (nonatomic, readonly) NKSplitViewController *splitViewController;
 
-	#pragma mark Navigators
+-(void) setViewControllersWithNavigationURLs:(NSArray *)aURLArray;
 
-	@property (nonatomic, retain) NSArray *navigators;
-	
-	@property (nonatomic, readonly) NKNavigator *masterNavigator;
-	@property (nonatomic, readonly) NKNavigator *detailNavigator;
+#pragma mark Popover
 
-	-(NKNavigator *) navigatorAtIndex:(NKSplitNavigatorPosition)index;
+@property (nonatomic, retain) UIPopoverController *popoverController;
+@property (nonatomic, retain) UIBarButtonItem *masterPopoverButtonItem;
+@property (nonatomic, retain) NSString *masterPopoverButtonTitle;
+
+#pragma mark Navigators
+
+@property (nonatomic, retain) NSArray *navigators;
+
+@property (nonatomic, readonly) NKNavigator *masterNavigator;
+@property (nonatomic, readonly) NKNavigator *detailNavigator;
+
+-(NKNavigator *) navigatorAtIndex:(NKSplitNavigatorPosition)index;
 
 @end

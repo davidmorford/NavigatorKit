@@ -19,19 +19,19 @@ by NKNavigator, and gain all the benefits of persistence and URL dispatch.
 */
 @interface NKAlertViewController : NKPopupViewController <UIAlertViewDelegate>
 
-	@property (nonatomic, assign) id <NKAlertViewControllerDelegate> delegate;
-	@property (nonatomic, readonly) UIAlertView *alertView;
-	@property (nonatomic, retain) id userInfo;
+@property (nonatomic, assign) id <NKAlertViewControllerDelegate> delegate;
+@property (nonatomic, readonly) UIAlertView *alertView;
+@property (nonatomic, retain) id userInfo;
 
-	#pragma mark Initializer
-	
-	-(id) initWithTitle:(NSString *)aTitle message:(NSString *)aMessage;
-	-(id) initWithTitle:(NSString *)aTitle message:(NSString *)aMessage delegate:(id)aDelegate;
+#pragma mark Initializer
 
-	-(NSInteger) addButtonWithTitle:(NSString *)aTitle URL:(NSString *)aURL;
-	-(NSInteger) addCancelButtonWithTitle:(NSString *)aTitle URL:(NSString *)aURL;
+-(id) initWithTitle:(NSString *)aTitle message:(NSString *)aMessage;
+-(id) initWithTitle:(NSString *)aTitle message:(NSString *)aMessage delegate:(id)aDelegate;
 
-	-(NSString * ) buttonURLAtIndex:(NSInteger)anIndex;
+-(NSInteger) addButtonWithTitle:(NSString *)aTitle URL:(NSString *)aURL;
+-(NSInteger) addCancelButtonWithTitle:(NSString *)aTitle URL:(NSString *)aURL;
+
+-(NSString * ) buttonURLAtIndex:(NSInteger)anIndex;
 
 @end
 
@@ -42,5 +42,5 @@ by NKNavigator, and gain all the benefits of persistence and URL dispatch.
 @abstract
 */
 @protocol NKAlertViewControllerDelegate <UIAlertViewDelegate>
-	-(BOOL) alertViewController:(NKAlertViewController *)aController didDismissWithButtonIndex:(NSInteger)aButtonIndex  URL:(NSString *)aURLString;
+-(BOOL) alertViewController:(NKAlertViewController *)aController didDismissWithButtonIndex:(NSInteger)aButtonIndex  URL:(NSString *)aURLString;
 @end

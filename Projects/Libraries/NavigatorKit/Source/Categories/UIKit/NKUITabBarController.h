@@ -16,6 +16,6 @@
 */
 @interface UITabBarController (NKNavigator)
 
-	-(void) setTabViewControllerURLs:(NSArray *)navigatorURLs;
+-(void) setTabViewControllerURLs:(NSArray *)navigatorURLs;
 
 @end

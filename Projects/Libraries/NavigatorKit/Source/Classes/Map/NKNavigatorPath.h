@@ -16,15 +16,15 @@
 */
 @interface NSObject (NKNavigatorPath)
 
-	/*!
-	@abstract Converts the object to a URL using NKNavigatorMap.
-	*/
-	@property (nonatomic, readonly) NSString *URLValue;
+/*!
+@abstract Converts the object to a URL using NKNavigatorMap.
+*/
+@property (nonatomic, readonly) NSString *URLValue;
 
-	/*!
-	@abstract Converts the object to a specially-named URL using NKNavigatorMap.
-	*/
-	-(NSString *) URLValueWithName:(NSString *)name;
+/*!
+@abstract Converts the object to a specially-named URL using NKNavigatorMap.
+*/
+-(NSString *) URLValueWithName:(NSString *)name;
 
 @end
 
@@ -37,15 +37,15 @@
 */
 @interface NSString (NKNavigatorPath)
 
-	/*!
-	@abstract Converts the string to an object using NKNavigatorMap.
-	*/
-	-(id) objectValue;
+/*!
+@abstract Converts the string to an object using NKNavigatorMap.
+*/
+-(id) objectValue;
 
-	/*!
-	@abstract Opens a URL with the string using NKNavigatorMap.
-	*/
-	-(void) openURL;
-	-(void) openURLFromButton:(UIView *)button;
+/*!
+@abstract Opens a URL with the string using NKNavigatorMap.
+*/
+-(void) openURL;
+-(void) openURLFromButton:(UIView *)button;
 
 @end

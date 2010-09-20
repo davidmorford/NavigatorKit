@@ -6,21 +6,27 @@
 #import <NavigatorKit/NKNavigatorMap.h>
 #import <NavigatorKit/NKNavigationController.h>
 
-@interface NKNavigator ()
-		
-	-(void) setRootViewController:(UIViewController *)controller;
+@interface NKNavigator () {
+}
 
-	+(UIViewController *) frontViewControllerForController:(UIViewController *)controller;
-	-(UINavigationController *) frontNavigationController;
-	-(UIViewController *) frontViewController;
-	-(UIViewController *) visibleChildControllerForController:(UIViewController *)controller;
+-(id) initWithWindowClass:(Class)windowCls navigationControllerClass:(Class)navControllerCls;
 
-	#pragma mark -
+#pragma mark -
 
-	/*!
-	@abstract The parent navigator
-	*/
-	@property (nonatomic, assign) NKNavigator *parentNavigator;
+@property (nonatomic, retain, readwrite) NKNavigatorMap *navigationMap;	
+@property (nonatomic, retain, readwrite) UIViewController *rootViewController;
+
+-(void) setRootNavigationController:(UINavigationController *)aController;
++(UIViewController *) frontViewControllerForController:(UIViewController *)controller;
+-(UINavigationController *) frontNavigationController;
+-(UIViewController *) frontViewController;
+-(UIViewController *) visibleChildControllerForController:(UIViewController *)controller;
+
+#pragma mark -
+
+@property (nonatomic, assign, readwrite) NKNavigator *parentNavigator;
+-(void) navigator:(NKNavigator *)navigator didDisplayController:(UIViewController *)controller;
+
 @end
 
 #pragma mark -
@@ -31,210 +37,209 @@ static NKUISplitViewNavigator *gSharedUISplitViewNavigator = nil;
 
 @implementation NKUISplitViewNavigator
 
-	@synthesize navigators;
-	@synthesize popoverController;
-	@synthesize masterPopoverButtonItem;
-	@synthesize masterPopoverButtonTitle;
-	
-	#pragma mark Shared Constructor
+@synthesize navigators;
+@synthesize popoverController;
+@synthesize masterPopoverButtonItem;
+@synthesize masterPopoverButtonTitle;
 
-	+(NKUISplitViewNavigator *) UISplitViewNavigator {
-		if (!gSharedUISplitViewNavigator) {
-			gSharedUISplitViewNavigator = [[[self class] alloc] init];
-		}
-		return gSharedUISplitViewNavigator;
+#pragma mark Shared Constructor
+
++(NKUISplitViewNavigator *) UISplitViewNavigator {
+	if (!gSharedUISplitViewNavigator) {
+		gSharedUISplitViewNavigator = [[[self class] alloc] init];
 	}
+	return gSharedUISplitViewNavigator;
+}
 
 
-	#pragma mark Initializers
+#pragma mark Initializers
 
-	-(id) init {
-		self = [super init];
-		if (!self) {
-			return nil;
-		}
-		self.masterPopoverButtonItem.title = @"Master";
-		NSMutableArray *mutableNavigators = [[NSMutableArray alloc] initWithCapacity:2];
-		for (NSUInteger index = 0; index < 2; ++index) {
-			NKNavigator *navigator		= [[NKNavigator alloc] init];
-			navigator.parentNavigator	= self;
-			navigator.window			= self.window;
-			navigator.uniquePrefix		= [NSString stringWithFormat:@"NKUISplitViewNavigator%d", index];
-			[mutableNavigators addObject:navigator];
-			[navigator release];
-		}
-		self.navigators = mutableNavigators;
-		return self;
-	}
-
-
-	#pragma mark API
-
-	-(UIViewController *) rootViewController {
-		if ([super rootViewController] != nil) {
-			return [super rootViewController];
-		}
-		
-		UISplitViewController *rootSplitViewController = [[UISplitViewController alloc] init];
-		rootSplitViewController.delegate = self;
-		[self setRootViewController:rootSplitViewController];
-		[rootSplitViewController release];
-		
-		return [super rootViewController];
-	}
-
-	-(void) setViewControllersWithNavigationURLs:(NSArray *)aURLArray {
-		NSUInteger count				= [self.navigators count];
-		NSMutableArray *viewControllers = [[NSMutableArray alloc] initWithCapacity:count];
-		for (NSUInteger currentIndex = 0; currentIndex < count; ++currentIndex) {
-			NKNavigator *navigator = [self navigatorAtIndex:currentIndex];
-			[navigator openURLAction:[NKNavigatorAction actionWithURLPath:[aURLArray objectAtIndex:currentIndex]]];
-			[viewControllers addObject:navigator.rootViewController];
-		}
-		self.splitViewController.viewControllers = viewControllers;
-		[viewControllers release]; viewControllers = nil;
-	}
-
-	-(NKNavigator *) masterNavigator {
-		return [self navigatorAtIndex:NKSplitViewMasterNavigator];
-	}
-
-	-(NKNavigator *) detailNavigator {
-		return [self navigatorAtIndex:NKSplitViewDetailNavigator];
-	}
-
-	-(NKNavigator *) navigatorAtIndex:(NKSplitNavigatorPosition)anIndex {
-		NSAssert(anIndex >= 0 && anIndex <= 1, @"");
-		return [navigators objectAtIndex:anIndex];
-	}
-
-	-(NKNavigator *) navigatorForURLPath:(NSString *)aURLPath {
-		for (NKNavigator *navigator in self.navigators) {
-			if ([navigator.navigationMap isURLPathSupported:aURLPath]) {
-				return navigator;
-			}
-		}
+-(id) init {
+	self = [super init];
+	if (!self) {
 		return nil;
 	}
+	NSMutableArray *mutableNavigators = [[NSMutableArray alloc] initWithCapacity:2];
+	for (NSUInteger index = 0; index < 2; ++index) {
+		NKNavigator *navigator		= [[NKNavigator alloc] init];
+		navigator.parentNavigator	= self;
+		navigator.window			= self.window;
+		navigator.uniquePrefix		= [NSString stringWithFormat:@"NKUISplitViewNavigator%d", index];
+		[mutableNavigators addObject:navigator];
+		[navigator release];
+	}
+	self.navigators = mutableNavigators;
+	return self;
+}
 
-	-(void) navigator:(NKNavigator *)navigator didDisplayController:(UIViewController *)controller {
-		NSUInteger navigatorIndex = [self.navigators indexOfObject:navigator];
-		if (navigatorIndex == NSNotFound) {
-			return;
-		}
-		
-		if (controller == self.splitViewController) {
-			if ([self.splitViewController.viewControllers objectAtIndex:navigatorIndex] != controller) {
-				NSMutableArray *viewControllers	= [self.splitViewController.viewControllers mutableCopy];
-				[viewControllers replaceObjectAtIndex:navigatorIndex withObject:controller];
-				self.splitViewController.viewControllers = viewControllers;
-			}
-		}
-		
-		if (navigatorIndex == NKSplitViewDetailNavigator) {
 
-		}
-		
-		if (navigatorIndex == NKSplitViewMasterNavigator) {
+#pragma mark API
+
+-(void) setViewControllersWithNavigationURLs:(NSArray *)aURLArray {
+	NSUInteger count				= [self.navigators count];
+	NSMutableArray *viewControllers = [[NSMutableArray alloc] initWithCapacity:count];
+	for (NSUInteger currentIndex = 0; currentIndex < count; ++currentIndex) {
+		NKNavigator *navigator = [self navigatorAtIndex:currentIndex];
+		[navigator openURLAction:[NKNavigatorAction actionWithURLPath:[aURLArray objectAtIndex:currentIndex]]];
+		[viewControllers addObject:navigator.rootViewController];
+	}
+	self.splitViewController.viewControllers = viewControllers;
+	[viewControllers release]; viewControllers = nil;
+}
+
+-(NKNavigator *) masterNavigator {
+	return [self navigatorAtIndex:NKSplitViewMasterNavigator];
+}
+
+-(NKNavigator *) detailNavigator {
+	return [self navigatorAtIndex:NKSplitViewDetailNavigator];
+}
+
+-(NKNavigator *) navigatorAtIndex:(NKSplitNavigatorPosition)anIndex {
+	NSAssert(anIndex >= 0 && anIndex <= 1, @"");
+	return [navigators objectAtIndex:anIndex];
+}
+
+-(NKNavigator *) navigatorForURLPath:(NSString *)aURLPath {
+	for (NKNavigator *navigator in self.navigators) {
+		if ([navigator.navigationMap isURLPathSupported:aURLPath]) {
+			return navigator;
 		}
 	}
-
-
-	#pragma mark <NKSplitViewControllerDelegate>
-
-	-(UISplitViewController *) splitViewController {
-		return (UISplitViewController *)[self rootViewController];
+	if ([self.navigationMap isURLPathSupported:aURLPath]) {
+		return self;
 	}
+	return nil;
+}
 
-
-	#pragma mark <UISplitViewControllerDelegate>
-
-	-(void) splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)pc {
-		self.popoverController = pc;
-		self.popoverController.delegate = self;
-		self.masterPopoverButtonItem = barButtonItem;
-		UIViewController *rightDetailController = self.splitViewController.detailViewController;
-		BOOL isDetailNavigationController = [rightDetailController isKindOfClass:[NKNavigationController class]];
-		if (isDetailNavigationController) {
-			UINavigationController *detailNavigationController = (NKNavigationController *)rightDetailController;
-			BOOL confirmsToDetail = [[(UINavigationController *)detailNavigationController topViewController] conformsToProtocol:@protocol(NKSplitViewPopoverButtonDelegate)];			
-			if (confirmsToDetail) {
-				UIViewController <NKSplitViewPopoverButtonDelegate> *controller = detailNavigationController.topViewController;
-				if (controller && barButtonItem) {
-					self.masterPopoverButtonItem.title = @"Master";
-					if ([controller respondsToSelector:@selector(showMasterPopoverButtonItem:)]) {
-						[controller showMasterPopoverButtonItem:self.masterPopoverButtonItem];
-					}
-				}
-			}
-		}
-		else {
-			BOOL confirmsToDetail = [rightDetailController conformsToProtocol:@protocol(NKSplitViewPopoverButtonDelegate)];			
-			if (confirmsToDetail) {
-				UIViewController <NKSplitViewPopoverButtonDelegate> *controller = rightDetailController;
-				if (controller && barButtonItem) {
-					self.masterPopoverButtonItem.title = @"Master";
-					if ([controller respondsToSelector:@selector(showMasterPopoverButtonItem:)]) {
-						[controller showMasterPopoverButtonItem:self.masterPopoverButtonItem];
-					}
-				}
-			}
-		}	
+-(void) navigator:(NKNavigator *)navigator didDisplayController:(UIViewController *)controller {
+	NSUInteger navigatorIndex = [self.navigators indexOfObject:navigator];
+	if (navigatorIndex == NSNotFound) {
+		return;
 	}
-
-	-(void) splitViewController:(UISplitViewController *)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem {
-		UIViewController *rightDetailController = self.splitViewController.detailViewController;
-		BOOL isDetailNavigationController = [rightDetailController isKindOfClass:[NKNavigationController class]];
-		if (isDetailNavigationController) {
-			UINavigationController *detailNavigationController = (NKNavigationController *)rightDetailController;
-			BOOL confirmsToDetail = [[(UINavigationController *)detailNavigationController topViewController] conformsToProtocol:@protocol(NKSplitViewPopoverButtonDelegate)];			
-			if (confirmsToDetail) {
-				UIViewController <NKSplitViewPopoverButtonDelegate> *controller = detailNavigationController.topViewController;
-				if (controller && barButtonItem) {
-					if ([controller respondsToSelector:@selector(invalidateMasterPopoverButtonItem:)]) {
-						[controller invalidateMasterPopoverButtonItem:self.masterPopoverButtonItem];
-					}
-				}
-			}
-		}
-		else {
-			BOOL confirmsToDetail = [rightDetailController conformsToProtocol:@protocol(NKSplitViewPopoverButtonDelegate)];			
-			if (confirmsToDetail) {
-				UIViewController <NKSplitViewPopoverButtonDelegate> *controller = rightDetailController;
-				if (controller && barButtonItem) {
-					if ([controller respondsToSelector:@selector(invalidateMasterPopoverButtonItem:)]) {
-						[controller invalidateMasterPopoverButtonItem:self.masterPopoverButtonItem];
-					}
-				}
-			}
-		}
-		self.masterPopoverButtonItem = nil;
-		self.popoverController = nil;	
-	}
-
-	-(void) splitViewController:(UISplitViewController *)svc popoverController:(UIPopoverController *)pc willPresentViewController:(UIViewController *)aViewController {
 	
+	if (controller == self.splitViewController) {
+		if ([self.splitViewController.viewControllers objectAtIndex:navigatorIndex] != controller) {
+			NSMutableArray *viewControllers = [self.splitViewController.viewControllers mutableCopy];
+			[viewControllers replaceObjectAtIndex:navigatorIndex withObject:controller];
+			self.splitViewController.viewControllers = viewControllers;
+		}
 	}
+	
+	if (navigatorIndex == NKSplitViewDetailNavigator) {
 
-
-	#pragma mark <UIPopoverControllerDelegate>
-
-	-(BOOL) popoverControllerShouldDismissPopover:(UIPopoverController *)pc {
-		return TRUE;
 	}
-
-	-(void) popoverControllerDidDismissPopover:(UIPopoverController *)pc {
+	
+	if (navigatorIndex == NKSplitViewMasterNavigator) {
 	}
+}
 
 
-	#pragma mark -
+#pragma mark <UISplitViewControllerDelegate>
 
-	-(void) dealloc {
-		[navigators release]; navigators = nil;
-		[popoverController release]; popoverController = nil;
-		[masterPopoverButtonItem release]; masterPopoverButtonItem = nil;
-		[masterPopoverButtonTitle release]; masterPopoverButtonTitle = nil;
-		[super dealloc];
+-(UISplitViewController *) splitViewController {
+	if ([super rootViewController] != nil) {
+		return (UISplitViewController *)[super rootViewController];
 	}
+	
+	UISplitViewController *rootSplitViewController = [[UISplitViewController alloc] init];
+	rootSplitViewController.delegate = self;
+	[self setRootViewController:rootSplitViewController];
+	[rootSplitViewController release];
+	
+	return (UISplitViewController *)[self rootViewController];
+}
+
+-(void) splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)pc {
+	self.popoverController = pc;
+	self.popoverController.delegate = self;
+	self.masterPopoverButtonItem = barButtonItem;
+	UIViewController *rightDetailController = self.splitViewController.detailViewController;
+	BOOL isDetailNavigationController = [rightDetailController isKindOfClass:[UINavigationController class]];
+	if (isDetailNavigationController) {
+		UINavigationController *detailNavigationController = (UINavigationController *)rightDetailController;
+		BOOL confirmsToDetail = [[(UINavigationController *)detailNavigationController topViewController] conformsToProtocol:@protocol(NKSplitViewPopoverButtonDelegate)];			
+		if (confirmsToDetail) {
+			UIViewController <NKSplitViewPopoverButtonDelegate> *controller = detailNavigationController.topViewController;
+			if (controller && barButtonItem) {
+				if (!self.masterPopoverButtonItem.title) {
+					self.masterPopoverButtonItem.title = (controller.title == nil) ? controller.title : @"Master";
+				}
+				if ([controller respondsToSelector:@selector(showMasterPopoverButtonItem:)]) {
+					[controller showMasterPopoverButtonItem:self.masterPopoverButtonItem];
+				}
+			}
+		}
+	}
+	else {
+		BOOL confirmsToDetail = [rightDetailController conformsToProtocol:@protocol(NKSplitViewPopoverButtonDelegate)];			
+		if (confirmsToDetail) {
+			UIViewController <NKSplitViewPopoverButtonDelegate> *controller = rightDetailController;
+			if (controller && barButtonItem) {
+				if (!self.masterPopoverButtonItem.title) {
+					self.masterPopoverButtonItem.title = (controller.title == nil) ? controller.title : @"Master";
+				}
+				if ([controller respondsToSelector:@selector(showMasterPopoverButtonItem:)]) {
+					[controller showMasterPopoverButtonItem:self.masterPopoverButtonItem];
+				}
+			}
+		}
+	}
+}
+
+-(void) splitViewController:(UISplitViewController *)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem {
+	UIViewController *rightDetailController = self.splitViewController.detailViewController;
+	BOOL isDetailNavigationController = [rightDetailController isKindOfClass:[UINavigationController class]];
+	if (isDetailNavigationController) {
+		UINavigationController *detailNavigationController = (UINavigationController *)rightDetailController;
+		BOOL confirmsToDetail = [[(UINavigationController *)detailNavigationController topViewController] conformsToProtocol:@protocol(NKSplitViewPopoverButtonDelegate)];			
+		if (confirmsToDetail) {
+			UIViewController <NKSplitViewPopoverButtonDelegate> *controller = detailNavigationController.topViewController;
+			if (controller && barButtonItem) {
+				if ([controller respondsToSelector:@selector(invalidateMasterPopoverButtonItem:)]) {
+					[controller invalidateMasterPopoverButtonItem:self.masterPopoverButtonItem];
+				}
+			}
+		}
+	}
+	else {
+		BOOL confirmsToDetail = [rightDetailController conformsToProtocol:@protocol(NKSplitViewPopoverButtonDelegate)];			
+		if (confirmsToDetail) {
+			UIViewController <NKSplitViewPopoverButtonDelegate> *controller = rightDetailController;
+			if (controller && barButtonItem) {
+				if ([controller respondsToSelector:@selector(invalidateMasterPopoverButtonItem:)]) {
+					[controller invalidateMasterPopoverButtonItem:self.masterPopoverButtonItem];
+				}
+			}
+		}
+	}
+	self.masterPopoverButtonItem = nil;
+	self.popoverController = nil;
+}
+
+-(void) splitViewController:(UISplitViewController *)svc popoverController:(UIPopoverController *)pc willPresentViewController:(UIViewController *)aViewController {
+
+}
+
+
+#pragma mark <UIPopoverControllerDelegate>
+
+-(BOOL) popoverControllerShouldDismissPopover:(UIPopoverController *)pc {
+	return TRUE;
+}
+
+-(void) popoverControllerDidDismissPopover:(UIPopoverController *)pc {
+}
+
+
+#pragma mark -
+
+-(void) dealloc {
+	[navigators release]; navigators = nil;
+	[popoverController release]; popoverController = nil;
+	[masterPopoverButtonItem release]; masterPopoverButtonItem = nil;
+	[masterPopoverButtonTitle release]; masterPopoverButtonTitle = nil;
+	[super dealloc];
+}
 
 @end

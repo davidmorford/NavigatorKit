@@ -14,9 +14,9 @@
 */
 @interface UISplitViewController (NKNavigator)
 
-	@property (nonatomic, readonly) id masterViewController;
-	@property (nonatomic, readonly) id detailViewController;
+@property (nonatomic, readonly) id masterViewController;
+@property (nonatomic, readonly) id detailViewController;
 
-	-(void) setViewControllersWithNavigationURLs:(NSArray *)navigationURLs;
+-(void) setViewControllersWithNavigationURLs:(NSArray *)navigationURLs;
 
 @end

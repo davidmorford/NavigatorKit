@@ -20,8 +20,8 @@ necessarily hide it.
 */
 @interface NKPopupViewController : NKViewController
 
-	-(void) showInView:(UIView *)aView animated:(BOOL)animated;
-	-(void) dismissPopupViewControllerAnimated:(BOOL)animated;
+-(void) showInView:(UIView *)aView animated:(BOOL)animated;
+-(void) dismissPopupViewControllerAnimated:(BOOL)animated;
 
 @end
 
@@ -34,5 +34,5 @@ necessarily hide it.
 @discussion
 */
 @interface NKPopupView : UIView
-	@property (nonatomic, retain) UIViewController *popupViewController;
+@property (nonatomic, retain) UIViewController *popupViewController;
 @end

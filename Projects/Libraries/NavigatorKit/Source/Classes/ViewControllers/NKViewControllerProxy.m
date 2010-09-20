@@ -6,36 +6,36 @@
 
 @implementation NKViewControllerProxy
 
-	#pragma mark -
+#pragma mark -
 
-	-(id) initWithViewController:(UIViewController *)aController {
-		viewController = [aController retain];
-		return self;
+-(id) initWithViewController:(UIViewController *)aController {
+	viewController = [aController retain];
+	return self;
+}
+
+#pragma mark NSObject
+
+-(void) forwardInvocation:(NSInvocation *)anInvocation {
+	[anInvocation setTarget:viewController];
+	[anInvocation invoke];
+	return;
+}
+
+-(NSMethodSignature *) methodSignatureForSelector:(SEL)aSelector {
+	return [viewController methodSignatureForSelector:aSelector];
+}
+
+#pragma mark -
+
+-(void) dealloc {
+	NSString *URL = [viewController originalNavigatorURL];
+	if (URL) {
+		[[NKNavigator navigator].navigationMap removeObjectForURL:URL];
 	}
-
-	#pragma mark NSObject
-
-	-(void) forwardInvocation:(NSInvocation *)anInvocation {
-		[anInvocation setTarget:viewController];
-		[anInvocation invoke];
-		return;
-	}
-
-	-(NSMethodSignature *) methodSignatureForSelector:(SEL)aSelector {
-		return [viewController methodSignatureForSelector:aSelector];
-	}
-
-	#pragma mark -
-
-	-(void) dealloc {
-		NSString *URL = [viewController originalNavigatorURL];
-		if (URL) {
-			[[NKNavigator navigator].navigationMap removeObjectForURL:URL];
-		}
-		[viewController setSuperController:nil];
-		[viewController setPopupViewController:nil];
-		[viewController release];/* viewController = nil;*/
-		[super dealloc];
-	}
+	[viewController setSuperController:nil];
+	[viewController setPopupViewController:nil];
+	[viewController release];/* viewController = nil;*/
+	[super dealloc];
+}
 
 @end

@@ -4,36 +4,37 @@
 
 @implementation NKPopupViewController
 
-	#pragma mark <NSObject>
+#pragma mark Initializer
 
-	-(id) init {
-		if (self = [super init]) {
-			self.statusBarStyle = [UIApplication sharedApplication].statusBarStyle;
-		}
-		return self;
+-(id) init {
+	if (self = [super init]) {
+		self.statusBarStyle = [UIApplication sharedApplication].statusBarStyle;
 	}
-
-	#pragma mark API
-
-	-(void) showInView:(UIView *)view animated:(BOOL)animated {
-	
-	}
-
-	-(void) dismissPopupViewControllerAnimated:(BOOL)animated {
-	
-	}
-
-	-(BOOL) canBeTopViewController {
-		return FALSE;
-	}
+	return self;
+}
 
 
-	#pragma mark <NSObject>
+#pragma mark API
 
-	-(void) dealloc {
-		[self.superController setPopupViewController:nil];
-		[super dealloc];
-	}
+-(void) showInView:(UIView *)view animated:(BOOL)animated {
+
+}
+
+-(void) dismissPopupViewControllerAnimated:(BOOL)animated {
+
+}
+
+-(BOOL) canBeTopViewController {
+	return FALSE;
+}
+
+
+#pragma mark Memoery
+
+-(void) dealloc {
+	[self.superController setPopupViewController:nil];
+	[super dealloc];
+}
 
 @end
 
@@ -41,31 +42,33 @@
 
 @implementation NKPopupView
 
-	@synthesize popupViewController;
+@synthesize popupViewController;
 
-	#pragma mark -
+#pragma mark Initializer
 
-	-(id) initWithFrame:(CGRect)frame {
-		if (self = [super initWithFrame:frame]) {
-			popupViewController = nil;
-		}
-		return self;
+-(id) initWithFrame:(CGRect)frame {
+	if (self = [super initWithFrame:frame]) {
+		popupViewController = nil;
 	}
+	return self;
+}
 
-	#pragma mark -
 
-	-(void) didAddSubview:(UIView *)subview {
-	}
+#pragma mark API
 
-	-(void) willRemoveSubview:(UIView *)subview {
-		[self removeFromSuperview];
-	}
+-(void) didAddSubview:(UIView *)subview {
+}
 
-	#pragma mark -
+-(void) willRemoveSubview:(UIView *)subview {
+	[self removeFromSuperview];
+}
 
-	-(void) dealloc {
-		[popupViewController release]; popupViewController = nil;
-		[super dealloc];
-	}
+
+#pragma mark Memory
+
+-(void) dealloc {
+	[popupViewController release]; popupViewController = nil;
+	[super dealloc];
+}
 
 @end
