@@ -60,8 +60,8 @@
 #pragma mark -
 
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
-	NSInteger sectionCount = 0;
-	if ([self.title compare:@"Navigation" options:NSLiteralSearch] == NSOrderedSame) {
+	NSInteger sectionCount = 1;
+	/*if ([self.title compare:@"Navigation" options:NSLiteralSearch] == NSOrderedSame) {
 		sectionCount = 1;
 	}
 	else if ([self.title compare:@"Modal" options:NSLiteralSearch] == NSOrderedSame) {
@@ -75,7 +75,7 @@
 	}
 	else if ([self.title compare:@"External" options:NSLiteralSearch] == NSOrderedSame) {
 		sectionCount = 1;
-	}
+	}*/
 	return sectionCount;
 }
 
@@ -88,13 +88,13 @@
 		rowCount = 1;
 	}
 	else if ([self.title compare:@"Popup" options:NSLiteralSearch] == NSOrderedSame) {
-		rowCount = 0;
+		rowCount = 2;
 	}
 	else if ([self.title compare:@"Actions" options:NSLiteralSearch] == NSOrderedSame) {
-		rowCount = 0;
+		rowCount = 2;
 	}
 	else if ([self.title compare:@"External" options:NSLiteralSearch] == NSOrderedSame) {
-		rowCount = 0;
+		rowCount = 1;
 	}
 	return rowCount;
 }
@@ -112,27 +112,44 @@
 	if ([self.title compare:@"Navigation" options:NSLiteralSearch] == NSOrderedSame) {
 		if (indexPath.row == 0) {
 			textLabelString = @"Toolbar Detail View";
-			detailTextLabelString = @"Some details about this...";
+			detailTextLabelString = @"UIToolbar used with the split view controller on iPad.";
 		}
 		else if (indexPath.row == 1) {
 			textLabelString = @"NavigationBar Detail View";
-			detailTextLabelString = @"Some details about this...";
+			detailTextLabelString = @"UINavigationBar used with split view controller on iPad.";
 		}
 	}
 	else if ([self.title compare:@"Modal" options:NSLiteralSearch] == NSOrderedSame) {
 		if (indexPath.row == 0) {
-			textLabelString = @"Modal Dialog";
+			textLabelString = @"Modal View Controller";
 			detailTextLabelString = @"Uses fullscreen presentation styl in iPhone and FormSheet style on iPad.";
 		}
 	}
 	else if ([self.title compare:@"Popup" options:NSLiteralSearch] == NSOrderedSame) {
-
+		if (indexPath.row == 0) {
+			textLabelString = @"Alert View";
+			detailTextLabelString = @"...";
+		}
+		else if (indexPath.row == 1) {
+			textLabelString = @"Action Sheet";
+			detailTextLabelString = @"...";
+		}
 	}
 	else if ([self.title compare:@"Actions" options:NSLiteralSearch] == NSOrderedSame) {
-
+		if (indexPath.row == 0) {
+			textLabelString = @"Alert View";
+			detailTextLabelString = @"...";
+		}
+		else if (indexPath.row == 1) {
+			textLabelString = @"Action Sheet";
+			detailTextLabelString = @"...";
+		}
 	}
 	else if ([self.title compare:@"External" options:NSLiteralSearch] == NSOrderedSame) {
-
+		if (indexPath.row == 0) {
+			textLabelString = @"Open URL in Safari";
+			detailTextLabelString = @"...";
+		}
 	}
 	cell.textLabel.text = textLabelString;
 	cell.detailTextLabel.text = detailTextLabelString;

@@ -5,6 +5,8 @@ Based on Three20 TTNavigator source and UXKit UXNavigator fork source, fully sup
 
 ## Screenshots
 
+[![](http://github.com/davidmorford/NavigationKit/Document/iPad.png)](http://github.com/davidmorford/NavigationKit/Document/iPad.png)
+[![](http://github.com/davidmorford/NavigationKit/Document/iPhone.png)](http://github.com/davidmorford/NavigationKit/Document/iPhone.png)
 
 ## NavigatorKit Quick Start
 
