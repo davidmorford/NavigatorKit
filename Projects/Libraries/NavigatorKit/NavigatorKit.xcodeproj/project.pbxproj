@@ -1,0 +1,660 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		634EC8B411966CCF003426E7 /* NavigatorKit.bundle in Deploy Resource Bundle */ = {isa = PBXBuildFile; fileRef = 63843ADE10412D8800D29404 /* NavigatorKit.bundle */; };
+		634EC8C511966F44003426E7 /* NavigatorKitLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 634EC8C311966F44003426E7 /* NavigatorKitLibrary.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		634EC8C611966F44003426E7 /* NavigatorKitLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 634EC8C411966F44003426E7 /* NavigatorKitLibrary.m */; };
+		635D849512458FF500317980 /* NKUINavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 635D849312458FF500317980 /* NKUINavigationController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		635D849612458FF500317980 /* NKUINavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D849412458FF500317980 /* NKUINavigationController.m */; };
+		63843AB2104120A300D29404 /* NavigatorKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 63894BEB103BD5C1007C9CC9 /* NavigatorKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		638654441204C703002ED89B /* NKUISplitViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 638654061204C703002ED89B /* NKUISplitViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		638654451204C703002ED89B /* NKUISplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 638654071204C703002ED89B /* NKUISplitViewController.m */; };
+		638654461204C703002ED89B /* NKUITabBarController.h in Headers */ = {isa = PBXBuildFile; fileRef = 638654081204C703002ED89B /* NKUITabBarController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		638654471204C703002ED89B /* NKUITabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 638654091204C703002ED89B /* NKUITabBarController.m */; };
+		6386544E1204C703002ED89B /* NKUIViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 638654101204C703002ED89B /* NKUIViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6386544F1204C703002ED89B /* NKUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 638654111204C703002ED89B /* NKUIViewController.m */; };
+		638654501204C703002ED89B /* NKUIWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 638654121204C703002ED89B /* NKUIWindow.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		638654511204C703002ED89B /* NKUIWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 638654131204C703002ED89B /* NKUIWindow.m */; };
+		638654521204C703002ED89B /* NKActionSheetController.h in Headers */ = {isa = PBXBuildFile; fileRef = 638654161204C703002ED89B /* NKActionSheetController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		638654531204C703002ED89B /* NKActionSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 638654171204C703002ED89B /* NKActionSheetController.m */; };
+		638654541204C703002ED89B /* NKAlertViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 638654181204C703002ED89B /* NKAlertViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		638654551204C703002ED89B /* NKAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 638654191204C703002ED89B /* NKAlertViewController.m */; };
+		638654561204C703002ED89B /* NKNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6386541A1204C703002ED89B /* NKNavigationController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		638654571204C703002ED89B /* NKNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6386541B1204C703002ED89B /* NKNavigationController.m */; };
+		638654581204C703002ED89B /* NKPopupViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6386541C1204C703002ED89B /* NKPopupViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		638654591204C703002ED89B /* NKPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6386541D1204C703002ED89B /* NKPopupViewController.m */; };
+		6386545C1204C703002ED89B /* NKViewControllerProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 638654201204C703002ED89B /* NKViewControllerProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6386545D1204C703002ED89B /* NKViewControllerProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 638654211204C703002ED89B /* NKViewControllerProxy.m */; };
+		6386545E1204C703002ED89B /* NKViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 638654221204C703002ED89B /* NKViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6386545F1204C703002ED89B /* NKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 638654231204C703002ED89B /* NKViewController.m */; };
+		638654691204C703002ED89B /* NKNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 638654301204C703002ED89B /* NKNavigator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6386546A1204C703002ED89B /* NKNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 638654311204C703002ED89B /* NKNavigator.m */; };
+		6386546B1204C703002ED89B /* NKNavigatorAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 638654321204C703002ED89B /* NKNavigatorAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6386546C1204C703002ED89B /* NKNavigatorAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 638654331204C703002ED89B /* NKNavigatorAction.m */; };
+		6386546D1204C703002ED89B /* NKSplitViewNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 638654341204C703002ED89B /* NKSplitViewNavigator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6386546E1204C703002ED89B /* NKSplitViewNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 638654351204C703002ED89B /* NKSplitViewNavigator.m */; };
+		6386549E1204C887002ED89B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6386549D1204C887002ED89B /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		639ED1D0120A0D6B00119A97 /* NKSplitCornersView.h in Headers */ = {isa = PBXBuildFile; fileRef = 639ED1CA120A0D6B00119A97 /* NKSplitCornersView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		639ED1D1120A0D6B00119A97 /* NKSplitCornersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 639ED1CB120A0D6B00119A97 /* NKSplitCornersView.m */; };
+		639ED1D2120A0D6B00119A97 /* NKSplitDividerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 639ED1CC120A0D6B00119A97 /* NKSplitDividerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		639ED1D3120A0D6B00119A97 /* NKSplitDividerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 639ED1CD120A0D6B00119A97 /* NKSplitDividerView.m */; };
+		639ED1D4120A0D6B00119A97 /* NKSplitViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 639ED1CE120A0D6B00119A97 /* NKSplitViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		639ED1D5120A0D6B00119A97 /* NKSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 639ED1CF120A0D6B00119A97 /* NKSplitViewController.m */; };
+		63AB87BA12457CBF00BD8093 /* NKSplitViewPopoverButtonDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 63AB87B912457CBF00BD8093 /* NKSplitViewPopoverButtonDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63AB87DB124587D100BD8093 /* NKNavigatorPath.h in Headers */ = {isa = PBXBuildFile; fileRef = 63AB87D7124587D100BD8093 /* NKNavigatorPath.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63AB87DC124587D100BD8093 /* NKNavigatorPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 63AB87D8124587D100BD8093 /* NKNavigatorPath.m */; };
+		63AB87DD124587D100BD8093 /* NKPathUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 63AB87D9124587D100BD8093 /* NKPathUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63AB87DE124587D100BD8093 /* NKPathUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 63AB87DA124587D100BD8093 /* NKPathUtilities.m */; };
+		63B38D381246232800060941 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 638654991204C887002ED89B /* CoreGraphics.framework */; };
+		63BFC983120521D30048F1D3 /* NKNavigatorMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 63BFC979120521D30048F1D3 /* NKNavigatorMap.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63BFC984120521D30048F1D3 /* NKNavigatorMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BFC97A120521D30048F1D3 /* NKNavigatorMap.m */; };
+		63BFC987120521D30048F1D3 /* NKNavigatorPattern.h in Headers */ = {isa = PBXBuildFile; fileRef = 63BFC97D120521D30048F1D3 /* NKNavigatorPattern.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63BFC988120521D30048F1D3 /* NKNavigatorPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BFC97E120521D30048F1D3 /* NKNavigatorPattern.m */; };
+		63D26F9A1240D1D3003FAC7A /* NKUISplitViewNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 63D26F981240D1D3003FAC7A /* NKUISplitViewNavigator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63D26F9B1240D1D3003FAC7A /* NKUISplitViewNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D26F991240D1D3003FAC7A /* NKUISplitViewNavigator.m */; };
+		63FC06FF12254CD600ADF936 /* NKUIDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 63FC06FD12254CD600ADF936 /* NKUIDevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63FC070012254CD600ADF936 /* NKUIDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 63FC06FE12254CD600ADF936 /* NKUIDevice.m */; };
+		63FC0C431225A67C00ADF936 /* NKUIToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 63FC0C411225A67C00ADF936 /* NKUIToolbar.m */; };
+		63FC0C441225A6B800ADF936 /* NKUIToolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = 63FC0C401225A67C00ADF936 /* NKUIToolbar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		634EC8B511966CED003426E7 /* Deploy Resource Bundle */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(BUILD_SHARED_BUNDLES_PATH)";
+			dstSubfolderSpec = 0;
+			files = (
+				634EC8B411966CCF003426E7 /* NavigatorKit.bundle in Deploy Resource Bundle */,
+			);
+			name = "Deploy Resource Bundle";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		634EC8C311966F44003426E7 /* NavigatorKitLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigatorKitLibrary.h; sourceTree = "<group>"; };
+		634EC8C411966F44003426E7 /* NavigatorKitLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigatorKitLibrary.m; sourceTree = "<group>"; };
+		635D849312458FF500317980 /* NKUINavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKUINavigationController.h; sourceTree = "<group>"; };
+		635D849412458FF500317980 /* NKUINavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKUINavigationController.m; sourceTree = "<group>"; };
+		63843AB91041214400D29404 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Developer/Library/Frameworks/SenTestingKit.framework; sourceTree = SDKROOT; };
+		63843ADE10412D8800D29404 /* NavigatorKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NavigatorKit.bundle; sourceTree = "<group>"; };
+		638654061204C703002ED89B /* NKUISplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKUISplitViewController.h; path = Source/Categories/UIKit/NKUISplitViewController.h; sourceTree = SOURCE_ROOT; };
+		638654071204C703002ED89B /* NKUISplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKUISplitViewController.m; sourceTree = "<group>"; };
+		638654081204C703002ED89B /* NKUITabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKUITabBarController.h; path = Source/Categories/UIKit/NKUITabBarController.h; sourceTree = SOURCE_ROOT; };
+		638654091204C703002ED89B /* NKUITabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKUITabBarController.m; sourceTree = "<group>"; };
+		638654101204C703002ED89B /* NKUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKUIViewController.h; path = Source/Categories/UIKit/NKUIViewController.h; sourceTree = SOURCE_ROOT; };
+		638654111204C703002ED89B /* NKUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKUIViewController.m; sourceTree = "<group>"; };
+		638654121204C703002ED89B /* NKUIWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKUIWindow.h; path = Source/Categories/UIKit/NKUIWindow.h; sourceTree = SOURCE_ROOT; };
+		638654131204C703002ED89B /* NKUIWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKUIWindow.m; sourceTree = "<group>"; };
+		638654161204C703002ED89B /* NKActionSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKActionSheetController.h; path = Source/Classes/ViewControllers/NKActionSheetController.h; sourceTree = SOURCE_ROOT; };
+		638654171204C703002ED89B /* NKActionSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NKActionSheetController.m; path = Source/Classes/ViewControllers/NKActionSheetController.m; sourceTree = SOURCE_ROOT; };
+		638654181204C703002ED89B /* NKAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKAlertViewController.h; path = Source/Classes/ViewControllers/NKAlertViewController.h; sourceTree = SOURCE_ROOT; };
+		638654191204C703002ED89B /* NKAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NKAlertViewController.m; path = Source/Classes/ViewControllers/NKAlertViewController.m; sourceTree = SOURCE_ROOT; };
+		6386541A1204C703002ED89B /* NKNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKNavigationController.h; path = Source/Classes/ViewControllers/NKNavigationController.h; sourceTree = SOURCE_ROOT; };
+		6386541B1204C703002ED89B /* NKNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NKNavigationController.m; path = Source/Classes/ViewControllers/NKNavigationController.m; sourceTree = SOURCE_ROOT; };
+		6386541C1204C703002ED89B /* NKPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKPopupViewController.h; path = Source/Classes/ViewControllers/NKPopupViewController.h; sourceTree = SOURCE_ROOT; };
+		6386541D1204C703002ED89B /* NKPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NKPopupViewController.m; path = Source/Classes/ViewControllers/NKPopupViewController.m; sourceTree = SOURCE_ROOT; };
+		638654201204C703002ED89B /* NKViewControllerProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKViewControllerProxy.h; sourceTree = "<group>"; };
+		638654211204C703002ED89B /* NKViewControllerProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKViewControllerProxy.m; sourceTree = "<group>"; };
+		638654221204C703002ED89B /* NKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKViewController.h; path = Source/Classes/ViewControllers/NKViewController.h; sourceTree = SOURCE_ROOT; };
+		638654231204C703002ED89B /* NKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NKViewController.m; path = Source/Classes/ViewControllers/NKViewController.m; sourceTree = SOURCE_ROOT; };
+		638654301204C703002ED89B /* NKNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKNavigator.h; path = Source/Classes/Navigator/NKNavigator.h; sourceTree = SOURCE_ROOT; };
+		638654311204C703002ED89B /* NKNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKNavigator.m; sourceTree = "<group>"; };
+		638654321204C703002ED89B /* NKNavigatorAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKNavigatorAction.h; sourceTree = "<group>"; };
+		638654331204C703002ED89B /* NKNavigatorAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKNavigatorAction.m; sourceTree = "<group>"; };
+		638654341204C703002ED89B /* NKSplitViewNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKSplitViewNavigator.h; path = Source/Classes/Navigator/NKSplitViewNavigator.h; sourceTree = SOURCE_ROOT; };
+		638654351204C703002ED89B /* NKSplitViewNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKSplitViewNavigator.m; sourceTree = "<group>"; };
+		638654991204C887002ED89B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		6386549B1204C887002ED89B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		6386549D1204C887002ED89B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		63894BE4103BD59B007C9CC9 /* Library.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Library.xcconfig; path = Configurations/Library.xcconfig; sourceTree = SOURCE_ROOT; };
+		63894BE5103BD59B007C9CC9 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = SOURCE_ROOT; };
+		63894BEB103BD5C1007C9CC9 /* NavigatorKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigatorKit.h; sourceTree = "<group>"; };
+		639ED1CA120A0D6B00119A97 /* NKSplitCornersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKSplitCornersView.h; path = Source/Classes/SplitViewController/NKSplitCornersView.h; sourceTree = SOURCE_ROOT; };
+		639ED1CB120A0D6B00119A97 /* NKSplitCornersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKSplitCornersView.m; sourceTree = "<group>"; };
+		639ED1CC120A0D6B00119A97 /* NKSplitDividerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKSplitDividerView.h; path = Source/Classes/SplitViewController/NKSplitDividerView.h; sourceTree = SOURCE_ROOT; };
+		639ED1CD120A0D6B00119A97 /* NKSplitDividerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKSplitDividerView.m; sourceTree = "<group>"; };
+		639ED1CE120A0D6B00119A97 /* NKSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKSplitViewController.h; path = Source/Classes/SplitViewController/NKSplitViewController.h; sourceTree = SOURCE_ROOT; };
+		639ED1CF120A0D6B00119A97 /* NKSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKSplitViewController.m; sourceTree = "<group>"; };
+		63AB87B912457CBF00BD8093 /* NKSplitViewPopoverButtonDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKSplitViewPopoverButtonDelegate.h; sourceTree = "<group>"; };
+		63AB87D7124587D100BD8093 /* NKNavigatorPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKNavigatorPath.h; path = Source/Classes/Map/NKNavigatorPath.h; sourceTree = SOURCE_ROOT; };
+		63AB87D8124587D100BD8093 /* NKNavigatorPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKNavigatorPath.m; sourceTree = "<group>"; };
+		63AB87D9124587D100BD8093 /* NKPathUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKPathUtilities.h; path = Source/Classes/Map/NKPathUtilities.h; sourceTree = SOURCE_ROOT; };
+		63AB87DA124587D100BD8093 /* NKPathUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKPathUtilities.m; sourceTree = "<group>"; };
+		63B6A8911041465B0049EC9C /* Settings.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Settings.xcconfig; path = Configurations/Settings.xcconfig; sourceTree = SOURCE_ROOT; };
+		63BFC979120521D30048F1D3 /* NKNavigatorMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKNavigatorMap.h; sourceTree = "<group>"; };
+		63BFC97A120521D30048F1D3 /* NKNavigatorMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKNavigatorMap.m; sourceTree = "<group>"; };
+		63BFC97D120521D30048F1D3 /* NKNavigatorPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKNavigatorPattern.h; sourceTree = "<group>"; };
+		63BFC97E120521D30048F1D3 /* NKNavigatorPattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKNavigatorPattern.m; sourceTree = "<group>"; };
+		63D26F981240D1D3003FAC7A /* NKUISplitViewNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKUISplitViewNavigator.h; sourceTree = "<group>"; };
+		63D26F991240D1D3003FAC7A /* NKUISplitViewNavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKUISplitViewNavigator.m; sourceTree = "<group>"; };
+		63FC06FD12254CD600ADF936 /* NKUIDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKUIDevice.h; sourceTree = "<group>"; };
+		63FC06FE12254CD600ADF936 /* NKUIDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKUIDevice.m; sourceTree = "<group>"; };
+		63FC0C401225A67C00ADF936 /* NKUIToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKUIToolbar.h; path = Source/Categories/UIKit/NKUIToolbar.h; sourceTree = SOURCE_ROOT; };
+		63FC0C411225A67C00ADF936 /* NKUIToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKUIToolbar.m; sourceTree = "<group>"; };
+		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D2AAC07E0554694100DB518D /* libNavigatorKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNavigatorKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D2AAC07C0554694100DB518D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */,
+				6386549E1204C887002ED89B /* UIKit.framework in Frameworks */,
+				63B38D381246232800060941 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		034768DFFF38A50411DB9C8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D2AAC07E0554694100DB518D /* libNavigatorKit.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0867D691FE84028FC02AAC07 /* NavigationKit */ = {
+			isa = PBXGroup;
+			children = (
+				034768DFFF38A50411DB9C8B /* Products */,
+				63894BE0103BD587007C9CC9 /* References */,
+				63894BE2103BD59B007C9CC9 /* Configurations */,
+				63894BEC103BD5C1007C9CC9 /* Resources */,
+				63894BEA103BD5C1007C9CC9 /* Project */,
+				638654001204C703002ED89B /* Categories */,
+				638654141204C703002ED89B /* Classes */,
+			);
+			name = NavigationKit;
+			sourceTree = "<group>";
+		};
+		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				638654991204C887002ED89B /* CoreGraphics.framework */,
+				AACBBE490F95108600F1A2B1 /* Foundation.framework */,
+				6386549B1204C887002ED89B /* QuartzCore.framework */,
+				6386549D1204C887002ED89B /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		634EC8C211966F44003426E7 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				634EC8C311966F44003426E7 /* NavigatorKitLibrary.h */,
+				634EC8C411966F44003426E7 /* NavigatorKitLibrary.m */,
+			);
+			name = Library;
+			path = Source/Project/Library;
+			sourceTree = SOURCE_ROOT;
+		};
+		63843AB71041212700D29404 /* UnitTest */ = {
+			isa = PBXGroup;
+			children = (
+				63843AB91041214400D29404 /* SenTestingKit.framework */,
+			);
+			name = UnitTest;
+			sourceTree = "<group>";
+		};
+		63843AB81041213200D29404 /* Project */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Project;
+			sourceTree = "<group>";
+		};
+		638654001204C703002ED89B /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				638654011204C703002ED89B /* UIKit */,
+			);
+			name = Categories;
+			path = Source/Categories;
+			sourceTree = SOURCE_ROOT;
+		};
+		638654011204C703002ED89B /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				63FC06FD12254CD600ADF936 /* NKUIDevice.h */,
+				635D849312458FF500317980 /* NKUINavigationController.h */,
+				638654061204C703002ED89B /* NKUISplitViewController.h */,
+				638654081204C703002ED89B /* NKUITabBarController.h */,
+				638654101204C703002ED89B /* NKUIViewController.h */,
+				63FC0C401225A67C00ADF936 /* NKUIToolbar.h */,
+				638654121204C703002ED89B /* NKUIWindow.h */,
+				6386547A1204C770002ED89B /* Source */,
+			);
+			name = UIKit;
+			path = Source/Categories/UIKit;
+			sourceTree = SOURCE_ROOT;
+		};
+		638654141204C703002ED89B /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				63BFC978120521D30048F1D3 /* Map */,
+				6386542F1204C703002ED89B /* Navigator */,
+				639ED1C9120A0D6B00119A97 /* SplitViewController */,
+				638654151204C703002ED89B /* ViewControllers */,
+			);
+			name = Classes;
+			path = Source/Classes;
+			sourceTree = SOURCE_ROOT;
+		};
+		638654151204C703002ED89B /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				638654221204C703002ED89B /* NKViewController.h */,
+				638654201204C703002ED89B /* NKViewControllerProxy.h */,
+				6386541A1204C703002ED89B /* NKNavigationController.h */,
+				638654161204C703002ED89B /* NKActionSheetController.h */,
+				638654181204C703002ED89B /* NKAlertViewController.h */,
+				6386541C1204C703002ED89B /* NKPopupViewController.h */,
+				6386547B1204C776002ED89B /* Source */,
+			);
+			name = ViewControllers;
+			path = Source/Classes/ViewControllers;
+			sourceTree = SOURCE_ROOT;
+		};
+		6386542F1204C703002ED89B /* Navigator */ = {
+			isa = PBXGroup;
+			children = (
+				638654301204C703002ED89B /* NKNavigator.h */,
+				638654341204C703002ED89B /* NKSplitViewNavigator.h */,
+				63D26F981240D1D3003FAC7A /* NKUISplitViewNavigator.h */,
+				638654321204C703002ED89B /* NKNavigatorAction.h */,
+				6386547E1204C788002ED89B /* Source */,
+			);
+			name = Navigator;
+			path = Source/Classes/Navigator;
+			sourceTree = SOURCE_ROOT;
+		};
+		6386547A1204C770002ED89B /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				63FC06FE12254CD600ADF936 /* NKUIDevice.m */,
+				635D849412458FF500317980 /* NKUINavigationController.m */,
+				638654071204C703002ED89B /* NKUISplitViewController.m */,
+				638654091204C703002ED89B /* NKUITabBarController.m */,
+				638654111204C703002ED89B /* NKUIViewController.m */,
+				63FC0C411225A67C00ADF936 /* NKUIToolbar.m */,
+				638654131204C703002ED89B /* NKUIWindow.m */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		6386547B1204C776002ED89B /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				638654171204C703002ED89B /* NKActionSheetController.m */,
+				638654191204C703002ED89B /* NKAlertViewController.m */,
+				6386541B1204C703002ED89B /* NKNavigationController.m */,
+				6386541D1204C703002ED89B /* NKPopupViewController.m */,
+				638654211204C703002ED89B /* NKViewControllerProxy.m */,
+				638654231204C703002ED89B /* NKViewController.m */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		6386547E1204C788002ED89B /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				638654311204C703002ED89B /* NKNavigator.m */,
+				638654351204C703002ED89B /* NKSplitViewNavigator.m */,
+				63D26F991240D1D3003FAC7A /* NKUISplitViewNavigator.m */,
+				638654331204C703002ED89B /* NKNavigatorAction.m */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		63894BE0103BD587007C9CC9 /* References */ = {
+			isa = PBXGroup;
+			children = (
+				0867D69AFE84028FC02AAC07 /* Frameworks */,
+				63894C11103BE467007C9CC9 /* Libraries */,
+				63843AB81041213200D29404 /* Project */,
+				63843AB71041212700D29404 /* UnitTest */,
+			);
+			name = References;
+			sourceTree = "<group>";
+		};
+		63894BE2103BD59B007C9CC9 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				63894BE4103BD59B007C9CC9 /* Library.xcconfig */,
+				63B6A8911041465B0049EC9C /* Settings.xcconfig */,
+				63894BE5103BD59B007C9CC9 /* Project.xcconfig */,
+			);
+			path = Configurations;
+			sourceTree = SOURCE_ROOT;
+		};
+		63894BEA103BD5C1007C9CC9 /* Project */ = {
+			isa = PBXGroup;
+			children = (
+				63894BEB103BD5C1007C9CC9 /* NavigatorKit.h */,
+				634EC8C211966F44003426E7 /* Library */,
+			);
+			name = Project;
+			path = Source/Project;
+			sourceTree = SOURCE_ROOT;
+		};
+		63894BEC103BD5C1007C9CC9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				63894BED103BD5C1007C9CC9 /* Bundles */,
+			);
+			name = Resources;
+			path = Source/Resources;
+			sourceTree = SOURCE_ROOT;
+		};
+		63894BED103BD5C1007C9CC9 /* Bundles */ = {
+			isa = PBXGroup;
+			children = (
+				63843ADE10412D8800D29404 /* NavigatorKit.bundle */,
+			);
+			name = Bundles;
+			path = Source/Resources/Bundles;
+			sourceTree = SOURCE_ROOT;
+		};
+		63894C11103BE467007C9CC9 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		639ED1C9120A0D6B00119A97 /* SplitViewController */ = {
+			isa = PBXGroup;
+			children = (
+				639ED1CE120A0D6B00119A97 /* NKSplitViewController.h */,
+				63AB87B912457CBF00BD8093 /* NKSplitViewPopoverButtonDelegate.h */,
+				639ED1CA120A0D6B00119A97 /* NKSplitCornersView.h */,
+				639ED1CC120A0D6B00119A97 /* NKSplitDividerView.h */,
+				639ED1D6120A0D7400119A97 /* Source */,
+			);
+			name = SplitViewController;
+			path = Source/Classes/SplitViewController;
+			sourceTree = SOURCE_ROOT;
+		};
+		639ED1D6120A0D7400119A97 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				639ED1CB120A0D6B00119A97 /* NKSplitCornersView.m */,
+				639ED1CD120A0D6B00119A97 /* NKSplitDividerView.m */,
+				639ED1CF120A0D6B00119A97 /* NKSplitViewController.m */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		63BFC978120521D30048F1D3 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				63BFC979120521D30048F1D3 /* NKNavigatorMap.h */,
+				63BFC97D120521D30048F1D3 /* NKNavigatorPattern.h */,
+				63AB87D7124587D100BD8093 /* NKNavigatorPath.h */,
+				63AB87D9124587D100BD8093 /* NKPathUtilities.h */,
+				63BFC98D120521D90048F1D3 /* Source */,
+			);
+			name = Map;
+			path = Source/Classes/Map;
+			sourceTree = SOURCE_ROOT;
+		};
+		63BFC98D120521D90048F1D3 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				63BFC97E120521D30048F1D3 /* NKNavigatorPattern.m */,
+				63BFC97A120521D30048F1D3 /* NKNavigatorMap.m */,
+				63AB87D8124587D100BD8093 /* NKNavigatorPath.m */,
+				63AB87DA124587D100BD8093 /* NKPathUtilities.m */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		D2AAC07A0554694100DB518D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63843AB2104120A300D29404 /* NavigatorKit.h in Headers */,
+				634EC8C511966F44003426E7 /* NavigatorKitLibrary.h in Headers */,
+				638654441204C703002ED89B /* NKUISplitViewController.h in Headers */,
+				638654461204C703002ED89B /* NKUITabBarController.h in Headers */,
+				6386544E1204C703002ED89B /* NKUIViewController.h in Headers */,
+				638654501204C703002ED89B /* NKUIWindow.h in Headers */,
+				638654521204C703002ED89B /* NKActionSheetController.h in Headers */,
+				638654541204C703002ED89B /* NKAlertViewController.h in Headers */,
+				638654561204C703002ED89B /* NKNavigationController.h in Headers */,
+				638654581204C703002ED89B /* NKPopupViewController.h in Headers */,
+				6386545C1204C703002ED89B /* NKViewControllerProxy.h in Headers */,
+				6386545E1204C703002ED89B /* NKViewController.h in Headers */,
+				638654691204C703002ED89B /* NKNavigator.h in Headers */,
+				6386546B1204C703002ED89B /* NKNavigatorAction.h in Headers */,
+				6386546D1204C703002ED89B /* NKSplitViewNavigator.h in Headers */,
+				63BFC983120521D30048F1D3 /* NKNavigatorMap.h in Headers */,
+				63BFC987120521D30048F1D3 /* NKNavigatorPattern.h in Headers */,
+				639ED1D0120A0D6B00119A97 /* NKSplitCornersView.h in Headers */,
+				639ED1D2120A0D6B00119A97 /* NKSplitDividerView.h in Headers */,
+				639ED1D4120A0D6B00119A97 /* NKSplitViewController.h in Headers */,
+				63FC06FF12254CD600ADF936 /* NKUIDevice.h in Headers */,
+				63FC0C441225A6B800ADF936 /* NKUIToolbar.h in Headers */,
+				63D26F9A1240D1D3003FAC7A /* NKUISplitViewNavigator.h in Headers */,
+				63AB87BA12457CBF00BD8093 /* NKSplitViewPopoverButtonDelegate.h in Headers */,
+				63AB87DB124587D100BD8093 /* NKNavigatorPath.h in Headers */,
+				63AB87DD124587D100BD8093 /* NKPathUtilities.h in Headers */,
+				635D849512458FF500317980 /* NKUINavigationController.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		D2AAC07D0554694100DB518D /* NavigatorKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB921E08733DC00010E9CD /* Build configuration list for PBXNativeTarget "NavigatorKit" */;
+			buildPhases = (
+				D2AAC07A0554694100DB518D /* Headers */,
+				D2AAC07B0554694100DB518D /* Sources */,
+				D2AAC07C0554694100DB518D /* Frameworks */,
+				634EC8B511966CED003426E7 /* Deploy Resource Bundle */,
+				63843AD0104121F600D29404 /* Deploy Library */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NavigatorKit;
+			productName = NavigationKit;
+			productReference = D2AAC07E0554694100DB518D /* libNavigatorKit.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0867D690FE84028FC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = Semantap;
+			};
+			buildConfigurationList = 1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "NavigatorKit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 0867D691FE84028FC02AAC07 /* NavigationKit */;
+			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D2AAC07D0554694100DB518D /* NavigatorKit */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		63843AD0104121F600D29404 /* Deploy Library */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Deploy Library";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/tcsh;
+			shellScript = "${SCRIPT_DEPLOY_LIBRARY}";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D2AAC07B0554694100DB518D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				634EC8C611966F44003426E7 /* NavigatorKitLibrary.m in Sources */,
+				638654451204C703002ED89B /* NKUISplitViewController.m in Sources */,
+				638654471204C703002ED89B /* NKUITabBarController.m in Sources */,
+				6386544F1204C703002ED89B /* NKUIViewController.m in Sources */,
+				638654511204C703002ED89B /* NKUIWindow.m in Sources */,
+				638654531204C703002ED89B /* NKActionSheetController.m in Sources */,
+				638654551204C703002ED89B /* NKAlertViewController.m in Sources */,
+				638654571204C703002ED89B /* NKNavigationController.m in Sources */,
+				638654591204C703002ED89B /* NKPopupViewController.m in Sources */,
+				6386545D1204C703002ED89B /* NKViewControllerProxy.m in Sources */,
+				6386545F1204C703002ED89B /* NKViewController.m in Sources */,
+				6386546A1204C703002ED89B /* NKNavigator.m in Sources */,
+				6386546C1204C703002ED89B /* NKNavigatorAction.m in Sources */,
+				6386546E1204C703002ED89B /* NKSplitViewNavigator.m in Sources */,
+				63BFC984120521D30048F1D3 /* NKNavigatorMap.m in Sources */,
+				63BFC988120521D30048F1D3 /* NKNavigatorPattern.m in Sources */,
+				639ED1D1120A0D6B00119A97 /* NKSplitCornersView.m in Sources */,
+				639ED1D3120A0D6B00119A97 /* NKSplitDividerView.m in Sources */,
+				639ED1D5120A0D6B00119A97 /* NKSplitViewController.m in Sources */,
+				63FC070012254CD600ADF936 /* NKUIDevice.m in Sources */,
+				63FC0C431225A67C00ADF936 /* NKUIToolbar.m in Sources */,
+				63D26F9B1240D1D3003FAC7A /* NKUISplitViewNavigator.m in Sources */,
+				63AB87DC124587D100BD8093 /* NKNavigatorPath.m in Sources */,
+				63AB87DE124587D100BD8093 /* NKPathUtilities.m in Sources */,
+				635D849612458FF500317980 /* NKUINavigationController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB921F08733DC00010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63894BE4103BD59B007C9CC9 /* Library.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+			};
+			name = Debug;
+		};
+		1DEB922008733DC00010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63894BE4103BD59B007C9CC9 /* Library.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		1DEB922308733DC00010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63894BE5103BD59B007C9CC9 /* Project.xcconfig */;
+			buildSettings = {
+				GCC_OPTIMIZATION_LEVEL = 0;
+				SDKROOT = iphoneos4.1;
+			};
+			name = Debug;
+		};
+		1DEB922408733DC00010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63894BE5103BD59B007C9CC9 /* Project.xcconfig */;
+			buildSettings = {
+				SDKROOT = iphoneos4.1;
+			};
+			name = Release;
+		};
+		63894C01103BE1FD007C9CC9 /* Profile */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63894BE5103BD59B007C9CC9 /* Project.xcconfig */;
+			buildSettings = {
+				GCC_OPTIMIZATION_LEVEL = 0;
+				SDKROOT = iphoneos4.1;
+			};
+			name = Profile;
+		};
+		63894C02103BE1FD007C9CC9 /* Profile */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63894BE4103BD59B007C9CC9 /* Library.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+			};
+			name = Profile;
+		};
+		63894C04103BE202007C9CC9 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63894BE5103BD59B007C9CC9 /* Project.xcconfig */;
+			buildSettings = {
+				SDKROOT = iphoneos4.1;
+			};
+			name = Distribution;
+		};
+		63894C05103BE202007C9CC9 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63894BE4103BD59B007C9CC9 /* Library.xcconfig */;
+			buildSettings = {
+			};
+			name = Distribution;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB921E08733DC00010E9CD /* Build configuration list for PBXNativeTarget "NavigatorKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB921F08733DC00010E9CD /* Debug */,
+				63894C02103BE1FD007C9CC9 /* Profile */,
+				1DEB922008733DC00010E9CD /* Release */,
+				63894C05103BE202007C9CC9 /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "NavigatorKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB922308733DC00010E9CD /* Debug */,
+				63894C01103BE1FD007C9CC9 /* Profile */,
+				1DEB922408733DC00010E9CD /* Release */,
+				63894C04103BE202007C9CC9 /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0867D690FE84028FC02AAC07 /* Project object */;
+}
