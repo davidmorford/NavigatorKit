@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Description</key>
+	<string>A BuildKit based for a static library and unit test bundle target. Links against the Foundation framework. Customized to work withing a Build Kit project tree structure. To use in an application, simple copy the generated declarations in this created projects Library.xcconfig file to Libraries.xccconfig in the Configuration folder of the source tree root. Then build, add the library to an Application.xcconfig, Library projects can be added as referenced projects to applications although the linker flag is not needed.</string>
+</dict>
+</plist>

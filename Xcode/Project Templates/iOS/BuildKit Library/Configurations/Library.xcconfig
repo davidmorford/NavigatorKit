@@ -1,0 +1,36 @@
+
+//
+// ___PROJECTNAME___/Configurations/Library.xcconfig
+//
+
+#include "../../../Configurations/Library.xcconfig"
+#include "../../../Configurations/Libraries.xcconfig"
+
+// Product Name
+PRODUCT_NAME					= ___PROJECTNAME___
+
+// Library Version
+BUILD_LIBRARY_VERSION			= A
+
+// Library Resource Bundle
+LIBRARY_RESOURCE_BUNDLE_NAME	= ___PROJECTNAME___.bundle
+
+// Clang
+RUN_CLANG_STATIC_ANALYZER		= YES
+
+// Search Paths
+HEADER_SEARCH_PATHS				= $(STDLIB_HEADER)
+LIBRARY_SEARCH_PATHS			= $(STDLIB_LIBRARY)
+
+
+//
+// Cut and paste into Configurations/Libraries.xcconfig
+//
+
+// ___PROJECTNAME___
+
+//___PROJECTNAMEASIDENTIFIER____HEADER_PATH          = $(BUILD_PLATFORM_NAME_PATH)/___PROJECTNAMEASIDENTIFIER___/Headers/
+//___PROJECTNAMEASIDENTIFIER____PRIVATEHEADER_PATH   = $(BUILD_PLATFORM_NAME_PATH)/___PROJECTNAMEASIDENTIFIER___/PrivateHeaders/
+//___PROJECTNAMEASIDENTIFIER____LIBRARY_PATH         = $(BUILD_PLATFORM_NAME_PATH)/___PROJECTNAMEASIDENTIFIER___/
+//___PROJECTNAMEASIDENTIFIER____LIBRARY_FLAG         = -l___PROJECTNAMEASIDENTIFIER___
+//___PROJECTNAMEASIDENTIFIER____RESOURCE_BUNDLE_NAME = ___PROJECTNAMEASIDENTIFIER___.bundle

@@ -1,0 +1,30 @@
+
+//
+// ___PROJECTNAME___/Configurations/Application.xcconfig
+//
+
+#include "../../../Configurations/Application.xcconfig"
+#include "../../../Configurations/Libraries.xcconfig"
+
+// Product Name
+PRODUCT_NAME				= ___PROJECTNAME___
+
+// Application Info.plist
+INFOPLIST_FILE				= $(APPLICATIONDELEGATE_INFOPLIST_PATH)/Info.plist
+
+// Application Version
+BUILD_APPLICATION_VERSION	= 1.0
+CURRENT_PROJECT_VERSION		= $(BUILD_APPLICATION_VERSION)
+
+// Precompiled Header
+GCC_PREFIX_HEADER			= $(PROJECT_TREE_PROJECT_PATH)/___PROJECTNAMEASIDENTIFIER___.pch
+
+// Clang
+RUN_CLANG_STATIC_ANALYZER	= YES
+
+// Search Paths
+HEADER_SEARCH_PATHS			= $(STDLIB_HEADER)
+LIBRARY_SEARCH_PATHS		= $(STDLIB_LIBRARY)
+
+// Linker Flags
+OTHER_LDFLAGS				= $(OBJC_LIBRARY) $(OBJC_ALLLOAD)

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>StringsTable</key>
+	<string>Root</string>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Reset Application</string>
+			<key>Key</key>
+			<string>___PROJECTNAMEASIDENTIFIER___ApplicationResetKey</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>About</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Version</string>
+			<key>DefaultValue</key>
+			<string>1.0</string>
+			<key>Key</key>
+			<string>___PROJECTNAMEASIDENTIFIER___ApplicationVersionKey</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Build</string>
+			<key>DefaultValue</key>
+			<string>1A01</string>
+			<key>Key</key>
+			<string>___PROJECTNAMEASIDENTIFIER___ApplicationBuildNumberKey</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Libraries</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>NavigationKit Version</string>
+			<key>DefaultValue</key>
+			<string>4B10</string>
+			<key>Key</key>
+			<string>NavigationKitLibraryVersionKey</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>© 2010 ___ORGANIZATIONNAME___. All Rights Reserved.</string>
+			<key>Key</key>
+			<string>___PROJECTNAMEASIDENTIFIER___ApplicationCopyrightNoticeKey</string>
+		</dict>
+	</array>
+</dict>
+</plist>

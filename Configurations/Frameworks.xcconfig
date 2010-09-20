@@ -1,0 +1,57 @@
+
+//
+//  Frameworks.xcconfig
+// (c) 2005 - 2008, Semanteme
+// (c) 2008 - 2010, Semantap
+//
+
+// ObjC Library / Runtime
+
+OBJC_LIBRARY            = -ObjC
+OBJC_ALLLOAD            = -all_load
+OBJC_LIB                = -lobjc
+
+// stdlib / libSystem
+
+STDLIB_HEADERS			= /usr/include
+STDLIB_LIBRARY			= /usr/lib
+
+// oops. should be these for consistency.
+
+STDLIB_HEADER_PATH		= /usr/include
+STDLIB_LIBRARY_PATH		= /usr/lib
+
+// Lib Z compression
+
+LIBZ_LIB                = -lz
+
+// LibXML2
+
+LIBXML2_HEADERS         = /usr/include/libxml2
+LIBXML2_LIBRARY         = /usr/lib
+LIBXML2_LIB             = -lxml2
+
+// Frameworks
+
+AVFOUNDATION_FX         = -framework AVFoundation
+ADDRESSBOOK_FX          = -framework AddressBook
+ADDRESSBOOKUI_FX        = -framework AddressBookUI
+CFNETWORK_FX            = -framework CFNetwork
+COREDATA_FX             = -framework CoreData
+COREFOUNDATION_FX       = -framework CoreFoundation
+COREGRAPHICS_FX         = -framework CoreGraphics
+CORELOCATION_FX         = -framework CoreLocation
+CORETEXT_FX             = -framework CoreText
+FOUNDATION_FX           = -framework Foundation
+GAMEKIT_FX              = -framework GameKit
+MAPKIT_FX               = -framework MapKit
+MEDIAPLAYER_FX          = -framework MediaPlayer
+MESSAGEUI_FX            = -framework MessageUI
+MOBILECORESERVICES_FX   = -framework MobileCoreServices
+OPENGLES_FX             = -framework OpenGLES
+QUARTZCORE_FX           = -framework QuartzCore
+SECURITY_FX             = -framework Security
+STOREKIT_FX             = -framework StoreKit
+SYSTEMCONFIGURATION_FX  = -framework SystemConfiguration
+UIKIT_FX                = -framework UIKit
+SENTESTINGKIT_FX        = -framework SenTestingKit

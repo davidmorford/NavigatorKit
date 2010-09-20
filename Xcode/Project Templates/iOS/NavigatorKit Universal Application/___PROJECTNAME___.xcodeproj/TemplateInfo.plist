@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Description</key>
+	<string>A BuildKit based universal application for iOS 3.2 and 4.0+ SDKs that uses NavigatorKit. Out of the box default settings from xcconfig files are build against the latest SDK, target Pad and Phone UI idioms with iOS 3.2 as the deployment target and weak links UIKit.framework</string>
+</dict>
+</plist>

@@ -1,0 +1,29 @@
+
+//
+//  Project.xcconfig
+// (c) 2005 - 2008, Semanteme
+// (c) 2008 - 2010, Semantap
+//
+
+#include "Settings.xcconfig"
+
+SYMROOT							= Build
+CODE_SIGN_IDENTITY				= iPhone Developer
+
+ZERO_LINK						= NO
+PREBINDING						= NO
+ALWAYS_SEARCH_USER_PATHS		= NO
+
+DEBUG_INFORMATION_FORMAT		= dwarf-with-dsym
+
+GCC_C_LANGUAGE_STANDARD			= c99
+GCC_WARN_ABOUT_RETURN_TYPE		= YES
+GCC_WARN_UNUSED_VARIABLE		= YES
+GCC_ENABLE_OBJC_EXCEPTIONS		= YES
+GCC_ENABLE_FIX_AND_CONTINUE		= NO
+
+
+//GCC_VERSION					= 4.2
+//GCC_VERSION					= com.apple.compilers.llvmgcc42
+GCC_VERSION						= com.apple.compilers.llvm.clang.1_0
+OTHER_CFLAGS					= -Xclang -fobjc-nonfragile-abi2 -D__IPHONE_OS_VERSION_MIN_REQUIRED=IOS_PLATFORM_VERSION_32

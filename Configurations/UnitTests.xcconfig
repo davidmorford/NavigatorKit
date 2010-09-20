@@ -1,0 +1,11 @@
+
+//
+//  UnitTests.xcconfig
+// (c) 2005 - 2008, Semanteme
+// (c) 2008 - 2010, Semantap
+//
+
+#include "Settings.xcconfig"
+
+WRAPPER_EXTENSION			= octest
+FRAMEWORK_SEARCH_PATHS		= $(SDKROOT)$(DEVELOPER_FRAMEWORKS_DIR)
