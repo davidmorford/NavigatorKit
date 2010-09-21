@@ -13,7 +13,7 @@ Based on Three20 TTNavigator source and UXKit UXNavigator fork source, fully sup
 ## What's Different
 
   * Split View Navigator classes that are subclasses of the base Navigator class. Either UISplitViewController or MGSplitViewController (with all the associated animated goodness) work.
-  * Things that started with URL are not Navigator. Instead of TTURLMap and TTURLAction, it is NKNavigatorMap and NKNavigatorAction.
+  * Class with URL in the name, like TTURLMap and TTURLAction, now use Navigator, such as NKNavigatorMap and NKNavigatorAction.
   * Additions to Navigator and NavigatorMap to support iPad user interface idioms like model presentation style and popover display.
   * Removal of most convenience functions including geometry and orientation.
   * Garbage collection replaced with an NSProxy based pattern.
@@ -46,6 +46,7 @@ The project, via BuildKit xcconfigs, currently works with Xcode 3.2.4 and the us
     * -Xclang -fobjc-nonfragile-abi2
     * -D__IPHONE_OS_VERSION_MIN_REQUIRED=030200
 
+
 ## Known Issues
  
  * Popup alert and action sheet display in TabBars on iPad/iPhone.
@@ -77,17 +78,18 @@ The project, via BuildKit xcconfigs, currently works with Xcode 3.2.4 and the us
 5. Start making your new applcation with ease.
 
 
-## Examples Applications
+## Examples
 
- 1. NavigatorCatalog - Universal application illustrating how to URL based navigation to design and implementation an application and illustration most features of NavigatorKit.
-
- 2. Helsman - iPad based example showing off NKSplitViewNavigator use of MGSplitViewController.
+ 1. NavigatorCatalog - Universal application showing how to use URL based navigation in the to architect iOS applications and illustrate features of NavigatorKit.
+ 2. NavigatorKit Universal Application Project Template
 
 
 ## History
 
-### September 19, 2010
+### September 2010
+- Update Readme, Todo and Licenses.
 - Public release.
+- Reformat source from 'Dave Normal' (4 space indentation inside @interface and @implemetation for visual structuring) to 'Everyone Normal'.
 - New example applicatgion and feature catalog application. 
 - New Xcode project templates and incorporated into latest BuildKit layout.
 

@@ -14,3 +14,7 @@
 * UTI
 * File sharing
 * Quicklook
+
+## Examples in Development
+
+ 2. Helsman - iPad centric (but still universal) to demonstrate NKSplitViewNavigator use of MGSplitViewController and more interesting uses of URL navigation with UTIs, QuickLook, file sharing, UIDocumentInteractionController. Yum...
