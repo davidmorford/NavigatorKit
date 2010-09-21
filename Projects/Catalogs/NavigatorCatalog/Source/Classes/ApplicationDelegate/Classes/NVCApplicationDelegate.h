@@ -2,7 +2,6 @@
 /*!
 @project	NavigatorCatalog
 @header		NVCApplicationDelegate.h
-@copyright	(c) 2010, Semantap
 @created	9/19/2010
 */
 
@@ -24,5 +23,8 @@
 #pragma mark -
 
 @property (nonatomic, readonly) NSString *applicationDocumentsDirectoryPath;
+
+@property (nonatomic, retain, readonly) NSDictionary *launchOptions;
+@property (nonatomic, retain, readonly) NSURL *launchURL;
 
 @end

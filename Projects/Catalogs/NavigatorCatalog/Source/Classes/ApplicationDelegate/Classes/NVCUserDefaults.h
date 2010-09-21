@@ -2,8 +2,6 @@
 /*!
 @project	NavigatorCatalog
 @header		NVCUserDefaults.h
-@copyright	(c) 2010, Semantap
-@created	9/19/2010
 */
 
 @class NSString;

@@ -15,21 +15,10 @@
 		<string>Icon-Small-50.png</string>
 		<string>Icon-Small@2x.png</string>
 	</array>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLName</key>
-			<string>com.semantap.${PRODUCT_NAME:rfc1034identifier}</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>navigatorcatalog</string>
-			</array>
-		</dict>
-	</array>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.semantap.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>com.yourcompany.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleName</key>
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundlePackageType</key>
@@ -47,7 +36,7 @@
 	<key>UILaunchImageFile~ipad</key>
 	<string>LaunchPad.png</string>
 	<key>UIFileSharingEnabled</key>
-	<false/>
+	<true/>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -60,6 +49,32 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.image</string>
+				<string>com.adobe.pdf</string>
+				<string>public.text</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.yourcompany.${PRODUCT_NAME:rfc1034identifier}</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>navigatorcatalog</string>
+			</array>
+		</dict>
 	</array>
 	<key>NKNavigatorActions</key>
 	<dict>

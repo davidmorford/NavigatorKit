@@ -2,7 +2,6 @@
 /*!
 @project    NavigatorCatalog
 @header     NVCHistoryViewController.h
-@copyright  (c) 2010, Semantap
 */
 
 #import <UIKit/UIKit.h>

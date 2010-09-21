@@ -1,8 +1,10 @@
 
 #import "NVCDetailViewController.h"
+#import "NVCApplicationDelegate.h"
 
 @interface NVCDetailViewController () {
 }
+
 @end
 
 #pragma mark -
@@ -10,6 +12,7 @@
 @implementation NVCDetailViewController
 
 #pragma mark Initializer
+
 -(id) init {
 	self = [super initWithNibName:nil bundle:nil];
 	if (!self) {
@@ -29,8 +32,9 @@
 		self.navigationController.navigationBarHidden = TRUE;
 		self.toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 44.0)];
 		self.toolbar.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin);
+		self.titleBarItem = [[[UIBarButtonItem alloc] initWithTitle:@"Title" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 		UIBarButtonItem *flexyBarItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-		[self.toolbar setItems:[NSArray arrayWithObject:flexyBarItem]];
+		[self.toolbar setItems:[NSArray arrayWithObjects:flexyBarItem, self.titleBarItem, flexyBarItem, nil]];
 		[flexyBarItem release];
 		[self.view addSubview:self.toolbar];
 	}
@@ -52,6 +56,19 @@
 
 -(void) viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
+	NSDictionary *launchOptions = [NVCApplicationDelegate sharedApplicationDelegate].launchOptions;
+	NSURL *launchURL			= [NVCApplicationDelegate sharedApplicationDelegate].launchURL;
+	
+	if (launchOptions || launchURL) {
+		NSString *launchOptionDescription = nil;
+		launchOptionDescription = [NSString stringWithFormat:@"Launch Options:\n%@\n", [launchOptions description]];
+		
+		NSString *launchURLDescription = nil;
+		launchURLDescription	= [NSString stringWithFormat:@"Launch URL:\n%@\n", [launchURL description]];
+		//self.textView.text		= [NSString stringWithFormat:@"%@%@", launchOptionDescription, launchURLDescription];
+		NSLog(@"URL     = %@", launchURL);
+		NSLog(@"Options = %@", launchOptions);
+	}
 }
 
 -(void) viewWillDisappear:(BOOL)animated {
@@ -65,6 +82,7 @@
 -(BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return TRUE;
 }
+
 
 #pragma mark <NKSplitViewPopoverButtonDelegate>
 
@@ -87,6 +105,19 @@
 }
 
 
+#pragma mark UIDocumentInteractionControllerDelegate
+
+-(UIViewController *) documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller {
+	NSLog(@"%@", controller);
+	return self;
+}
+
+-(UIView *) documentInteractionControllerViewForPreview:(UIDocumentInteractionController *)controller {
+	NSLog(@"%@", controller);
+	return self.view;
+}
+
+
 #pragma mark Gozer
 
 -(void) didReceiveMemoryWarning {
@@ -94,12 +125,17 @@
 }
 
 -(void) viewDidUnload {
-	[super viewDidLoad];
 	self.toolbar = nil;
+	self.documentItem = nil;
+	self.documentInteractionController = nil;
+	[super viewDidLoad];
 }
 
 -(void) dealloc {
+	self.titleBarItem = nil;
 	self.toolbar = nil;
+	self.documentItem = nil;
+	self.documentInteractionController = nil;
 	[super dealloc];
 }
 

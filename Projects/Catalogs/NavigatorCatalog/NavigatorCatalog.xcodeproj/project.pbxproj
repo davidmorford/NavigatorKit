@@ -42,6 +42,20 @@
 		635031D611D6F11500A2AE81 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 635031CF11D6F11500A2AE81 /* iTunesArtwork */; };
 		635D86571245DB9000317980 /* NVCNavigationBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D86541245DB9000317980 /* NVCNavigationBarViewController.m */; };
 		635D86581245DB9000317980 /* NVCSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 635D86561245DB9000317980 /* NVCSettingsViewController.m */; };
+		63695DE4124927C900393B5A /* File@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63695DD7124927C900393B5A /* File@2x.png */; };
+		63695DE5124927C900393B5A /* Folder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63695DD8124927C900393B5A /* Folder@2x.png */; };
+		63695DE6124927C900393B5A /* Image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63695DD9124927C900393B5A /* Image@2x.png */; };
+		63695DE7124927C900393B5A /* Pdf@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63695DDA124927C900393B5A /* Pdf@2x.png */; };
+		63695DE8124927C900393B5A /* RichText@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63695DDB124927C900393B5A /* RichText@2x.png */; };
+		63695DE9124927C900393B5A /* Text@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63695DDC124927C900393B5A /* Text@2x.png */; };
+		63695DEA124927C900393B5A /* File.png in Resources */ = {isa = PBXBuildFile; fileRef = 63695DDE124927C900393B5A /* File.png */; };
+		63695DEB124927C900393B5A /* Folder.png in Resources */ = {isa = PBXBuildFile; fileRef = 63695DDF124927C900393B5A /* Folder.png */; };
+		63695DEC124927C900393B5A /* Image.png in Resources */ = {isa = PBXBuildFile; fileRef = 63695DE0124927C900393B5A /* Image.png */; };
+		63695DED124927C900393B5A /* Pdf.png in Resources */ = {isa = PBXBuildFile; fileRef = 63695DE1124927C900393B5A /* Pdf.png */; };
+		63695DEE124927C900393B5A /* RichText.png in Resources */ = {isa = PBXBuildFile; fileRef = 63695DE2124927C900393B5A /* RichText.png */; };
+		63695DEF124927C900393B5A /* Text.png in Resources */ = {isa = PBXBuildFile; fileRef = 63695DE3124927C900393B5A /* Text.png */; };
+		63695DF2124927D700393B5A /* NVCDocumentsFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63695DF1124927D700393B5A /* NVCDocumentsFolderViewController.m */; };
+		63695E2012492DC200393B5A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6384383C1040F1D700D29404 /* MobileCoreServices.framework */; };
 		6384383F1040F1D700D29404 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6384383E1040F1D700D29404 /* QuartzCore.framework */; };
 		6384395D1040F72C00D29404 /* NVCApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6384380D1040EB5400D29404 /* NVCApplicationDelegate.m */; };
 		6384395E1040F72D00D29404 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 638438161040EB5400D29404 /* main.m */; };
@@ -159,6 +173,20 @@
 		635D86541245DB9000317980 /* NVCNavigationBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVCNavigationBarViewController.m; sourceTree = "<group>"; };
 		635D86551245DB9000317980 /* NVCSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVCSettingsViewController.h; sourceTree = "<group>"; };
 		635D86561245DB9000317980 /* NVCSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVCSettingsViewController.m; sourceTree = "<group>"; };
+		63695DD7124927C900393B5A /* File@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "File@2x.png"; path = "Source/Classes/Controllers/Resources/Images/FileTypes/Large/File@2x.png"; sourceTree = SOURCE_ROOT; };
+		63695DD8124927C900393B5A /* Folder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Folder@2x.png"; path = "Source/Classes/Controllers/Resources/Images/FileTypes/Large/Folder@2x.png"; sourceTree = SOURCE_ROOT; };
+		63695DD9124927C900393B5A /* Image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Image@2x.png"; path = "Source/Classes/Controllers/Resources/Images/FileTypes/Large/Image@2x.png"; sourceTree = SOURCE_ROOT; };
+		63695DDA124927C900393B5A /* Pdf@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Pdf@2x.png"; path = "Source/Classes/Controllers/Resources/Images/FileTypes/Large/Pdf@2x.png"; sourceTree = SOURCE_ROOT; };
+		63695DDB124927C900393B5A /* RichText@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RichText@2x.png"; sourceTree = "<group>"; };
+		63695DDC124927C900393B5A /* Text@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Text@2x.png"; sourceTree = "<group>"; };
+		63695DDE124927C900393B5A /* File.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = File.png; path = Source/Classes/Controllers/Resources/Images/FileTypes/Small/File.png; sourceTree = SOURCE_ROOT; };
+		63695DDF124927C900393B5A /* Folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Folder.png; path = Source/Classes/Controllers/Resources/Images/FileTypes/Small/Folder.png; sourceTree = SOURCE_ROOT; };
+		63695DE0124927C900393B5A /* Image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Image.png; path = Source/Classes/Controllers/Resources/Images/FileTypes/Small/Image.png; sourceTree = SOURCE_ROOT; };
+		63695DE1124927C900393B5A /* Pdf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pdf.png; sourceTree = "<group>"; };
+		63695DE2124927C900393B5A /* RichText.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RichText.png; sourceTree = "<group>"; };
+		63695DE3124927C900393B5A /* Text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Text.png; sourceTree = "<group>"; };
+		63695DF0124927D700393B5A /* NVCDocumentsFolderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVCDocumentsFolderViewController.h; sourceTree = "<group>"; };
+		63695DF1124927D700393B5A /* NVCDocumentsFolderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVCDocumentsFolderViewController.m; sourceTree = "<group>"; };
 		638438061040EB4100D29404 /* Application.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Application.xcconfig; path = Configurations/Application.xcconfig; sourceTree = SOURCE_ROOT; };
 		638438071040EB4100D29404 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configurations/Project.xcconfig; sourceTree = SOURCE_ROOT; };
 		6384380C1040EB5400D29404 /* NVCApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVCApplicationDelegate.h; sourceTree = "<group>"; };
@@ -223,6 +251,7 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				6384383F1040F1D700D29404 /* QuartzCore.framework in Frameworks */,
 				63B38E3B1246243400060941 /* CoreGraphics.framework in Frameworks */,
+				63695E2012492DC200393B5A /* MobileCoreServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,11 +397,12 @@
 		635D437412285F01003886FB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				63B38F2F1246354900060941 /* NVCContentTableViewController.h */,
 				63AB83FE1243BA6A00BD8093 /* NVCDetailViewController.h */,
+				63695DF0124927D700393B5A /* NVCDocumentsFolderViewController.h */,
+				635D86531245DB9000317980 /* NVCNavigationBarViewController.h */,
+				63B38F2F1246354900060941 /* NVCContentTableViewController.h */,
 				6308FADC124783BE009B02E2 /* NVCHistoryViewController.h */,
 				6308FAD9124783AE009B02E2 /* NVCMappingTableViewController.h */,
-				635D86531245DB9000317980 /* NVCNavigationBarViewController.h */,
 				635D86551245DB9000317980 /* NVCSettingsViewController.h */,
 				635D86331245D47B00317980 /* Source */,
 			);
@@ -383,15 +413,54 @@
 		635D86331245D47B00317980 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				63B38F301246354900060941 /* NVCContentTableViewController.m */,
 				63AB83FF1243BA6A00BD8093 /* NVCDetailViewController.m */,
+				63695DF1124927D700393B5A /* NVCDocumentsFolderViewController.m */,
+				63B38F301246354900060941 /* NVCContentTableViewController.m */,
+				635D86541245DB9000317980 /* NVCNavigationBarViewController.m */,
 				6308FADD124783BE009B02E2 /* NVCHistoryViewController.m */,
 				6308FADA124783AE009B02E2 /* NVCMappingTableViewController.m */,
-				635D86541245DB9000317980 /* NVCNavigationBarViewController.m */,
 				635D86561245DB9000317980 /* NVCSettingsViewController.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
+		};
+		63695DD5124927C900393B5A /* FileTypes */ = {
+			isa = PBXGroup;
+			children = (
+				63695DD6124927C900393B5A /* Large */,
+				63695DDD124927C900393B5A /* Small */,
+			);
+			name = FileTypes;
+			path = Source/Classes/Controllers/Resources/Images/FileTypes;
+			sourceTree = SOURCE_ROOT;
+		};
+		63695DD6124927C900393B5A /* Large */ = {
+			isa = PBXGroup;
+			children = (
+				63695DD7124927C900393B5A /* File@2x.png */,
+				63695DD8124927C900393B5A /* Folder@2x.png */,
+				63695DD9124927C900393B5A /* Image@2x.png */,
+				63695DDA124927C900393B5A /* Pdf@2x.png */,
+				63695DDB124927C900393B5A /* RichText@2x.png */,
+				63695DDC124927C900393B5A /* Text@2x.png */,
+			);
+			name = Large;
+			path = Source/Classes/Controllers/Resources/Images/FileTypes/Large;
+			sourceTree = SOURCE_ROOT;
+		};
+		63695DDD124927C900393B5A /* Small */ = {
+			isa = PBXGroup;
+			children = (
+				63695DDE124927C900393B5A /* File.png */,
+				63695DDF124927C900393B5A /* Folder.png */,
+				63695DE0124927C900393B5A /* Image.png */,
+				63695DE1124927C900393B5A /* Pdf.png */,
+				63695DE2124927C900393B5A /* RichText.png */,
+				63695DE3124927C900393B5A /* Text.png */,
+			);
+			name = Small;
+			path = Source/Classes/Controllers/Resources/Images/FileTypes/Small;
+			sourceTree = SOURCE_ROOT;
 		};
 		638438001040EADF00D29404 /* References */ = {
 			isa = PBXGroup;
@@ -561,6 +630,7 @@
 		63B38E951246290500060941 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				63695DD5124927C900393B5A /* FileTypes */,
 				6308F9651247653D009B02E2 /* Tabs */,
 				6308F9891247653D009B02E2 /* Toolbar */,
 			);
@@ -712,6 +782,18 @@
 				6308F9CE1247653D009B02E2 /* public@2x.png in Resources */,
 				6308F9D11247653D009B02E2 /* routes.png in Resources */,
 				6308F9D21247653D009B02E2 /* routes@2x.png in Resources */,
+				63695DE4124927C900393B5A /* File@2x.png in Resources */,
+				63695DE5124927C900393B5A /* Folder@2x.png in Resources */,
+				63695DE6124927C900393B5A /* Image@2x.png in Resources */,
+				63695DE7124927C900393B5A /* Pdf@2x.png in Resources */,
+				63695DE8124927C900393B5A /* RichText@2x.png in Resources */,
+				63695DE9124927C900393B5A /* Text@2x.png in Resources */,
+				63695DEA124927C900393B5A /* File.png in Resources */,
+				63695DEB124927C900393B5A /* Folder.png in Resources */,
+				63695DEC124927C900393B5A /* Image.png in Resources */,
+				63695DED124927C900393B5A /* Pdf.png in Resources */,
+				63695DEE124927C900393B5A /* RichText.png in Resources */,
+				63695DEF124927C900393B5A /* Text.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -748,6 +830,7 @@
 				63B38F311246354900060941 /* NVCContentTableViewController.m in Sources */,
 				6308FADB124783AE009B02E2 /* NVCMappingTableViewController.m in Sources */,
 				6308FADE124783BE009B02E2 /* NVCHistoryViewController.m in Sources */,
+				63695DF2124927D700393B5A /* NVCDocumentsFolderViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

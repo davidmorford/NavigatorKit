@@ -2,8 +2,6 @@
 /*!
 @project	NavigatorCatalog
 @header     NVCSettingsViewController.h
-@copyright  (c) 2010, Semantap
-@created	9/19/10
 */
 
 #import <UIKit/UIKit.h>

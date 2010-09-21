@@ -3,7 +3,7 @@
 @file		main.m
 @project	NavigatorCatalog
 @copyright	(c) 2010, Semantap
-@created	9/19/10 - David
+@created	9/19/2010
 */
 
 #import <UIKit/UIKit.h>

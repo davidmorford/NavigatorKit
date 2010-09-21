@@ -5,4 +5,4 @@
 
 #include "../../../Configurations/Settings.xcconfig"
 
-INFOPLIST_ORGANIZATION_NAME	= Semantap
+INFOPLIST_ORGANIZATION_NAME	= YOUCompany

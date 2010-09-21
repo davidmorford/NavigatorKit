@@ -8,6 +8,7 @@ Based on Three20 TTNavigator source and UXKit UXNavigator fork source, fully sup
 
 [![](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/iPad.png)](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/iPad.png)
 [![](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/iPhone.png)](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/iPhone.png)
+[![](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/iPhone-UTIandFileSharing.png)](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/iPhone-UTIandFileSharing.png)
 
 
 ## What's Different

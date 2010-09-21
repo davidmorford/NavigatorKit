@@ -2,8 +2,6 @@
 /*!
 @project	NavigatorCatalog
 @header     NVCDetailViewController.h
-@copyright  (c) 2010, Semantap
-@created	9/19/10
 */
 
 #import <UIKit/UIKit.h>
@@ -15,8 +13,11 @@
 @abstract
 @discussion
 */
-@interface NVCDetailViewController : UIViewController <NKSplitViewPopoverButtonDelegate>
+@interface NVCDetailViewController : UIViewController <NKSplitViewPopoverButtonDelegate, UIDocumentInteractionControllerDelegate>
 
-@property (nonatomic, retain) UIToolbar *toolbar;
+	@property (nonatomic, retain) UIToolbar *toolbar;
+	@property (nonatomic, retain) UIBarItem *titleBarItem;
+	@property (nonatomic, copy) NSDictionary *documentItem;
+	@property (nonatomic, retain) UIDocumentInteractionController *documentInteractionController;
 
 @end

@@ -1,6 +1,7 @@
 
 #import "NVCApplicationDelegate.h"
 #import "NVCUserDefaults.h"
+#import "NVCDocumentsFolderViewController.h"
 #import "NVCDetailViewController.h"
 #import "NVCNavigationBarViewController.h"
 #import "NVCContentTableViewController.h"
@@ -12,6 +13,8 @@
 	// weak refs retained by Navigators
 	@property (nonatomic, assign) UISplitViewController *splitViewController;
 	@property (nonatomic, assign) UITabBarController *tabBarController;
+	@property (nonatomic, retain, readwrite) NSDictionary *launchOptions;
+	@property (nonatomic, retain, readwrite) NSURL *launchURL;
 	-(UIViewController *) openExternalURLActionSheet;
 	-(UIViewController *) helloDaveAlert;
 	-(UIViewController *) alertViewControllerWithTitle:(NSString *)aTitle message:(NSString *)aMessage 
@@ -40,9 +43,21 @@
 
 #pragma mark <UIApplicationDelegate>
 
--(BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+-(BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)options {
+	if (options) {
+		self.launchOptions = [[NSDictionary alloc] initWithDictionary:options copyItems:TRUE];
+		NSLog(@"%@", self.launchOptions);
+	}
+	
+	BOOL reset = [[NSUserDefaults standardUserDefaults] boolForKey:NVCApplicationResetKey];
+	if (reset) {
+		[[NSUserDefaults standardUserDefaults] removePersistentDomainForName:[[NSBundle mainBundle] bundleIdentifier]];
+		[[NSUserDefaults standardUserDefaults] setBool:FALSE forKey:NVCApplicationResetKey];
+		[[NSUserDefaults standardUserDefaults] synchronize];
+	}
+	
+
 	if (NKUIDeviceUserIntefaceIdiom() == UIUserInterfaceIdiomPad) {
-		
 		//
 		// Split View Navigator
 		//
@@ -65,6 +80,7 @@
 		
 		[masterNavigationMap from:@"navigatorcatalog://tabbar"			toSharedViewController:[UITabBarController class]];
 		[masterNavigationMap from:@"navigatorcatalog://content/(initWithTitle:)" toViewController:[NVCContentTableViewController class]];
+		[masterNavigationMap from:@"navigatorcatalog://documents"		toViewController:[NVCDocumentsFolderViewController class]];
 		[masterNavigationMap from:@"navigatorcatalog://mappings"		toViewController:[NVCMappingTableViewController class]];
 		[masterNavigationMap from:@"navigatorcatalog://history"			toViewController:[NVCHistoryViewController class]];
 		[masterNavigationMap from:@"navigatorcatalog://confirm/openURL"	toObject:self selector:@selector(openExternalURLActionSheet)];
@@ -82,12 +98,12 @@
 		self.tabBarController.delegate = self;
 		self.tabBarController.contentSizeForViewInPopover = CGSizeMake(320, 500);
 		[self.tabBarController setTabViewControllerURLs:[NSArray arrayWithObjects:@"navigatorcatalog://content/navigation", 
+																				  @"navigatorcatalog://documents",
 																				  @"navigatorcatalog://content/modal", 
 																				  @"navigatorcatalog://content/popup", 
 																				  @"navigatorcatalog://content/actions", 
 																				  @"navigatorcatalog://content/external", 
 																				  @"navigatorcatalog://mappings", 
-																				  @"navigatorcatalog://history",
 																				  nil]];
 		[sharedNavigator setViewControllersWithNavigationURLs:[NSArray arrayWithObjects:@"navigatorcatalog://tabbar", @"navigatorcatalog://toolbar", nil]];
 	}
@@ -102,6 +118,7 @@
 		[navigationMap from:@"navigatorcatalog://content/(initWithTitle:)" toViewController:[NVCContentTableViewController class]];
 		[navigationMap from:@"navigatorcatalog://mappings"		toViewController:[NVCMappingTableViewController class]];
 		[navigationMap from:@"navigatorcatalog://history"		toViewController:[NVCHistoryViewController class]];
+		[navigationMap from:@"navigatorcatalog://documents"		toViewController:[NVCDocumentsFolderViewController class]];
 		[navigationMap from:@"navigatorcatalog://toolbar"		toViewController:[NVCDetailViewController class]];
 		[navigationMap from:@"navigatorcatalog://navigationbar" toViewController:[NVCNavigationBarViewController class]];
 		[navigationMap from:@"navigatorcatalog://settings"		toModalViewController:[NVCSettingsViewController class]];
@@ -109,12 +126,12 @@
 		self.tabBarController = (UITabBarController *)[sharedNavigator viewControllerForURL:@"navigatorcatalog://tabbar"];
 		self.tabBarController.delegate = self;
 		[self.tabBarController setTabViewControllerURLs:[NSArray arrayWithObjects:@"navigatorcatalog://content/navigation", 
+																				  @"navigatorcatalog://documents",
 																				  @"navigatorcatalog://content/modal", 
 																				  @"navigatorcatalog://content/popup", 
 																				  @"navigatorcatalog://content/actions", 
 																				  @"navigatorcatalog://content/external", 
 																				  @"navigatorcatalog://mappings", 
-																				  @"navigatorcatalog://history",
 																				  nil]];
 		[sharedNavigator openURLAction:[NKNavigatorAction actionWithURLPath:@"navigatorcatalog://tabbar"]];
 	}
@@ -122,6 +139,8 @@
 }
 
 -(BOOL) application:(UIApplication *)application handleOpenURL:(NSURL *)aURL {
+	NSLog(@"%@", [aURL absoluteString]);
+	//self.launchURL = aURL;
 	NKNavigatorAction *action = [[NKNavigatorAction alloc] initWithURLPath:[aURL absoluteString]];
 	if (NKUIDeviceUserIntefaceIdiom() == UIUserInterfaceIdiomPad) {
 		NKNavigator *nv = [[NKSplitViewNavigator splitViewNavigator] navigatorForURLPath:[aURL absoluteString]];
@@ -205,6 +224,11 @@
 -(NSURL *) navigator:(NKNavigator *)navigator URLToOpen:(NSURL *)aURL  {
 	return aURL;
 }
+
+/*
+-(BOOL) navigator:(NKNavigator *)navigator canHandleUTI:(UIPasteboard *)pboard data:(NSString *)userData {
+}*/
+
 
 
 #pragma mark <UITabBarControllerDelegate>
