@@ -277,7 +277,6 @@
 	}
 	self.superController = nil;
 	self.popupViewController = nil;
-	self.popoverController = nil;
 	[super dealloc];
 }
 
