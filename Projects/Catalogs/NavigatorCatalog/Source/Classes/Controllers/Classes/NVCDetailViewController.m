@@ -43,6 +43,18 @@
 -(void) viewDidLoad {
 	[super viewDidLoad];
 	if (NKUIDeviceUserIntefaceIdiom() == UIUserInterfaceIdiomPad) {
+		NSArray *optionItems = [NSArray arrayWithObjects:[UIImage imageNamed:@"Fullscreen.png"], [UIImage imageNamed:@"MasterArrow-Bottom.png"], [UIImage imageNamed:@"DividerShow.png"], [UIImage imageNamed:@"MasterArrow-Right.png"], nil];
+		self.optionsSegmentedControl = [[UISegmentedControl alloc] initWithItems:optionItems];
+		self.optionsSegmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+		self.optionsSegmentedControl.selectedSegmentIndex = 0;
+		self.optionsSegmentedControl.momentary = TRUE;
+		[self.optionsSegmentedControl addTarget:self action:@selector(didSelectOption:) forControlEvents:UIControlEventValueChanged];
+		self.optionsItem = [[UIBarButtonItem alloc] initWithCustomView:self.optionsSegmentedControl];
+		
+		UIBarButtonItem *flexibleSpaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+		[self.toolbar setItems:[NSArray arrayWithObjects:flexibleSpaceItem, self.optionsItem, nil] animated:TRUE];
+		[flexibleSpaceItem release];
+		
 		UIBarButtonItem *masterButtonItem = [NKSplitViewNavigator splitViewNavigator].masterPopoverButtonItem;
 		if (masterButtonItem != nil) {
 			[self showMasterPopoverButtonItem:masterButtonItem];
@@ -61,13 +73,13 @@
 	
 	if (launchOptions || launchURL) {
 		NSString *launchOptionDescription = nil;
-		launchOptionDescription = [NSString stringWithFormat:@"Launch Options:\n%@\n", [launchOptions description]];
+		//launchOptionDescription = [NSString stringWithFormat:@"Launch Options:\n%@\n", [launchOptions description]];
 		
 		NSString *launchURLDescription = nil;
-		launchURLDescription	= [NSString stringWithFormat:@"Launch URL:\n%@\n", [launchURL description]];
+		//launchURLDescription	= [NSString stringWithFormat:@"Launch URL:\n%@\n", [launchURL description]];
 		//self.textView.text		= [NSString stringWithFormat:@"%@%@", launchOptionDescription, launchURLDescription];
-		NSLog(@"URL     = %@", launchURL);
-		NSLog(@"Options = %@", launchOptions);
+		//NSLog(@"URL     = %@", launchURL);
+		//NSLog(@"Options = %@", launchOptions);
 	}
 }
 
@@ -104,6 +116,41 @@
 	}
 }
 
+#pragma mark Actions
+
+-(void) didSelectOption:(id)sender {
+	if (self.optionsSegmentedControl.selectedSegmentIndex == 0) {
+		[self toggleMasterView:self];
+	}
+	else if (self.optionsSegmentedControl.selectedSegmentIndex == 1) {
+		[self toggleVertical:self];
+	}
+	else if (self.optionsSegmentedControl.selectedSegmentIndex == 2) {
+		[self toggleDividerStyle:self];
+	}
+	else if (self.optionsSegmentedControl.selectedSegmentIndex == 3) {
+		[self toggleMasterBeforeDetail:self];
+	}
+}
+
+-(void) toggleMasterView:(id)sender {
+	[[NKSplitViewNavigator splitViewNavigator].splitViewController toggleMasterView:sender];
+}
+
+-(void) toggleVertical:(id)sender {
+	[[NKSplitViewNavigator splitViewNavigator].splitViewController toggleSplitOrientation:self];
+}
+
+-(void) toggleDividerStyle:(id)sender {
+	NKSplitViewController *splitController = [NKSplitViewNavigator splitViewNavigator].splitViewController;
+	NKSplitViewDividerStyle newStyle = ((splitController.dividerStyle == NKSplitViewDividerStyleThin) ? NKSplitViewDividerStylePaneSplitter : NKSplitViewDividerStyleThin);
+	[splitController setDividerStyle:newStyle animated:YES];
+}
+
+-(void) toggleMasterBeforeDetail:(id)sender {
+	[[NKSplitViewNavigator splitViewNavigator].splitViewController toggleMasterBeforeDetail:sender];
+}
+
 
 #pragma mark UIDocumentInteractionControllerDelegate
 
@@ -132,6 +179,8 @@
 }
 
 -(void) dealloc {
+	self.optionsItem = nil;
+	self.optionsSegmentedControl = nil;
 	self.titleBarItem = nil;
 	self.toolbar = nil;
 	self.documentItem = nil;

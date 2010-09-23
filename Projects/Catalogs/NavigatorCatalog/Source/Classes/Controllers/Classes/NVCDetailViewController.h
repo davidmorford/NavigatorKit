@@ -19,5 +19,14 @@
 	@property (nonatomic, retain) UIBarItem *titleBarItem;
 	@property (nonatomic, copy) NSDictionary *documentItem;
 	@property (nonatomic, retain) UIDocumentInteractionController *documentInteractionController;
+	@property (nonatomic, retain) UIBarButtonItem *optionsItem;
+	@property (nonatomic, retain) UISegmentedControl *optionsSegmentedControl;
+
+	#pragma mark -
+
+	-(void) toggleMasterView:(id)sender;
+	-(void) toggleVertical:(id)sender;
+	-(void) toggleDividerStyle:(id)sender;
+	-(void) toggleMasterBeforeDetail:(id)sender;
 
 @end
