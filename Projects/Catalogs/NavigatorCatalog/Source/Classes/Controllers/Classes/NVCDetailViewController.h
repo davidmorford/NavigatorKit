@@ -16,7 +16,6 @@
 @interface NVCDetailViewController : UIViewController <NKSplitViewPopoverButtonDelegate, UIDocumentInteractionControllerDelegate>
 
 	@property (nonatomic, retain) UIToolbar *toolbar;
-	@property (nonatomic, retain) UIBarItem *titleBarItem;
 	@property (nonatomic, copy) NSDictionary *documentItem;
 	@property (nonatomic, retain) UIDocumentInteractionController *documentInteractionController;
 	@property (nonatomic, retain) UIBarButtonItem *optionsItem;

@@ -132,7 +132,6 @@
 			self.detailViewController = (NVCDetailViewController *)[[NKSplitViewNavigator splitViewNavigator].detailNavigator openURLAction:action];
 			self.detailViewController.documentInteractionController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:[self.documentsPath stringByAppendingPathComponent:[self.documents objectAtIndex:indexPath.row]]]];
 			self.detailViewController.documentItem	= [self.documentAttributes objectAtIndex:indexPath.row];
-			self.detailViewController.titleBarItem.title = [self.documents objectAtIndex:indexPath.row];
 		}
 		else {
 			NKNavigatorAction *action = [NKNavigatorAction actionWithURLPath:@"navigatorcatalog://toolbar"];
@@ -140,7 +139,6 @@
 			self.detailViewController = (NVCDetailViewController *)[[NKNavigator navigator] openURLAction:action];
 			self.detailViewController.documentInteractionController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:[self.documentsPath stringByAppendingPathComponent:[self.documents objectAtIndex:indexPath.row]]]];
 			self.detailViewController.documentItem	= [self.documentAttributes objectAtIndex:indexPath.row];
-			self.detailViewController.titleBarItem.title = [self.documents objectAtIndex:indexPath.row];
 		}
 	}
 

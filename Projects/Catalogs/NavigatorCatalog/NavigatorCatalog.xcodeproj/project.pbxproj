@@ -74,10 +74,12 @@
 		6384395F1040F75F00D29404 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6384381B1040EB5400D29404 /* Localizable.strings */; };
 		638439601040F76100D29404 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 638438191040EB5400D29404 /* InfoPlist.strings */; };
 		638F2F1B108AD8DF0021685E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 638F2F1A108AD8DF0021685E /* Settings.bundle */; };
+		63A837CF124D549F00C30B6C /* popup-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 63A837CE124D549F00C30B6C /* popup-placeholder.png */; };
 		63AB84021243BA6A00BD8093 /* NVCDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63AB83FF1243BA6A00BD8093 /* NVCDetailViewController.m */; };
 		63B38E3B1246243400060941 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		63B38F311246354900060941 /* NVCContentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B38F301246354900060941 /* NVCContentTableViewController.m */; };
 		63B5AC6311D6EB34005368DA /* UserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 63B5AC6211D6EB34005368DA /* UserDefaults.plist */; };
+		63D44744124C22C900AB7EA0 /* NVCBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D446F3124C1B3F00AB7EA0 /* NVCBackgroundView.m */; };
 		63E58AC611DED79300D122B4 /* NVCUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E58AC511DED79300D122B4 /* NVCUserDefaults.m */; };
 		63E7A03211DF7B6A0078A405 /* Default@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 63E7A02E11DF7B6A0078A405 /* Default@2x~iphone.png */; };
 		63E7A03311DF7B6A0078A405 /* Default~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 63E7A02F11DF7B6A0078A405 /* Default~iphone.png */; };
@@ -196,6 +198,7 @@
 		638439131040F24D00D29404 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		6384392B1040F3BE00D29404 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Developer/Library/Frameworks/SenTestingKit.framework; sourceTree = SDKROOT; };
 		638F2F1A108AD8DF0021685E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = Source/Resources/Bundles/Settings.bundle; sourceTree = SOURCE_ROOT; };
+		63A837CE124D549F00C30B6C /* popup-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "popup-placeholder.png"; path = "Source/Classes/Views/Resources/Images/Placeholder/popup-placeholder.png"; sourceTree = SOURCE_ROOT; };
 		63A8D84211B81D8100232AA8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63A8D95A11B8237200232AA8 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		63AB83FE1243BA6A00BD8093 /* NVCDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVCDetailViewController.h; sourceTree = "<group>"; };
@@ -205,6 +208,8 @@
 		63B38F301246354900060941 /* NVCContentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVCContentTableViewController.m; sourceTree = "<group>"; };
 		63B5AC6211D6EB34005368DA /* UserDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = UserDefaults.plist; path = Source/Classes/ApplicationDelegate/Resources/PropertyLists/UserDefaults.plist; sourceTree = SOURCE_ROOT; };
 		63B6A8BB104146B10049EC9C /* Settings.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Settings.xcconfig; path = Configurations/Settings.xcconfig; sourceTree = SOURCE_ROOT; };
+		63D446F2124C1B3F00AB7EA0 /* NVCBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVCBackgroundView.h; sourceTree = "<group>"; };
+		63D446F3124C1B3F00AB7EA0 /* NVCBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NVCBackgroundView.m; sourceTree = "<group>"; };
 		63DF3BA411DE51DC00A70D91 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		63DF3BA611DE51DC00A70D91 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		63DF3BA811DE51DC00A70D91 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -332,8 +337,8 @@
 			isa = PBXGroup;
 			children = (
 				63AB83FE1243BA6A00BD8093 /* NVCDetailViewController.h */,
-				63695DF0124927D700393B5A /* NVCDocumentsFolderViewController.h */,
 				635D86531245DB9000317980 /* NVCNavigationBarViewController.h */,
+				63695DF0124927D700393B5A /* NVCDocumentsFolderViewController.h */,
 				63B38F2F1246354900060941 /* NVCContentTableViewController.h */,
 				6308FADC124783BE009B02E2 /* NVCHistoryViewController.h */,
 				6308FAD9124783AE009B02E2 /* NVCMappingTableViewController.h */,
@@ -442,6 +447,7 @@
 			children = (
 				6384380A1040EB5400D29404 /* ApplicationDelegate */,
 				638438111040EB5400D29404 /* Controllers */,
+				63D446EE124C1B3F00AB7EA0 /* Views */,
 			);
 			name = Classes;
 			path = Source/Classes;
@@ -616,6 +622,53 @@
 			name = Source;
 			sourceTree = "<group>";
 		};
+		63D446EE124C1B3F00AB7EA0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				63D446EF124C1B3F00AB7EA0 /* Classes */,
+				63D446F6124C1B3F00AB7EA0 /* Resources */,
+			);
+			name = Views;
+			path = Source/Classes/Views;
+			sourceTree = SOURCE_ROOT;
+		};
+		63D446EF124C1B3F00AB7EA0 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				63D446F2124C1B3F00AB7EA0 /* NVCBackgroundView.h */,
+				63D446F3124C1B3F00AB7EA0 /* NVCBackgroundView.m */,
+			);
+			name = Classes;
+			path = Source/Classes/Views/Classes;
+			sourceTree = SOURCE_ROOT;
+		};
+		63D446F6124C1B3F00AB7EA0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				63D446F7124C1B3F00AB7EA0 /* Images */,
+			);
+			name = Resources;
+			path = Source/Classes/Views/Resources;
+			sourceTree = SOURCE_ROOT;
+		};
+		63D446F7124C1B3F00AB7EA0 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				63D446F8124C1B3F00AB7EA0 /* Placeholder */,
+			);
+			name = Images;
+			path = Source/Classes/Views/Resources/Images;
+			sourceTree = SOURCE_ROOT;
+		};
+		63D446F8124C1B3F00AB7EA0 /* Placeholder */ = {
+			isa = PBXGroup;
+			children = (
+				63A837CE124D549F00C30B6C /* popup-placeholder.png */,
+			);
+			name = Placeholder;
+			path = Source/Classes/Views/Resources/Images/Placeholder;
+			sourceTree = SOURCE_ROOT;
+		};
 		63E58AA711DED77D00D122B4 /* Launch */ = {
 			isa = PBXGroup;
 			children = (
@@ -760,6 +813,7 @@
 				637FD504124BCD1B0057AA80 /* MasterArrow-Right@2x.png in Resources */,
 				637FD505124BCD1B0057AA80 /* MasterArrow-Top.png in Resources */,
 				637FD506124BCD1B0057AA80 /* MasterArrow-Top@2x.png in Resources */,
+				63A837CF124D549F00C30B6C /* popup-placeholder.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -797,6 +851,7 @@
 				6308FADB124783AE009B02E2 /* NVCMappingTableViewController.m in Sources */,
 				6308FADE124783BE009B02E2 /* NVCHistoryViewController.m in Sources */,
 				63695DF2124927D700393B5A /* NVCDocumentsFolderViewController.m in Sources */,
+				63D44744124C22C900AB7EA0 /* NVCBackgroundView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
