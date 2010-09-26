@@ -4,28 +4,40 @@
 Based on Three20 TTNavigator source and UXKit UXNavigator fork source, fully supports iOS 3.2 and 4.0 including iPad user interface idioms with either UISplitViewController or MGSplitViewController.
 
 
-## Screenshots
+## iPad UI Idiom Split View Navigator Screenshots
 
-[![](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/iPad.png)](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/iPad.png)
-[![](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/iPhone.png)](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/iPhone.png)
-[![](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/iPhone-UTIandFileSharing.png)](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/iPhone-UTIandFileSharing.png)
+[![](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-Master-Left.png)](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-Master-Left.png)
+[![](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-Master-Right.png)](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-Master-Right.png)
+[![](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-Master-Hidden.png)](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-Master-Hidden.png)
+[![](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-Master-Hidden.png)](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-Horizontal-Orientation.png)
+[![](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-SplitDivider.png)](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-SplitDivider.png)
+[![](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-Modal.png)](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-Modal.png)
+
+## iPhone UI Idiom Navigator Screenshots
+
+[![](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPhone.png)](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPhone.png)
+[![](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPhone-OpenIn.png)](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPhone-OpenIn.png)
+[![](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPhone-UTIandFileSharing.png)](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPhone-UTIandFileSharing.png)
+
+
+## What's New / Better
+
+* Split View Navigator is a subclass of the Navigator class. 
+* NKSplitViewNavigator Either UISplitViewController or MGSplitViewController (with all the associated animated goodness) work.
+* Classes with **URL** in the name, URLMap and URLAction, are now NavigatorMap and NavigatorAction.
+* Support for iPad modal presentation style and popover user interface idioms.
+* Removal of most convenience functions including geometry and orientation.
 
 
 ## What's Different
-
-  * Split View Navigator classes that are subclasses of the base Navigator class. Either UISplitViewController or MGSplitViewController (with all the associated animated goodness) work.
-  * Class with URL in the name, like TTURLMap and TTURLAction, now use Navigator, such as NKNavigatorMap and NKNavigatorAction.
-  * Additions to Navigator and NavigatorMap to support iPad user interface idioms like model presentation style and popover display.
-  * Removal of most convenience functions including geometry and orientation.
-  * Garbage collection replaced with an NSProxy based pattern.
-  * View controller persistence removed in favour of iOS 4 and later multitasking.
-  * Class heirarchy compacted and refactored.
-  * Keyboard handling removed from UIViewController category.
-  * UINavigationController category method moved into UINavigationController subclass.
-  * Remove method chaining convention on Navigator Actions.
-  * Maintained and improve no XIB based development approach.
-  * Class overhaul based on LLVM/Clang 1.5 new compiler flags. 
-    * Ivars moved from headers to class extensions in the implementation files and will away soon in favour of @sythensize or straight @property decls with 2.0 runtime ABI.
+* Garbage collection replaced with an NSProxy based pattern.
+* Keyboard handling removed from UIViewController category.
+* UINavigationController category method moved into UINavigationController subclass.
+* Remove method chaining convention on Navigator Actions.
+* View controller persistence removed in favour of iOS 4 and later multitasking.
+* Class heirarchy compacted and refactored.
+* Class overhaul based on LLVM/Clang 1.5 new compiler flags. 
+  * Ivars moved from headers to class extensions in the implementation files and will away soon in favour of @sythensize or straight @property decls with 2.0 runtime ABI.
 
 
 ## Documentation
@@ -33,6 +45,50 @@ Based on Three20 TTNavigator source and UXKit UXNavigator fork source, fully sup
 I'm working on a documentation set of the classes and an article on how to compose and design your application architecture the Navigator. For now, consult Jeff's excellent article on URL-based navigation with TTNavigator.
 
 1. [URL-based navigation on Three20.info](http://Three20.info/ui/navigation)
+
+
+### Classes
+
+* NKNavigator
+
+  * NKSplitViewNavigator
+
+  * NKUISplitViewNavigator
+
+* NKNavigatorAction
+
+* NKNavigatorMap
+
+* NKNavigatorPattern
+
+* NKSplitViewController
+
+* NKViewController
+
+* NKNavigationController
+
+* NKPopupViewController
+
+* NKViewControllerProxy
+
+* NKActionSheetController
+
+* NKAlertViewController
+
+
+### Categories
+
+* NKUIDevice
+
+* NKUINavigationController
+
+* NKUISplitViewController
+
+* NKUITabBarController
+
+* NKUIToolbar
+
+* NKUIViewController
 
 
 ## Requirements
