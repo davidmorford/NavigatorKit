@@ -23,17 +23,19 @@ Based on Three20 TTNavigator source and UXKit UXNavigator fork source, fully sup
 ## What's New / Better
 
 * Split View Navigator is a subclass of the Navigator class. 
-* NKSplitViewNavigator Either UISplitViewController or MGSplitViewController (with all the associated animated goodness) work.
-* Classes with **URL** in the name, URLMap and URLAction, are now NavigatorMap and NavigatorAction.
-* Support for iPad modal presentation style and popover user interface idioms.
-* Removal of most convenience functions including geometry and orientation.
+* NKSplitViewNavigator uses MGSplitViewController (as NKSplitViewController) with all the associated goodness.
+* NKUISplitViewNavigator uses UISplitViewController.
+* Classes with **URL** in the name, URLMap, URLAction, URLPattern, are not NavigatorMap, NavigatorAction, Nac
+* iPad modal presentation style and popover user interface idioms.
+* Removal of most geometry and orientation convenience functions in favor of standard UIKit calls and removal of most or all assumptions about user interface orientation and geometry.
 
 
 ## What's Different
-* Garbage collection replaced with an NSProxy based pattern.
+
+* Garbage collection removed. Simple NSProxy replacement for non-NKUIViewController removeal from the global controller key cache instead.
+* Remove method chaining convention on Navigator Actions.
 * Keyboard handling removed from UIViewController category.
 * UINavigationController category method moved into UINavigationController subclass.
-* Remove method chaining convention on Navigator Actions.
 * View controller persistence removed in favour of iOS 4 and later multitasking.
 * Class heirarchy compacted and refactored.
 * Class overhaul based on LLVM/Clang 1.5 new compiler flags. 
@@ -42,7 +44,7 @@ Based on Three20 TTNavigator source and UXKit UXNavigator fork source, fully sup
 
 ## Documentation
 
-I'm working on a documentation set of the classes and an article on how to compose and design your application architecture the Navigator. For now, consult Jeff's excellent article on URL-based navigation with TTNavigator.
+A documentation set of classes and a complete article composing and using URL based design in your application architecture is in the works. Consult Jeff's excellent article on URL-based navigation with TTNavigator for now
 
 1. [URL-based navigation on Three20.info](http://Three20.info/ui/navigation)
 
@@ -50,44 +52,27 @@ I'm working on a documentation set of the classes and an article on how to compo
 ### Classes
 
 * NKNavigator
-
   * NKSplitViewNavigator
-
   * NKUISplitViewNavigator
-
 * NKNavigatorAction
-
 * NKNavigatorMap
-
 * NKNavigatorPattern
-
 * NKSplitViewController
-
 * NKViewController
-
 * NKNavigationController
-
 * NKPopupViewController
-
 * NKViewControllerProxy
-
 * NKActionSheetController
-
 * NKAlertViewController
 
 
 ### Categories
 
 * NKUIDevice
-
 * NKUINavigationController
-
 * NKUISplitViewController
-
 * NKUITabBarController
-
 * NKUIToolbar
-
 * NKUIViewController
 
 
