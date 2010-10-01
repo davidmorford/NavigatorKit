@@ -80,7 +80,7 @@ static NKUISplitViewNavigator *gSharedUISplitViewNavigator = nil;
 	NSMutableArray *viewControllers = [[NSMutableArray alloc] initWithCapacity:count];
 	for (NSUInteger currentIndex = 0; currentIndex < count; ++currentIndex) {
 		NKNavigator *navigator = [self navigatorAtIndex:currentIndex];
-		[navigator openURLAction:[NKNavigatorAction actionWithURLPath:[aURLArray objectAtIndex:currentIndex]]];
+		[navigator openNavigatorAction:[NKNavigatorAction actionWithNavigatorURLPath:[aURLArray objectAtIndex:currentIndex]]];
 		[viewControllers addObject:navigator.rootViewController];
 	}
 	self.splitViewController.viewControllers = viewControllers;

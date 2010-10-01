@@ -26,14 +26,14 @@
 
 #pragma mark Constructor
 
-+(id) actionWithURLPath:(NSString *)aURLPath {
-	return [[[[self class] alloc] initWithURLPath:aURLPath] autorelease];
++(id) actionWithNavigatorURLPath:(NSString *)aURLPath {
+	return [[[[self class] alloc] initWithNavigatorURLPath:aURLPath] autorelease];
 }
 
 
 #pragma mark Initializers
 
--(id) initWithURLPath:(NSString *)aURLPath {
+-(id) initWithNavigatorURLPath:(NSString *)aURLPath {
 	self = [super init];
 	if (self == nil) {
 		return nil;
@@ -51,8 +51,8 @@
 	return self;
 }
 
--(id) initWithURLPath:(NSString *)aURLPath query:(NSDictionary *)aQuery {
-	self = [self initWithURLPath:aURLPath];
+-(id) initWithNavigatorURLPath:(NSString *)aURLPath query:(NSDictionary *)aQuery {
+	self = [self initWithNavigatorURLPath:aURLPath];
 	if (self == nil) {
 		return nil;
 	}
@@ -60,8 +60,8 @@
 	return self;
 }
 
--(id) initWithURLPath:(NSString *)aURLPath parentURLPath:(NSString *)aParentPath {
-	self = [self initWithURLPath:aURLPath];
+-(id) initWithNavigatorURLPath:(NSString *)aURLPath parentURLPath:(NSString *)aParentPath {
+	self = [self initWithNavigatorURLPath:aURLPath];
 	if (self == nil) {
 		return nil;
 	}
@@ -69,8 +69,8 @@
 	return self;
 }
 
--(id) initWithURLPath:(NSString *)aURLPath parentURLPath:(NSString *)aParentPath query:(NSDictionary *)aQuery {
-	self = [self initWithURLPath:aURLPath parentURLPath:aParentPath];
+-(id) initWithNavigatorURLPath:(NSString *)aURLPath parentURLPath:(NSString *)aParentPath query:(NSDictionary *)aQuery {
+	self = [self initWithNavigatorURLPath:aURLPath parentURLPath:aParentPath];
 	if (self == nil) {
 		return nil;
 	}
@@ -78,8 +78,8 @@
 	return self;
 }
 
--(id) initWithURLPath:(NSString *)aURLPath animated:(BOOL)animatedFlag {
-	self = [self initWithURLPath:aURLPath];
+-(id) initWithNavigatorURLPath:(NSString *)aURLPath animated:(BOOL)animatedFlag {
+	self = [self initWithNavigatorURLPath:aURLPath];
 	if (self == nil) {
 		return nil;
 	}

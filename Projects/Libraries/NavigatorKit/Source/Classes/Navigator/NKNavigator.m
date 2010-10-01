@@ -248,15 +248,15 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
 }
 
 -(void) setCurrentURL:(NSString *)aURLPath {
-	NKNavigatorAction *action = [NKNavigatorAction actionWithURLPath:aURLPath];
+	NKNavigatorAction *action = [NKNavigatorAction actionWithNavigatorURLPath:aURLPath];
 	action.animated = TRUE;
-	[self openURLAction:action];
+	[self openNavigatorAction:action];
 }
 
 
 #pragma mark -
 
--(UIViewController *) openURLAction:(NKNavigatorAction *)anAction {
+-(UIViewController *) openNavigatorAction:(NKNavigatorAction *)anAction {
 	if (!anAction || !anAction.URLPath) {
 		return nil;
 	}
@@ -341,7 +341,7 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
 	va_list ap;
 	va_start(ap, aURLString);
 	while (aURLString) {
-		controller = [self openURLAction:[NKNavigatorAction actionWithURLPath:aURLString]];
+		controller = [self openNavigatorAction:[NKNavigatorAction actionWithNavigatorURLPath:aURLString]];
 		aURLString = va_arg(ap, id);
 	}
 	va_end(ap);
@@ -586,7 +586,7 @@ controller will be returned.
 			self.rootViewController = [[[[self navigationControllerClass] alloc] init] autorelease];
 		}
 		if (parentURLPath) {
-			return [self openURLAction:[NKNavigatorAction actionWithURLPath:parentURLPath]];
+			return [self openNavigatorAction:[NKNavigatorAction actionWithNavigatorURLPath:parentURLPath]];
 		}
 		else {
 			UIViewController *parent = self.topViewController;
@@ -808,15 +808,15 @@ controller will be returned.
 
 UIViewController * 
 NKNavigatorOpenURL(NSString *aURL) {
-	NKNavigatorAction *action = [NKNavigatorAction actionWithURLPath:aURL];
+	NKNavigatorAction *action = [NKNavigatorAction actionWithNavigatorURLPath:aURL];
 	action.animated = TRUE;
-	return [[NKNavigator navigator] openURLAction:action];
+	return [[NKNavigator navigator] openNavigatorAction:action];
 }
 
 UIViewController *
 NKNavigatorOpenURLWithQuery(NSString *aURL, NSDictionary *aQuery, BOOL animatedFlag) {
-	NKNavigatorAction *action = [NKNavigatorAction actionWithURLPath:aURL];
+	NKNavigatorAction *action = [NKNavigatorAction actionWithNavigatorURLPath:aURL];
 	action.animated = animatedFlag;
 	action.query = aQuery;
-	return [[NKNavigator navigator] openURLAction:action];
+	return [[NKNavigator navigator] openNavigatorAction:action];
 }

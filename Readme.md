@@ -128,6 +128,12 @@ The project, via BuildKit xcconfigs, currently works with Xcode 3.2.4 and the us
 
 ## History
 
+### October 2010
+
+• October 1st
+  • Refactor method names still using URLAction to be more consistent NavigatorAction name
+  • Update Xcode Project Template
+
 ### September 2010
 - Update Readme, Todo and Licenses.
 - Public release.

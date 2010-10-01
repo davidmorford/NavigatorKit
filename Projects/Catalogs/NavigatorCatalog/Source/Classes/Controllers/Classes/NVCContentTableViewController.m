@@ -189,19 +189,19 @@
 
 	}
 
-	NKNavigatorAction *action = [[NKNavigatorAction alloc] initWithURLPath:targetURL];
+	NKNavigatorAction *action = [[NKNavigatorAction alloc] initWithNavigatorURLPath:targetURL];
 	if (NKUIDeviceUserIntefaceIdiom() == UIUserInterfaceIdiomPad) {
 		NKNavigator *nv = [[NKSplitViewNavigator splitViewNavigator] navigatorForURLPath:targetURL];
 		if (nv == [NKSplitViewNavigator splitViewNavigator].detailNavigator) {
-			[nv openURLAction:action];
+			[nv openNavigatorAction:action];
 		}
 		else {
-			[nv openURLAction:action];
+			[nv openNavigatorAction:action];
 		}
 	}
 	else {
 		action.animated = TRUE;
-		[[NKNavigator navigator] openURLAction:action];
+		[[NKNavigator navigator] openNavigatorAction:action];
 	}
 	[action release];
 }

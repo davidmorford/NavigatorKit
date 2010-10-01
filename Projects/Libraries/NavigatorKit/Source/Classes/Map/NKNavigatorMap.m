@@ -430,7 +430,7 @@ NKNavigatorObjectMappingsRelease(CFAllocatorRef allocator, const void *value) {
 	return nil;
 }
 
--(NKNavigatorMode) navigationModeForURL:(NSString *)aURLString {
+-(NKNavigatorMode) navigatorModeForURL:(NSString *)aURLString {
 	NSURL *theURL = [NSURL URLWithString:aURLString];
 	if (![self isAppURL:theURL]) {
 		NKNavigatorPattern *pattern = [self matchObjectPattern:theURL];
@@ -441,7 +441,7 @@ NKNavigatorObjectMappingsRelease(CFAllocatorRef allocator, const void *value) {
 	return NKNavigatorModeExternal;
 }
 
--(void) setNavigationMode:(NKNavigatorMode)aNavigationMode forURL:(NSString *)aURLString {
+-(void) setNavigatorMode:(NKNavigatorMode)aNavigationMode forURL:(NSString *)aURLString {
 	NSURL *actualURL = [NSURL URLWithString:aURLString];
 	if (![self isAppURL:actualURL]) {
 		NKNavigatorPattern *pattern = [self matchObjectPattern:actualURL];

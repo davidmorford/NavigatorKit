@@ -35,17 +35,17 @@ via the apply* methods. Each of these methods returns self, allowing you to chai
 /*!
 @abstract Create an autoreleased NKNavigatorAction object with a URL path. The path is required.
 */
-+(id) actionWithURLPath:(NSString *)aURLPath;
++(id) actionWithNavigatorURLPath:(NSString *)aURLPath;
 
 #pragma mark Initializers
 
 /*!
 @abstract Initialize a NKNavigatorAction object with a URL path. The path is required.
 */
--(id) initWithURLPath:(NSString *)aURLPath;
--(id) initWithURLPath:(NSString *)aURLPath query:(NSDictionary *)aQuery;
--(id) initWithURLPath:(NSString *)aURLPath animated:(BOOL)animatedFlag;
--(id) initWithURLPath:(NSString *)aURLPath parentURLPath:(NSString *)aParentPath;
--(id) initWithURLPath:(NSString *)aURLPath parentURLPath:(NSString *)aParentPath query:(NSDictionary *)aQuery;
+-(id) initWithNavigatorURLPath:(NSString *)aURLPath;
+-(id) initWithNavigatorURLPath:(NSString *)aURLPath query:(NSDictionary *)aQuery;
+-(id) initWithNavigatorURLPath:(NSString *)aURLPath animated:(BOOL)animatedFlag;
+-(id) initWithNavigatorURLPath:(NSString *)aURLPath parentURLPath:(NSString *)aParentPath;
+-(id) initWithNavigatorURLPath:(NSString *)aURLPath parentURLPath:(NSString *)aParentPath query:(NSDictionary *)aQuery;
 
 @end

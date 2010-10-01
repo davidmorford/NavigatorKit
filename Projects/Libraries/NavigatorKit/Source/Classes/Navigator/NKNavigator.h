@@ -92,17 +92,17 @@ The default value is NO.
 
 /*!
 @abstract Load and display the view controller with a pattern that matches the URL.
-This method replaces all other openURL methods by using the chainable NKNavigatorAction object.
 @discussion If there is not yet a rootViewController, the view controller loaded with this URL
 will be assigned as the rootViewController and inserted into the keyWindow. If there is not
 a keyWindow, a UIWindow will be created and displayed.
-@example NKNavigatorAction initialization: [NKNavigatorAction actionWithURLPath:@"appscheme://some/path"]
+@example NKNavigatorAction initialization:
+[NKNavigatorAction actionWithURLPath:@"appscheme://some/path"]
 Each with* method on the NKNavigatorAction object returns self, allowing you to chain methods
 when initializing the object. This allows for a flexible method that requires a shifting set
 of parameters that have specific defaults. The old openURL* methods are being phased out, so
-please start using openURLAction instead.
+please start using openNavigatorAction instead.
 */
--(UIViewController *) openURLAction:(NKNavigatorAction *)aURLAction;
+-(UIViewController *) openNavigatorAction:(NKNavigatorAction *)aURLAction;
 
 /*!
 @abstract Opens a sequence of URLs, with only the last one being animated.

@@ -175,12 +175,12 @@ the URL then pattern matching is used to create a new object.
 /*!
 @abstract Tests if there is a pattern that matches the URL and if so returns its navigation mode.
 */
--(NKNavigatorMode) navigationModeForURL:(NSString *)aURL;
+-(NKNavigatorMode) navigatorModeForURL:(NSString *)aURL;
 
 /*!
 @abstractTests if there is a pattern that matches the URL and if so sets its navigation mode.
 */
--(void) setNavigationMode:(NKNavigatorMode)aNavigationMode forURL:(NSString *)aURL;
+-(void) setNavigatorMode:(NKNavigatorMode)aNavigationMode forURL:(NSString *)aURL;
 
 /*!
 @abstract Tests if there is a pattern that matches the URL and if so returns its transition.

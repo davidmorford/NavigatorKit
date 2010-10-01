@@ -133,7 +133,7 @@
 																				  @"navigatorcatalog://content/external", 
 																				  @"navigatorcatalog://mappings", 
 																				  nil]];
-		[sharedNavigator openURLAction:[NKNavigatorAction actionWithURLPath:@"navigatorcatalog://tabbar"]];
+		[sharedNavigator openNavigatorAction:[NKNavigatorAction actionWithNavigatorURLPath:@"navigatorcatalog://tabbar"]];
 	}
 	return TRUE;
 }
@@ -141,19 +141,19 @@
 -(BOOL) application:(UIApplication *)application handleOpenURL:(NSURL *)aURL {
 	NSLog(@"%@", [aURL absoluteString]);
 	//self.launchURL = aURL;
-	NKNavigatorAction *action = [[NKNavigatorAction alloc] initWithURLPath:[aURL absoluteString]];
+	NKNavigatorAction *action = [[NKNavigatorAction alloc] initWithNavigatorURLPath:[aURL absoluteString]];
 	if (NKUIDeviceUserIntefaceIdiom() == UIUserInterfaceIdiomPad) {
 		NKNavigator *nv = [[NKSplitViewNavigator splitViewNavigator] navigatorForURLPath:[aURL absoluteString]];
 		if (nv == [NKSplitViewNavigator splitViewNavigator].detailNavigator) {
-			[NKSplitViewNavigator splitViewNavigator].splitViewController.detailViewController = [nv openURLAction:action].navigationController;
+			[NKSplitViewNavigator splitViewNavigator].splitViewController.detailViewController = [nv openNavigatorAction:action].navigationController;
 		}
 		else {
-			[nv openURLAction:action];
+			[nv openNavigatorAction:action];
 		}
 	}
 	else {
 		action.animated = TRUE;
-		[[NKNavigator navigator] openURLAction:action];
+		[[NKNavigator navigator] openNavigatorAction:action];
 	}
 	[action release];
 	return TRUE;

@@ -127,16 +127,16 @@
 
 	-(void) tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 		if (NKUIDeviceUserIntefaceIdiom() == UIUserInterfaceIdiomPad) {
-			NKNavigatorAction *action = [NKNavigatorAction actionWithURLPath:@"navigatorcatalog://toolbar"];
+			NKNavigatorAction *action = [NKNavigatorAction actionWithNavigatorURLPath:@"navigatorcatalog://toolbar"];
 			action.animated = TRUE;
-			self.detailViewController = (NVCDetailViewController *)[[NKSplitViewNavigator splitViewNavigator].detailNavigator openURLAction:action];
+			self.detailViewController = (NVCDetailViewController *)[[NKSplitViewNavigator splitViewNavigator].detailNavigator openNavigatorAction:action];
 			self.detailViewController.documentInteractionController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:[self.documentsPath stringByAppendingPathComponent:[self.documents objectAtIndex:indexPath.row]]]];
 			self.detailViewController.documentItem	= [self.documentAttributes objectAtIndex:indexPath.row];
 		}
 		else {
-			NKNavigatorAction *action = [NKNavigatorAction actionWithURLPath:@"navigatorcatalog://toolbar"];
+			NKNavigatorAction *action = [NKNavigatorAction actionWithNavigatorURLPath:@"navigatorcatalog://toolbar"];
 			action.animated = TRUE;
-			self.detailViewController = (NVCDetailViewController *)[[NKNavigator navigator] openURLAction:action];
+			self.detailViewController = (NVCDetailViewController *)[[NKNavigator navigator] openNavigatorAction:action];
 			self.detailViewController.documentInteractionController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:[self.documentsPath stringByAppendingPathComponent:[self.documents objectAtIndex:indexPath.row]]]];
 			self.detailViewController.documentItem	= [self.documentAttributes objectAtIndex:indexPath.row];
 		}
