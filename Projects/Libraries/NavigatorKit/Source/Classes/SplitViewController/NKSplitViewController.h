@@ -102,6 +102,14 @@ on .isVertical setting) if masterBeforeDetail is YES, else relative to bottom/ri
 */
 @property (nonatomic, readonly, getter=isLandscape) BOOL landscape;
 
+
+#pragma mark -
+
+-(void) hideMasterView;
+
+-(void) showMasterView;
+
+
 #pragma mark Actions
 
 /*!
@@ -187,6 +195,11 @@ Do NOT modify them, except to: 1. Change their .cornerBackgroundColor 2. Change 
 @abstract Called when the master view is shown in a popover, so the delegate can take action like hiding other popovers.
 */
 -(void) splitViewController:(NKSplitViewController *)svc popoverController:(UIPopoverController *)pc willPresentViewController:(UIViewController *)aViewController;
+
+/*!
+@abstract If implemented, this barButtonItem will be used for the viewController
+*/
+-(UIBarButtonItem *) splitViewController:(NKSplitViewController *)svc  barButtonItemForViewController:(UIViewController *)aViewController;
 
 /*!
 @abstract Called when the split orientation will change (from vertical to horizontal, or vice versa).

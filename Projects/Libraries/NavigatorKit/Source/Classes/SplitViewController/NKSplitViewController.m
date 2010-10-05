@@ -564,12 +564,22 @@ static NSString* NK_ANIMATION_CHANGE_SUBVIEWS_ORDER	   = @"ChangeSubviewsOrder";
 		_hiddenPopoverController = [[UIPopoverController alloc] initWithContentViewController:self.masterViewController];
 		[self.masterViewController viewDidDisappear:NO];
 		
-		// Create and configure _barButtonItem.
-		_barButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Master", nil)
-														  style:UIBarButtonItemStyleBordered
-														 target:self
-														 action:@selector(showMasterPopover:)];
 		
+		// Create and configure _barButtonItem.
+		if (_delegate && [_delegate respondsToSelector:@selector(splitViewController:barButtonItemForViewController:)]) {
+			_barButtonItem = [_delegate splitViewController:self barButtonItemForViewController:self.masterViewController];
+			if (![_barButtonItem.target respondsToSelector:_barButtonItem.action]) {
+				_barButtonItem.target = self;
+				_barButtonItem.action = @selector(showMasterPopover:);
+			}
+		}
+		else {
+			_barButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Master", nil)
+															  style:UIBarButtonItemStyleBordered
+															 target:self
+															 action:@selector(showMasterPopover:)];
+		}
+
 		// Inform delegate of this state of affairs.
 		if (_delegate && [_delegate respondsToSelector:@selector(splitViewController:willHideViewController:withBarButtonItem:forPopoverController:)]) {
 			[_delegate splitViewController:self willHideViewController:self.masterViewController withBarButtonItem:_barButtonItem forPopoverController:_hiddenPopoverController];
@@ -685,6 +695,7 @@ static NSString* NK_ANIMATION_CHANGE_SUBVIEWS_ORDER	   = @"ChangeSubviewsOrder";
 	[UIView commitAnimations];
 }
 
+
 -(IBAction) showMasterPopover:(id)sender {
 	if (_hiddenPopoverController && !(_hiddenPopoverController.popoverVisible)) {
 		// Inform delegate.
@@ -694,8 +705,67 @@ static NSString* NK_ANIMATION_CHANGE_SUBVIEWS_ORDER	   = @"ChangeSubviewsOrder";
 		// Show popover.
 		[_hiddenPopoverController presentPopoverFromBarButtonItem:_barButtonItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 	}
+	else {
+		[_hiddenPopoverController dismissPopoverAnimated:YES];
+	}
 }
 
+#pragma mark -
+
+/*!
+@abstract ensure the master is either shown or hidden. Assumes no portrait split.
+*/
+-(void) hideMasterView {
+	if (_hiddenPopoverController && _hiddenPopoverController.popoverVisible) {
+		[_hiddenPopoverController dismissPopoverAnimated:YES];
+	}
+	
+	if (![self isShowingMaster]) {
+		self.showsMasterInLandscape = NO;
+		return;
+	}
+	
+	// This action functions on the current primary orientation; it is independent of the other primary orientation.
+	[UIView beginAnimations:@"toggleMaster" context:nil];
+	self.showsMasterInLandscape = NO;
+	[UIView commitAnimations];
+}
+
+-(void) showMasterView {
+	if (_hiddenPopoverController && _hiddenPopoverController.popoverVisible) {
+		[_hiddenPopoverController dismissPopoverAnimated:NO];
+	}
+	
+	if ([self isShowingMaster]) {
+		return;
+	}
+	else {
+		// We're about to show the master view. Ensure it's in place off-screen to be animated in.
+		_reconfigurePopup = YES;
+		[self reconfigureForMasterInPopover:NO];
+		[self layoutSubviews];
+	}
+	
+	// This action functions on the current primary orientation; it is independent of the other primary orientation.
+	_showsMasterInLandscape = YES;
+	
+	if (![self isLandscape]) { // i.e. if this will cause a visual change.
+		if (_hiddenPopoverController && _hiddenPopoverController.popoverVisible) {
+			[_hiddenPopoverController dismissPopoverAnimated:NO];
+		}
+	}
+	// Rearrange views.
+	if (self.isLandscape) {
+		[UIView beginAnimations:@"toggleMaster" context:nil];
+	}
+	
+	_reconfigurePopup = YES;
+	[self layoutSubviews];
+	
+	if (self.isLandscape) {
+		[UIView commitAnimations];
+	}
+}
 
 #pragma mark Accessors
 
