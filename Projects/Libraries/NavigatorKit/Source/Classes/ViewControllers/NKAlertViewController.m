@@ -42,18 +42,15 @@
 #pragma mark -
 
 @interface NKAlertViewController () {
-	id <NKAlertViewControllerDelegate> delegate;
-	id userInfo;
-	NSMutableArray *URLs;
+
 }
+	@property (nonatomic, copy) NSString *message;
+	@property (nonatomic, retain) NSMutableArray *URLs;
 @end
 
 #pragma mark -
 
 @implementation NKAlertViewController
-
-@synthesize delegate;
-@synthesize userInfo;
 
 #pragma mark Initializers
 
@@ -61,36 +58,35 @@
 	return [self initWithTitle:nil message:nil delegate:nil];
 }
 
--(id) initWithTitle:(NSString *)aTitle message:(NSString *)aMessage delegate:(id)aDelegate {
-	if (self = [super init]) {
-		delegate				= aDelegate;
-		userInfo				= nil;
-		URLs					= [[NSMutableArray alloc] init];
-		if (aTitle) {
-			self.alertView.title	= aTitle;
-		}
-		if (aMessage) {
-			self.alertView.message	= aMessage;
-		}
-	}
-	return self;
-}
-
 -(id) initWithTitle:(NSString *)aTitle message:(NSString *)aMessage {
 	return [self initWithTitle:aTitle message:aMessage delegate:nil];
+}
+
+-(id) initWithTitle:(NSString *)aTitle message:(NSString *)aMessage delegate:(id <NKAlertViewControllerDelegate>)aDelegate {
+	self = [super init];
+	if (!self) {
+		return nil;
+	}
+	self.delegate = aDelegate;
+	self.userInfo = nil;
+	self.URLs = [[NSMutableArray alloc] init];
+	self.title	= aTitle;
+	self.message = aMessage;
+	return self;
 }
 
 
 #pragma mark UIViewController
 
 -(void) loadView {
-	NKAlertView *alertView = [[[NKAlertView alloc] initWithTitle:nil 
-															 message:nil 
-															delegate:self
-												   cancelButtonTitle:nil
-												   otherButtonTitles:nil] autorelease];
-	alertView.popupViewController = self;
-	self.view = alertView;
+	[super loadView];
+	NKAlertView *av = [[[NKAlertView alloc] initWithTitle:self.title 
+												  message:self.message  
+												 delegate:self.delegate 
+										cancelButtonTitle:nil
+										otherButtonTitles:nil] autorelease];
+	av.popupViewController = self;
+	self.view = av;
 }
 
 
@@ -112,46 +108,46 @@
 #pragma mark <UIAlertViewDelegate>
 
 -(void) alertView:(UIAlertView *)anAlertView clickedButtonAtIndex:(NSInteger)aButtonIndex {
-	if ([delegate respondsToSelector:@selector(alertView:clickedButtonAtIndex:)]) {
-		[delegate alertView:anAlertView clickedButtonAtIndex:aButtonIndex];
+	if (self.delegate && [self.delegate respondsToSelector:@selector(alertView:clickedButtonAtIndex:)]) {
+		[self.delegate alertView:anAlertView clickedButtonAtIndex:aButtonIndex];
 	}
 }
 
 -(void) alertViewCancel:(UIAlertView *)anAlertView {
-	if ([delegate respondsToSelector:@selector(alertViewCancel:)]) {
-		[delegate alertViewCancel:anAlertView];
+	if (self.delegate && [self.delegate respondsToSelector:@selector(alertViewCancel:)]) {
+		[self.delegate alertViewCancel:anAlertView];
 	}
 }
 
 -(void) willPresentAlertView:(UIAlertView *)anAlertView {
-	if ([delegate respondsToSelector:@selector(willPresentAlertView:)]) {
-		[delegate willPresentAlertView:anAlertView];
+	if (self.delegate && [self.delegate respondsToSelector:@selector(willPresentAlertView:)]) {
+		[self.delegate willPresentAlertView:anAlertView];
 	}
 }
 
 -(void) didPresentAlertView:(UIAlertView *)anAlertView {
-	if ([delegate respondsToSelector:@selector(didPresentAlertView:)]) {
-		[delegate didPresentAlertView:anAlertView];
+	if (self.delegate && [self.delegate respondsToSelector:@selector(didPresentAlertView:)]) {
+		[self.delegate didPresentAlertView:anAlertView];
 	}
 }
 
 -(void) alertView:(UIAlertView *)anAlertView willDismissWithButtonIndex:(NSInteger)aButtonIndex {
-	if ([delegate respondsToSelector:@selector(alertView:willDismissWithButtonIndex:)]) {
-		[delegate alertView:anAlertView willDismissWithButtonIndex:aButtonIndex];
+	if (self.delegate && [self.delegate respondsToSelector:@selector(alertView:willDismissWithButtonIndex:)]) {
+		[self.delegate alertView:anAlertView willDismissWithButtonIndex:aButtonIndex];
 	}
 }
 
 -(void) alertView:(UIAlertView *)anAlertView didDismissWithButtonIndex:(NSInteger)aButtonIndex {
 	NSString *buttonURL	= [self buttonURLAtIndex:aButtonIndex];
 	BOOL canOpenURL		= TRUE;
-	if ([delegate respondsToSelector:@selector(alertViewController:didDismissWithButtonIndex:URL:)]) {
-		canOpenURL	= [delegate alertViewController:self didDismissWithButtonIndex:aButtonIndex URL:buttonURL];
+	if (self.delegate && [self.delegate respondsToSelector:@selector(alertViewController:didDismissWithButtonIndex:URL:)]) {
+		canOpenURL	= [self.delegate alertViewController:self didDismissWithButtonIndex:aButtonIndex URL:buttonURL];
 	}
 	if (buttonURL && canOpenURL) {
 		NKNavigatorOpenURL(buttonURL);
 	}
-	if ([delegate respondsToSelector:@selector(alertView:didDismissWithButtonIndex:)]) {
-		[delegate alertView:anAlertView didDismissWithButtonIndex:aButtonIndex];
+	if (self.delegate && [self.delegate respondsToSelector:@selector(alertView:didDismissWithButtonIndex:)]) {
+		[self.delegate alertView:anAlertView didDismissWithButtonIndex:aButtonIndex];
 	}
 }
 
@@ -164,10 +160,10 @@
 
 -(NSInteger) addButtonWithTitle:(NSString *)aTitle URL:(NSString *)aURL {
 	if (aURL) {
-		[URLs addObject:aURL];
+		[self.URLs addObject:aURL];
 	}
 	else {
-		[URLs addObject:[NSNull null]];
+		[self.URLs addObject:[NSNull null]];
 	}
 	return [self.alertView addButtonWithTitle:aTitle];
 }
@@ -178,7 +174,7 @@
 }
 
 -(NSString *) buttonURLAtIndex:(NSInteger)anIndex {
-	id URL = [URLs objectAtIndex:anIndex];
+	id URL = [self.URLs objectAtIndex:anIndex];
 	return URL != [NSNull null] ? URL : nil;
 }
 
@@ -187,8 +183,8 @@
 
 -(void) dealloc {
 	[(UIAlertView *)self.view setDelegate:nil];
-	[URLs release]; URLs = nil;
-	[userInfo release]; userInfo = nil;
+	self.URLs = nil;
+	self.userInfo = nil;
 	[super dealloc];
 }
 

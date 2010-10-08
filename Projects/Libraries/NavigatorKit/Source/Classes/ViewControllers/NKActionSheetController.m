@@ -41,40 +41,33 @@
 #pragma mark -
 
 @interface NKActionSheetController () {
-	id <NKActionSheetControllerDelegate> delegate;
-	NSMutableArray *URLs;
-	id userInfo;
 }
+	@property (nonatomic, retain) NSMutableArray *URLs;
 @end
 
 #pragma mark -
 
 @implementation NKActionSheetController
 
-@synthesize delegate = delegate;
-@synthesize userInfo = userInfo;
-
-#pragma mark <NSObject>
+#pragma mark Initializers
 
 -(id) init {
 	return [self initWithTitle:nil delegate:nil];
 }
 
-
-#pragma mark Initializer
-
 -(id) initWithTitle:(NSString *)aTitle {
 	return [self initWithTitle:aTitle delegate:nil];
 }
 
--(id) initWithTitle:(NSString *)aTitle delegate:(id)aDelegate {
+-(id) initWithTitle:(NSString *)aTitle delegate:(id <NKActionSheetControllerDelegate> )aDelegate {
 	if (self = [super init]) {
-		delegate	= aDelegate;
-		userInfo	= nil;
-		URLs		= [[NSMutableArray alloc] init];
-		if (aTitle) {
+		self.delegate	= aDelegate;
+		self.userInfo	= nil;
+		self.URLs		= [[NSMutableArray alloc] init];
+		self.title		= aTitle;
+		/*if (aTitle) {
 			self.actionSheet.title = aTitle;
-		}
+		}*/
 	}
 	return self;
 }
@@ -83,13 +76,14 @@
 #pragma mark UIViewController
 
 -(void) loadView {
-	NKActionSheet *actionSheet = [[[NKActionSheet alloc] initWithTitle:nil 
-																  delegate:self
-														 cancelButtonTitle:nil
-													destructiveButtonTitle:nil
-														 otherButtonTitles:nil] autorelease];
-	actionSheet.popupViewController = self;
-	self.view = actionSheet;
+	[super loadView];
+	NKActionSheet *sheet = [[[NKActionSheet alloc] initWithTitle:nil 
+														delegate:self
+											   cancelButtonTitle:nil
+										  destructiveButtonTitle:nil
+											   otherButtonTitles:nil] autorelease];
+	sheet.popupViewController = self;
+	self.view = sheet;
 }
 
 
@@ -127,32 +121,32 @@
 #pragma mark <UIActionSheetDelegate>
 
 -(void) actionSheet:(UIActionSheet *)anActionSheet clickedButtonAtIndex:(NSInteger)aButtonIndex {
-	if ([delegate respondsToSelector:@selector(actionSheet:clickedButtonAtIndex:)]) {
-		[delegate actionSheet:anActionSheet clickedButtonAtIndex:aButtonIndex];
+	if (self.delegate && [self.delegate respondsToSelector:@selector(actionSheet:clickedButtonAtIndex:)]) {
+		[self.delegate actionSheet:anActionSheet clickedButtonAtIndex:aButtonIndex];
 	}
 }
 
 -(void) actionSheetCancel:(UIActionSheet *)anActionSheet {
-	if ([delegate respondsToSelector:@selector(actionSheetCancel:)]) {
-		[delegate actionSheetCancel:anActionSheet];
+	if (self.delegate && [self.delegate respondsToSelector:@selector(actionSheetCancel:)]) {
+		[self.delegate actionSheetCancel:anActionSheet];
 	}
 }
 
 -(void) willPresentActionSheet:(UIActionSheet *)anActionSheet {
-	if ([delegate respondsToSelector:@selector(willPresentActionSheet:)]) {
-		[delegate willPresentActionSheet:anActionSheet];
+	if (self.delegate && [self.delegate respondsToSelector:@selector(willPresentActionSheet:)]) {
+		[self.delegate willPresentActionSheet:anActionSheet];
 	}
 }
 
 -(void) didPresentActionSheet:(UIActionSheet *)anActionSheet {
-	if ([delegate respondsToSelector:@selector(didPresentActionSheet:)]) {
-		[delegate didPresentActionSheet:anActionSheet];
+	if (self.delegate && [self.delegate respondsToSelector:@selector(didPresentActionSheet:)]) {
+		[self.delegate didPresentActionSheet:anActionSheet];
 	}
 }
 
 -(void) actionSheet:(UIActionSheet *)aActionSheet willDismissWithButtonIndex:(NSInteger)aButtonIndex {
-	if ([delegate respondsToSelector:@selector(actionSheet:willDismissWithButtonIndex:)]) {
-		[delegate actionSheet:aActionSheet willDismissWithButtonIndex:aButtonIndex];
+	if (self.delegate && [self.delegate respondsToSelector:@selector(actionSheet:willDismissWithButtonIndex:)]) {
+		[self.delegate actionSheet:aActionSheet willDismissWithButtonIndex:aButtonIndex];
 	}
 }
 
@@ -160,8 +154,8 @@
 	NSString *buttonURLString = [self buttonURLAtIndex:aButtonIndex];
 	BOOL canOpenURL = TRUE;
 	
-	if ([delegate respondsToSelector:@selector(actionSheetController:didDismissWithButtonIndex:URL:)]) {
-		canOpenURL = [delegate actionSheetController:self 
+	if (self.delegate && [self.delegate respondsToSelector:@selector(actionSheetController:didDismissWithButtonIndex:URL:)]) {
+		canOpenURL = [self.delegate actionSheetController:self 
 							didDismissWithButtonIndex:aButtonIndex 
 												  URL:buttonURLString];
 	}
@@ -170,8 +164,8 @@
 		NKNavigatorOpenURL(buttonURLString);
 	}
 	
-	if ([delegate respondsToSelector:@selector(actionSheet:didDismissWithButtonIndex:)]) {
-		[delegate actionSheet:anActionSheet didDismissWithButtonIndex:aButtonIndex];
+	if (self.delegate && [self.delegate respondsToSelector:@selector(actionSheet:didDismissWithButtonIndex:)]) {
+		[self.delegate actionSheet:anActionSheet didDismissWithButtonIndex:aButtonIndex];
 	}
 }
 
@@ -184,10 +178,10 @@
 
 -(NSInteger) addButtonWithTitle:(NSString *)aTitle URL:(NSString *)aURL {
 	if (aURL) {
-		[URLs addObject:aURL];
+		[self.URLs addObject:aURL];
 	}
 	else {
-		[URLs addObject:[NSNull null]];
+		[self.URLs addObject:[NSNull null]];
 	}
 	return [self.actionSheet addButtonWithTitle:aTitle];
 }
@@ -203,8 +197,8 @@
 }
 
 -(NSString *) buttonURLAtIndex:(NSInteger)anIndex {
-	if (anIndex < URLs.count) {
-		id URL = [URLs objectAtIndex:anIndex];
+	if (anIndex < self.URLs.count) {
+		id URL = [self.URLs objectAtIndex:anIndex];
 		return URL != [NSNull null] ? URL : nil;
 	}
 	else {
@@ -212,11 +206,12 @@
 	}
 }
 
+
 #pragma mark -
 
 -(void) dealloc {
-	[URLs release]; URLs = nil;
-	[userInfo release]; userInfo = nil;
+	self.URLs = nil;
+	self.userInfo = nil;
 	[super dealloc];
 }
 

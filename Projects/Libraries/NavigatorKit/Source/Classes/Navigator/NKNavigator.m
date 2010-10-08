@@ -11,13 +11,6 @@
 #import <NavigatorKit/NKSplitViewNavigator.h>
 #import <NavigatorKit/NKUIDevice.h>
 
-NSString * const NKNavigatorDefaultKeyPrefix           = @"NKNavigator";
-NSString * const NKNavigatorHistoryKeySuffix           = @"History";
-NSString * const NKNavigatorHistoryTimeKeySuffix       = @"HistoryTime";
-NSString * const NKNavigatorHistoryImportantKeySuffix  = @"HistoryImportant";
-
-#pragma mark -
-
 @interface NKNavigator () {
 @protected
 	UIWindow *window;
@@ -126,18 +119,18 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
 	if (!self) {
 		return nil;
 	}
-	self.delegate				= nil;
-	navigationMap				= [[NKNavigatorMap alloc] init];
+	self.delegate = nil;
+	navigationMap = [[NKNavigatorMap alloc] init];
 
-	self.windowClass					= windowCls;
+	self.windowClass = windowCls;
 	wantsNavigationControllerForRoot = TRUE;
 	self.navigationControllerClass	= navControllerCls;
 
-	self.window					= nil;
-	rootViewController			= nil;
-	delayedControllers			= nil;
-	delayCount					= 0;
-	opensExternalURLs			= FALSE;
+	self.window = nil;
+	rootViewController = nil;
+	delayedControllers = nil;
+	delayCount = 0;
+	opensExternalURLs = FALSE;
 	
 	// Works when compiling with LLVM/clang 1.5
 	BOOL backgroundOK = (&UIApplicationDidEnterBackgroundNotification != NULL);
@@ -647,10 +640,11 @@ controller will be returned.
 -(BOOL) presentController:(UIViewController *)controller parentURLPath:(NSString *)parentURLPath withPattern:(NKNavigatorPattern *)pattern animated:(BOOL)animated transition:(NSInteger)transition presentationStyle:(UIModalPresentationStyle)aStyle sender:(id)aSender {
 	BOOL didPresentNewController = NO;
 	if (controller) {
-		UIViewController *topViewController = self.topViewController;
-		if (controller != topViewController) {
-			UIViewController *parentController = [self parentForController:controller parentURLPath:(parentURLPath ? parentURLPath : pattern.parentURL) isContainer:[controller canContainControllers]];
-			if (parentController && (parentController != topViewController)) {
+		if (controller != self.topViewController) {
+			UIViewController *parentController = [self parentForController:controller 
+															 parentURLPath:(parentURLPath ? parentURLPath : pattern.parentURL) 
+															   isContainer:[controller canContainControllers]];
+			if (parentController && (parentController != self.topViewController)) {
 				[self presentController:parentController
 					   parentController:nil
 								   mode:NKNavigatorModeNone
@@ -659,8 +653,13 @@ controller will be returned.
 					  presentationStyle:aStyle
 								 sender:aSender];
 			}
-			
-			didPresentNewController = [self presentController:controller parentController:parentController mode:pattern.navigationMode animated:animated transition:transition presentationStyle:aStyle sender:aSender];
+			didPresentNewController = [self presentController:controller 
+											 parentController:parentController 
+														 mode:pattern.navigationMode 
+													 animated:animated 
+												   transition:transition 
+											presentationStyle:aStyle 
+													   sender:aSender];
 		}
 	}
 	return didPresentNewController;
@@ -682,9 +681,7 @@ controller will be returned.
 	}
 	else if (mode == NKNavigatorModeEmptyHistory && [self.rootViewController isKindOfClass:[UINavigationController class]]) {
 		UINavigationController *navController	= (UINavigationController *)self.rootViewController;
-		//UIBarButtonItem *topItem				= navController.navigationBar.topItem.leftBarButtonItem;
 		[navController setViewControllers:[NSArray arrayWithObject:controller] animated:NO];
-		//navController.navigationBar.topItem.leftBarButtonItem = topItem;
 	}
 	else {
 		if ([controller isKindOfClass:[NKPopupViewController class]]) {
@@ -768,7 +765,6 @@ controller will be returned.
 			popoverController.delegate = (id <UIPopoverControllerDelegate>)parentController;
 		}
 		
-		// If there is a sender, have the popover spring from it.
 		if ([sender isKindOfClass:[UIBarButtonItem class]]) {
 			[popoverController presentPopoverFromBarButtonItem:(UIBarButtonItem *)sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:animated];
 		}

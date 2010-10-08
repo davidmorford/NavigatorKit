@@ -658,7 +658,7 @@ NKNavigatorArgumentTypeForProperty(Class cls, NSString *propertyName) {
 	else if (self.instantiatesClass) {
 		returnValue = [target init];
 	}
-	[target autorelease];
+	[target autorelease]; // Damn clang analyzer... I know!
 	return returnValue;
 }
 

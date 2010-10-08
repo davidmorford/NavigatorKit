@@ -37,7 +37,7 @@ By default this controller is not persisted in the navigation history.
 @param title     The title of the action sheet.
 @param delegate  A delegate that implements the NKActionSheetControllerDelegate protocol.
 */
--(id)initWithTitle:(NSString *)aTitle delegate:(id)aDelegate;
+-(id)initWithTitle:(NSString *)aTitle delegate:(id <NKActionSheetControllerDelegate>)aDelegate;
 
 /*!
 @abstract Append a button with the given title and NKNavigator URL.

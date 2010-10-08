@@ -26,7 +26,7 @@ by NKNavigator, and gain all the benefits of persistence and URL dispatch.
 #pragma mark Initializer
 
 -(id) initWithTitle:(NSString *)aTitle message:(NSString *)aMessage;
--(id) initWithTitle:(NSString *)aTitle message:(NSString *)aMessage delegate:(id)aDelegate;
+-(id) initWithTitle:(NSString *)aTitle message:(NSString *)aMessage delegate:(id <NKAlertViewControllerDelegate>)aDelegate;
 
 -(NSInteger) addButtonWithTitle:(NSString *)aTitle URL:(NSString *)aURL;
 -(NSInteger) addCancelButtonWithTitle:(NSString *)aTitle URL:(NSString *)aURL;
