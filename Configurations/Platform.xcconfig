@@ -6,6 +6,8 @@
 //
 
 #include "Platform-4.1.xcconfig"
+// Comment above, uncomment below for 4.2 SDK build goodness.
+//#include "Platform-Universal-Latest.xcconfig"
 
 // Ugh...
 

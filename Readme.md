@@ -130,9 +130,14 @@ The project, via BuildKit xcconfigs, currently works with Xcode 3.2.4 and the us
 
 ### October 2010
 
-• October 1st
-  • Refactor method names still using URLAction to be more consistent NavigatorAction name
-  • Update Xcode Project Template
+* October 7
+  * Fix build on iOS 4.2. llvm/clang 1.6 is a harsh mistress. See notes in commenting and uncommenting two lines to build set 4.2 SDK as the main SDK in these files:
+    * Overall – **$(ROOT)/Configurations/Platform.xcconfig** and **$(ROOT)/Configurations/Project.xcconfig**
+    * Example and Project Template – **$(ROOT)/Projects/Catalogs/NavigatorCatalog/Configurations/Project.xcconfig** and **$(ProjectFolderName)/Configurations/Project.xcconfig**
+
+* October 1st
+  * Refactor method names still using URLAction to be more consistent NavigatorAction name
+  * Update Xcode Project Template
 
 ### September 2010
 - Update Readme, Todo and Licenses.
@@ -159,4 +164,3 @@ The project, via BuildKit xcconfigs, currently works with Xcode 3.2.4 and the us
 ## Licenses and Copyright
 
 NavigatorKit is a BSD licensed and originated with the TTNavigator classes of the Three20 library. NavigatorKit includes a mostly umodified version of MGSplitViewController (by Matt Legend Gemmell) as an alternative to UISplitViewController. The full text of the license and links to the licenses covering Three20 (Apache License) and MGSplitViewController (BSD with attribution) is located in Documents/License.md
-

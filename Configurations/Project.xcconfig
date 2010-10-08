@@ -26,4 +26,9 @@ GCC_ENABLE_FIX_AND_CONTINUE		= NO
 //GCC_VERSION					= 4.2
 //GCC_VERSION					= com.apple.compilers.llvmgcc42
 GCC_VERSION						= com.apple.compilers.llvm.clang.1_0
+
+// This is an iOS 4.1 SDK specific fix/hack.
 OTHER_CFLAGS					= -Xclang -fobjc-nonfragile-abi2 -D__IPHONE_OS_VERSION_MIN_REQUIRED=IOS_PLATFORM_VERSION_32
+
+// Comment above, uncomment below for 4.2 SDK build goodness.
+//OTHER_CFLAGS					= -Xclang -fobjc-nonfragile-abi2
