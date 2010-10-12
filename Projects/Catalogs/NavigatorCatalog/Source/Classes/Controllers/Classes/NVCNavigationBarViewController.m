@@ -41,7 +41,7 @@
 -(void) viewDidLoad {
 	[super viewDidLoad];
 	if (NKUIDeviceUserIntefaceIdiom() == UIUserInterfaceIdiomPad) {
-		NSArray *optionItems = [NSArray arrayWithObjects:[UIImage imageNamed:@"Fullscreen.png"], [UIImage imageNamed:@"MasterArrow-Bottom.png"], [UIImage imageNamed:@"DividerShow.png"], [UIImage imageNamed:@"MasterArrow-Right.png"], nil];
+		NSArray *optionItems = [NSArray arrayWithObjects:[UIImage imageNamed:@"FullScreen.png"], [UIImage imageNamed:@"MasterArrow-Bottom.png"], [UIImage imageNamed:@"DividerShow.png"], [UIImage imageNamed:@"MasterArrow-Right.png"], nil];
 		self.optionsSegmentedControl = [[UISegmentedControl alloc] initWithItems:optionItems];
 		self.optionsSegmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
 		self.optionsSegmentedControl.momentary = TRUE;
