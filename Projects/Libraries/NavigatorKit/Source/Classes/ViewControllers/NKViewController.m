@@ -5,27 +5,13 @@
 #import <NavigatorKit/NKNavigatorMap.h>
 #import <NavigatorKit/NKUIDevice.h>
 
-@interface NKViewController () {
-	UIBarStyle navigationBarStyle;
-	UIColor *navigationBarTintColor;
-	UIStatusBarStyle statusBarStyle;
-	BOOL isViewAppearing;
-	BOOL hasViewAppeared;
-	BOOL autoresizesForKeyboard;
-}
+@interface NKViewController ()
 	-(void) resizeForKeyboard:(NSNotification *)notification appearing:(BOOL)appearing;
 @end
 
 #pragma mark -
 
 @implementation NKViewController
-
-@synthesize navigationBarStyle;
-@synthesize navigationBarTintColor;
-@synthesize statusBarStyle;
-@synthesize isViewAppearing;
-@synthesize hasViewAppeared;
-@synthesize autoresizesForKeyboard;
 
 #pragma mark <NSObject>
 
@@ -271,7 +257,7 @@
 
 -(void)  dealloc {
 	self.autoresizesForKeyboard = FALSE;
-	[navigationBarTintColor release]; navigationBarTintColor = nil;
+	self.navigationBarTintColor = nil;
 	NSString *URL = self.originalNavigatorURL;
 	if (URL) {
 		[[NKNavigator navigator].navigationMap removeObjectForURL:URL];

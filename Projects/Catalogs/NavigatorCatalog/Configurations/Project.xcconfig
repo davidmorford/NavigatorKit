@@ -3,9 +3,7 @@
 // NavigatorCatalog/Configurations/Project.xcconfig
 //
 
-#include "../../../Configurations/Platform-Universal.xcconfig"
-// Comment above, uncomment below for 4.2 SDK build goodness.
-//#include "../../../Configurations/Platform.xcconfig"
+#include "../../../Configurations/Platform.xcconfig"
 #include "../../../Configurations/Project.xcconfig"
 
 CODE_SIGN_IDENTITY = iPhone Developer

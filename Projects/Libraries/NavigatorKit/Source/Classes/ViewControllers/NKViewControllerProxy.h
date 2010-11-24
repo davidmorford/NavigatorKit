@@ -12,9 +12,9 @@
 @abstract
 @discussion
 */
-@interface NKViewControllerProxy : NSProxy {
-	UIViewController *viewController;
-}
+@interface NKViewControllerProxy : NSProxy
+
+@property (nonatomic, retain) UIViewController *viewController;
 
 -(id) initWithViewController:(UIViewController *)controller;
 

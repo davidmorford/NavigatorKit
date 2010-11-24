@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		6308F9B31247653D009B02E2 /* action.png in Resources */ = {isa = PBXBuildFile; fileRef = 6308F9661247653D009B02E2 /* action.png */; };
 		6308F9B41247653D009B02E2 /* action@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6308F9671247653D009B02E2 /* action@2x.png */; };
 		6308F9B51247653D009B02E2 /* at.png in Resources */ = {isa = PBXBuildFile; fileRef = 6308F9681247653D009B02E2 /* at.png */; };
@@ -909,7 +909,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 638438071040EB4100D29404 /* Project.xcconfig */;
 			buildSettings = {
-				SDKROOT = iphoneos4.1;
 			};
 			name = Profile;
 		};
@@ -927,7 +926,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 638438071040EB4100D29404 /* Project.xcconfig */;
 			buildSettings = {
-				SDKROOT = iphoneos4.1;
 			};
 			name = Distribution;
 		};
@@ -943,7 +941,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 638438071040EB4100D29404 /* Project.xcconfig */;
 			buildSettings = {
-				SDKROOT = iphoneos4.1;
 			};
 			name = AdHoc;
 		};
@@ -960,7 +957,6 @@
 			baseConfigurationReference = 638438071040EB4100D29404 /* Project.xcconfig */;
 			buildSettings = {
 				GCC_OPTIMIZATION_LEVEL = 0;
-				SDKROOT = iphoneos4.1;
 			};
 			name = Debug;
 		};
@@ -968,7 +964,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 638438071040EB4100D29404 /* Project.xcconfig */;
 			buildSettings = {
-				SDKROOT = iphoneos4.1;
 			};
 			name = Release;
 		};

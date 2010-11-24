@@ -3,12 +3,8 @@
 #import <NavigatorKit/NKNavigator.h>
 #import <NavigatorKit/NKUIDevice.h>
 
-@interface NKActionSheet : UIActionSheet {
-	UIViewController *popupViewController;
-}
-
+@interface NKActionSheet : UIActionSheet
 @property (nonatomic, retain) UIViewController *popupViewController;
-
 @end
 
 #pragma mark -
@@ -19,7 +15,7 @@
 
 -(id) initWithFrame:(CGRect)frame {
 	if (self = [super initWithFrame:frame]) {
-		popupViewController = nil;
+		self.popupViewController = nil;
 	}
 	return self;
 }
@@ -27,12 +23,12 @@
 -(void) didMoveToSuperview {
 	if (!self.superview) {
 		[popupViewController autorelease];
-		popupViewController = nil;
+		self.popupViewController = nil;
 	}
 }
 
 -(void) dealloc {
-	[popupViewController release]; popupViewController = nil;
+	self.popupViewController = nil;
 	[super dealloc];
 }
 
@@ -40,8 +36,7 @@
 
 #pragma mark -
 
-@interface NKActionSheetController () {
-}
+@interface NKActionSheetController ()
 	@property (nonatomic, retain) NSMutableArray *URLs;
 @end
 
@@ -65,9 +60,11 @@
 		self.userInfo	= nil;
 		self.URLs		= [[NSMutableArray alloc] init];
 		self.title		= aTitle;
-		/*if (aTitle) {
+		/*
+		if (aTitle) {
 			self.actionSheet.title = aTitle;
-		}*/
+		}
+		*/
 	}
 	return self;
 }
@@ -92,7 +89,6 @@
 -(void) showInView:(UIView *)aView animated:(BOOL)animated {
 	[self viewWillAppear:animated];
 	if (NKUIDeviceUserIntefaceIdiom() == UIUserInterfaceIdiomPad) {
-	
 	}
 	else {
 		[self.actionSheet showInView:aView.window];

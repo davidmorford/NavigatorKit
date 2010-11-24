@@ -37,7 +37,7 @@
 		6386546C1204C703002ED89B /* NKNavigatorAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 638654331204C703002ED89B /* NKNavigatorAction.m */; };
 		6386546D1204C703002ED89B /* NKSplitViewNavigator.h in Headers */ = {isa = PBXBuildFile; fileRef = 638654341204C703002ED89B /* NKSplitViewNavigator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6386546E1204C703002ED89B /* NKSplitViewNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 638654351204C703002ED89B /* NKSplitViewNavigator.m */; };
-		6386549E1204C887002ED89B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6386549D1204C887002ED89B /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		6386549E1204C887002ED89B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6386549D1204C887002ED89B /* UIKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		639ED1D0120A0D6B00119A97 /* NKSplitCornersView.h in Headers */ = {isa = PBXBuildFile; fileRef = 639ED1CA120A0D6B00119A97 /* NKSplitCornersView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		639ED1D1120A0D6B00119A97 /* NKSplitCornersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 639ED1CB120A0D6B00119A97 /* NKSplitCornersView.m */; };
 		639ED1D2120A0D6B00119A97 /* NKSplitDividerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 639ED1CC120A0D6B00119A97 /* NKSplitDividerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -576,7 +576,6 @@
 			baseConfigurationReference = 63894BE5103BD59B007C9CC9 /* Project.xcconfig */;
 			buildSettings = {
 				GCC_OPTIMIZATION_LEVEL = 0;
-				SDKROOT = iphoneos4.1;
 			};
 			name = Debug;
 		};
@@ -584,7 +583,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 63894BE5103BD59B007C9CC9 /* Project.xcconfig */;
 			buildSettings = {
-				SDKROOT = iphoneos4.1;
 			};
 			name = Release;
 		};
@@ -593,7 +591,6 @@
 			baseConfigurationReference = 63894BE5103BD59B007C9CC9 /* Project.xcconfig */;
 			buildSettings = {
 				GCC_OPTIMIZATION_LEVEL = 0;
-				SDKROOT = iphoneos4.1;
 			};
 			name = Profile;
 		};
@@ -610,7 +607,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 63894BE5103BD59B007C9CC9 /* Project.xcconfig */;
 			buildSettings = {
-				SDKROOT = iphoneos4.1;
 			};
 			name = Distribution;
 		};

@@ -9,32 +9,32 @@
 #pragma mark -
 
 -(id) initWithViewController:(UIViewController *)aController {
-	viewController = [aController retain];
+	self.viewController = aController;
 	return self;
 }
 
 #pragma mark NSObject
 
 -(void) forwardInvocation:(NSInvocation *)anInvocation {
-	[anInvocation setTarget:viewController];
+	[anInvocation setTarget:self.viewController];
 	[anInvocation invoke];
 	return;
 }
 
 -(NSMethodSignature *) methodSignatureForSelector:(SEL)aSelector {
-	return [viewController methodSignatureForSelector:aSelector];
+	return [self.viewController methodSignatureForSelector:aSelector];
 }
 
 #pragma mark -
 
 -(void) dealloc {
-	NSString *URL = [viewController originalNavigatorURL];
+	NSString *URL = [self.viewController originalNavigatorURL];
 	if (URL) {
 		[[NKNavigator navigator].navigationMap removeObjectForURL:URL];
 	}
-	[viewController setSuperController:nil];
-	[viewController setPopupViewController:nil];
-	[viewController release];/* viewController = nil;*/
+	[self.viewController setSuperController:nil];
+	[self.viewController setPopupViewController:nil];
+	self.viewController = nil;
 	[super dealloc];
 }
 

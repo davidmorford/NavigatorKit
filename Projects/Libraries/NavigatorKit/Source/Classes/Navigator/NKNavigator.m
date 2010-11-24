@@ -101,9 +101,6 @@ static NKNavigator *gSharedNavigator = nil;
 	return gSharedNavigator;
 }
 
-UIKIT_EXTERN NSString *const UIApplicationDidEnterBackgroundNotification __attribute__((weak_import));
-UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attribute__((weak_import));
-
 #pragma mark Initializer
 
 -(id) init {
@@ -132,11 +129,7 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
 	delayCount = 0;
 	opensExternalURLs = FALSE;
 	
-	// Works when compiling with LLVM/clang 1.5
-	BOOL backgroundOK = (&UIApplicationDidEnterBackgroundNotification != NULL);
-	BOOL foregroundOK = (&UIApplicationWillEnterForegroundNotification != NULL);
 	BOOL deviceCanBackground = FALSE;
-	
 	if ([[UIDevice currentDevice] respondsToSelector:@selector(isMultitaskingSupported)]) {
 		// Poor 3G owners... :(
 		if ([[UIDevice currentDevice] isMultitaskingSupported]) {
@@ -144,7 +137,7 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
 		}
 	}
 	
-	if (backgroundOK && foregroundOK && deviceCanBackground) {
+	if (deviceCanBackground) {
 		[[NSNotificationCenter defaultCenter] addObserver:self 
 												 selector:@selector(applicationDidEnterBackgroundNotification:) 
 													 name:UIApplicationDidEnterBackgroundNotification 
@@ -301,9 +294,6 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
 	UIViewController *controller = [self viewControllerForURL:actionURLPathString query:anAction.query pattern:&pattern];
 	
 	if (controller) {
-		/*if (anAction.state) {
-		}*/
-		
 		if ([delegate respondsToSelector:@selector(navigator:willOpenURL:inViewController:)]) {
 			[delegate navigator:self willOpenURL:actionURL inViewController:controller];
 		}
@@ -348,17 +338,17 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
 	return [self viewControllerForURL:aURL query:nil pattern:nil];
 }
 
--(UIViewController *) viewControllerForURL:(NSString *)aURL query:(NSDictionary *)query {
-	return [self viewControllerForURL:aURL query:query pattern:nil];
+-(UIViewController *) viewControllerForURL:(NSString *)aURL query:(NSDictionary *)aQuery {
+	return [self viewControllerForURL:aURL query:aQuery pattern:nil];
 }
 
--(UIViewController *) viewControllerForURL:(NSString *)aURL query:(NSDictionary *)query pattern:(NKNavigatorPattern * *)pattern {
+-(UIViewController *) viewControllerForURL:(NSString *)aURL query:(NSDictionary *)aQuery pattern:(NKNavigatorPattern **)aPattern {
 	NSRange fragmentRange = [aURL rangeOfString:@"#" options:NSBackwardsSearch];
 	if (fragmentRange.location != NSNotFound) {
 		NSString *baseURL = [aURL substringToIndex:fragmentRange.location];
 		if ([self.currentURL isEqualToString:baseURL]) {
-			UIViewController *controller	= self.visibleViewController;
-			id result						= [navigationMap dispatchURL:aURL toTarget:controller query:query];
+			UIViewController *controller = self.visibleViewController;
+			id result = [navigationMap dispatchURL:aURL toTarget:controller query:aQuery];
 			if ([result isKindOfClass:[UIViewController class]]) {
 				return result;
 			}
@@ -367,9 +357,9 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
 			}
 		}
 		else {
-			id object = [navigationMap objectForURL:baseURL query:nil pattern:pattern];
+			id object = [navigationMap objectForURL:baseURL query:nil pattern:aPattern];
 			if (object) {
-				id result = [navigationMap dispatchURL:aURL toTarget:object query:query];
+				id result = [navigationMap dispatchURL:aURL toTarget:object query:aQuery];
 				if ([result isKindOfClass:[UIViewController class]]) {
 					return result;
 				}
@@ -383,9 +373,9 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
 		}
 	}
 	
-	id object = [navigationMap objectForURL:aURL query:query pattern:pattern];
+	id object = [navigationMap objectForURL:aURL query:aQuery pattern:aPattern];
 	if (object) {
-		UIViewController *controller	= object;
+		UIViewController *controller = object;
 		controller.originalNavigatorURL = aURL;
 		controller.responsibleNavigator = self;
 		
@@ -443,12 +433,12 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
 	[self.navigationMap removeAllObjects];
 }
 
--(NSString *) pathForObject:(id)object {
-	if ([object isKindOfClass:[UIViewController class]]) {
+-(NSString *) pathForObject:(id)anObject {
+	if ([anObject isKindOfClass:[UIViewController class]]) {
 		NSMutableArray *paths = [NSMutableArray array];
-		for (UIViewController *controller		= object; controller; ) {
-			UIViewController *superController	= controller.superController;
-			NSString *key						= [superController keyForSubcontroller:controller];
+		for (UIViewController *controller = anObject; controller; ) {
+			UIViewController *superController = controller.superController;
+			NSString *key = [superController keyForSubcontroller:controller];
 			if (key) {
 				[paths addObject:key];
 			}
@@ -462,8 +452,8 @@ UIKIT_EXTERN NSString *const UIApplicationWillEnterForegroundNotification __attr
 }
 
 -(id) objectForPath:(NSString *)aPath {
-	NSArray *keys					= [aPath componentsSeparatedByString:@"/"];
-	UIViewController *controller	= self.rootViewController;
+	NSArray *keys = [aPath componentsSeparatedByString:@"/"];
+	UIViewController *controller = self.rootViewController;
 	for (NSString *key in [keys reverseObjectEnumerator]) {
 		controller = [controller subcontrollerForKey:key];
 	}
@@ -478,26 +468,26 @@ The goal of this method is to return the currently visible view controller, refe
 the "front" view controller. Tab bar controllers and navigation controllers are special-cased,
 and when a controller has a modal controller, the method recurses as necessary.
 */
-+(UIViewController *) frontViewControllerForController:(UIViewController *)controller {
-	if ([controller isKindOfClass:[UITabBarController class]]) {
-		UITabBarController *tabBarController = (UITabBarController *)controller;
++(UIViewController *) frontViewControllerForController:(UIViewController *)aController {
+	if ([aController isKindOfClass:[UITabBarController class]]) {
+		UITabBarController *tabBarController = (UITabBarController *)aController;
 		if (tabBarController.selectedViewController) {
-			controller = tabBarController.selectedViewController;
+			aController = tabBarController.selectedViewController;
 		}
 		else {
-			controller = [tabBarController.viewControllers objectAtIndex:0];
+			aController = [tabBarController.viewControllers objectAtIndex:0];
 		}
 	}
-	else if ([controller isKindOfClass:[UINavigationController class]]) {
-		UINavigationController *navController = (UINavigationController *)controller;
-		controller = navController.topViewController;
+	else if ([aController isKindOfClass:[UINavigationController class]]) {
+		UINavigationController *navController = (UINavigationController *)aController;
+		aController = navController.topViewController;
 	}
 	
-	if (controller.modalViewController) {
-		return [NKNavigator frontViewControllerForController:controller.modalViewController];
+	if (aController.modalViewController) {
+		return [NKNavigator frontViewControllerForController:aController.modalViewController];
 	}
 	else {
-		return controller;
+		return aController;
 	}
 }
 
@@ -536,14 +526,14 @@ controller will be returned.
 	}
 }
 
--(UIViewController *) visibleChildControllerForController:(UIViewController *)controller {
-	return controller.topSubcontroller;
+-(UIViewController *) visibleChildControllerForController:(UIViewController *)aController {
+	return aController.topSubcontroller;
 }
 
--(void) setRootViewController:(UIViewController *)controller {
-	if (controller != rootViewController) {
+-(void) setRootViewController:(UIViewController *)aController {
+	if (aController != rootViewController) {
 		[rootViewController release];
-		rootViewController = [controller retain];
+		rootViewController = [aController retain];
 		if (self.parentNavigator) {
 			[self.parentNavigator navigator:self didDisplayController:rootViewController];
 		}
@@ -568,8 +558,8 @@ controller will be returned.
 	}
 }
 
--(UIViewController *) parentForController:(UIViewController *)controller parentURLPath:(NSString *)parentURLPath isContainer:(BOOL)flag {
-	if (controller == self.rootViewController) {
+-(UIViewController *) parentForController:(UIViewController *)aController parentURLPath:(NSString *)aParentURLPath isContainer:(BOOL)flag {
+	if (aController == self.rootViewController) {
 		return nil;
 	}
 	else {
@@ -578,8 +568,8 @@ controller will be returned.
 		if (!self.rootViewController && !flag && self.wantsNavigationControllerForRoot) {
 			self.rootViewController = [[[[self navigationControllerClass] alloc] init] autorelease];
 		}
-		if (parentURLPath) {
-			return [self openNavigatorAction:[NKNavigatorAction actionWithNavigatorURLPath:parentURLPath]];
+		if (aParentURLPath) {
+			return [self openNavigatorAction:[NKNavigatorAction actionWithNavigatorURLPath:aParentURLPath]];
 		}
 		else {
 			UIViewController *parent = self.topViewController;
@@ -592,7 +582,7 @@ controller will be returned.
 				}
 			}
 			
-			if (parent != controller) {
+			if (parent != aController) {
 				return parent;
 			}
 			else {
@@ -609,41 +599,41 @@ controller will be returned.
 
 #pragma mark -
 
--(BOOL) presentController:(UIViewController *)controller parentController:(UIViewController *)parentController mode:(NKNavigatorMode)mode animated:(BOOL)animated transition:(NSInteger)transition presentationStyle:(UIModalPresentationStyle)aStyle sender:(id)aSender {
+-(BOOL) presentController:(UIViewController *)aController parentController:(UIViewController *)aParentController mode:(NKNavigatorMode)aMode animated:(BOOL)animated transition:(NSInteger)aTransition presentationStyle:(UIModalPresentationStyle)aStyle sender:(id)aSender {
 	BOOL didPresentNewController = TRUE;
 	
 	if (!self.rootViewController) {
-		self.rootViewController = controller;
+		self.rootViewController = aController;
 	}
 	else {
-		UIViewController *previousSuper = controller.superController;
+		UIViewController *previousSuper = aController.superController;
 		if (previousSuper) {
-			if (previousSuper != parentController) {
+			if (previousSuper != aParentController) {
 				
 				// The controller already exists, so we just need to make it visible
-				for (UIViewController *superController = previousSuper; controller; ) {
+				for (UIViewController *superController = previousSuper; aController; ) {
 					UIViewController *nextSuper = superController.superController;
-					[superController bringControllerToFront:controller animated:!nextSuper];
-					controller			= superController;
-					superController		= nextSuper;
+					[superController bringControllerToFront:aController animated:!nextSuper];
+					aController = superController;
+					superController = nextSuper;
 				}
 			}
 			didPresentNewController = FALSE;
 		}
-		else if (parentController) {
-			[self presentDependentController:controller parentController:parentController mode:mode animated:animated transition:transition presentationStyle:aStyle sender:aSender];
+		else if (aParentController) {
+			[self presentDependentController:aController parentController:aParentController mode:aMode animated:animated transition:aTransition presentationStyle:aStyle sender:aSender];
 		}
 	}
 	return didPresentNewController;
 }
 
--(BOOL) presentController:(UIViewController *)controller parentURLPath:(NSString *)parentURLPath withPattern:(NKNavigatorPattern *)pattern animated:(BOOL)animated transition:(NSInteger)transition presentationStyle:(UIModalPresentationStyle)aStyle sender:(id)aSender {
+-(BOOL) presentController:(UIViewController *)aController parentURLPath:(NSString *)aParentURLPath withPattern:(NKNavigatorPattern *)aPattern animated:(BOOL)animated transition:(NSInteger)aTransition presentationStyle:(UIModalPresentationStyle)aStyle sender:(id)aSender {
 	BOOL didPresentNewController = NO;
-	if (controller) {
-		if (controller != self.topViewController) {
-			UIViewController *parentController = [self parentForController:controller 
-															 parentURLPath:(parentURLPath ? parentURLPath : pattern.parentURL) 
-															   isContainer:[controller canContainControllers]];
+	if (aController) {
+		if (aController != self.topViewController) {
+			UIViewController *parentController = [self parentForController:aController 
+															 parentURLPath:(aParentURLPath ? aParentURLPath : aPattern.parentURL) 
+															   isContainer:[aController canContainControllers]];
 			if (parentController && (parentController != self.topViewController)) {
 				[self presentController:parentController
 					   parentController:nil
@@ -653,11 +643,11 @@ controller will be returned.
 					  presentationStyle:aStyle
 								 sender:aSender];
 			}
-			didPresentNewController = [self presentController:controller 
+			didPresentNewController = [self presentController:aController 
 											 parentController:parentController 
-														 mode:pattern.navigationMode 
+														 mode:aPattern.navigationMode 
 													 animated:animated 
-												   transition:transition 
+												   transition:aTransition 
 											presentationStyle:aStyle 
 													   sender:aSender];
 		}
@@ -665,40 +655,38 @@ controller will be returned.
 	return didPresentNewController;
 }
 
--(void) presentDependentController:(UIViewController *)controller parentController:(UIViewController *)parentController mode:(NKNavigatorMode)mode animated:(BOOL)animated transition:(NSInteger)transition presentationStyle:(UIModalPresentationStyle)aStyle sender:(id)aSender {
-	//UIUserInterfaceIdiom interfaceIdiom = [UIDevice currentDevice].userInterfaceIdiom;
-	
-	if (mode == NKNavigatorModeModal) {
-		[self presentModalController:controller parentController:parentController animated:animated transition:transition presentationStyle:aStyle sender:aSender];
+-(void) presentDependentController:(UIViewController *)aController parentController:(UIViewController *)aParentController mode:(NKNavigatorMode)aMode animated:(BOOL)animated transition:(NSInteger)aTransition presentationStyle:(UIModalPresentationStyle)aStyle sender:(id)aSender {
+	if (aMode == NKNavigatorModeModal) {
+		[self presentModalController:aController parentController:aParentController animated:animated transition:aTransition presentationStyle:aStyle sender:aSender];
 	}
-	else if (mode == NKNavigatorModePopover) {
+	else if (aMode == NKNavigatorModePopover) {
 		if (NKUIDeviceHasUserIntefaceIdiom() && NKUIDeviceUserIntefaceIdiom() == UIUserInterfaceIdiomPad) {
-			[self presentPopoverController:controller parentController:parentController animated:animated transition:transition sender:aSender];
+			[self presentPopoverController:aController parentController:aParentController animated:animated transition:aTransition sender:aSender];
 		}
 		else /*if (interfaceIdiom == UIUserInterfaceIdiomPhone)*/ {
-			[self presentModalController:controller parentController:parentController animated:animated transition:transition presentationStyle:UIModalPresentationFullScreen sender:aSender];
+			[self presentModalController:aController parentController:aParentController animated:animated transition:aTransition presentationStyle:UIModalPresentationFullScreen sender:aSender];
 		}
 	}
-	else if (mode == NKNavigatorModeEmptyHistory && [self.rootViewController isKindOfClass:[UINavigationController class]]) {
-		UINavigationController *navController	= (UINavigationController *)self.rootViewController;
-		[navController setViewControllers:[NSArray arrayWithObject:controller] animated:NO];
+	else if (aMode == NKNavigatorModeEmptyHistory && [self.rootViewController isKindOfClass:[UINavigationController class]]) {
+		UINavigationController *navController = (UINavigationController *)self.rootViewController;
+		[navController setViewControllers:[NSArray arrayWithObject:aController] animated:NO];
 	}
 	else {
-		if ([controller isKindOfClass:[NKPopupViewController class]]) {
-			NKPopupViewController *popupViewController = (NKPopupViewController *)controller;
-			parentController.popupViewController	= popupViewController;
-			controller.superController				= parentController;
-			[popupViewController showInView:parentController.view animated:animated];
+		if ([aController isKindOfClass:[NKPopupViewController class]]) {
+			NKPopupViewController *popupViewController = (NKPopupViewController *)aController;
+			aParentController.popupViewController = popupViewController;
+			aController.superController = aParentController;
+			[popupViewController showInView:aParentController.view animated:animated];
 		}
 		else {
-			[parentController addSubcontroller:controller animated:animated transition:transition];
+			[aParentController addSubcontroller:aController animated:animated transition:aTransition];
 		}
 	}
 }
 
--(void) presentModalController:(UIViewController *)controller parentController:(UIViewController *)parentController animated:(BOOL)animated transition:(NSInteger)transition presentationStyle:(UIModalPresentationStyle)aStyle sender:(id)aSender {
-	controller.modalTransitionStyle		= transition;
-	controller.modalPresentationStyle	= aStyle;
+-(void) presentModalController:(UIViewController *)aController parentController:(UIViewController *)aParentController animated:(BOOL)animated transition:(NSInteger)aTransition presentationStyle:(UIModalPresentationStyle)aStyle sender:(id)aSender {
+	aController.modalTransitionStyle = aTransition;
+	aController.modalPresentationStyle = aStyle;
 	
 	CGRect presentationViewFrame;
 	
@@ -720,23 +708,23 @@ controller will be returned.
 		presentationViewFrame = CGRectZero;
 	}
 	
-	if ([controller isKindOfClass:[UINavigationController class]]) {
+	if ([aController isKindOfClass:[UINavigationController class]]) {
 		if (CGRectEqualToRect(presentationViewFrame, CGRectZero) == FALSE) {
-			controller.view.frame = presentationViewFrame;
+			aController.view.frame = presentationViewFrame;
 		}
-		[parentController presentModalViewController:controller animated:animated];
+		[aParentController presentModalViewController:aController animated:animated];
 	}
 	else {
-		UINavigationController *navController	= [[[[self navigationControllerClass] alloc] init] autorelease];
-		navController.modalTransitionStyle		= controller.modalTransitionStyle;
-		navController.modalPresentationStyle	= controller.modalPresentationStyle;
-		navController.view.frame				= presentationViewFrame;
-		[navController pushViewController:controller animated:NO];
+		UINavigationController *navController = [[[[self navigationControllerClass] alloc] init] autorelease];
+		navController.modalTransitionStyle = aController.modalTransitionStyle;
+		navController.modalPresentationStyle = aController.modalPresentationStyle;
+		navController.view.frame = presentationViewFrame;
+		[navController pushViewController:aController animated:NO];
 		if (NKUIDeviceUserIntefaceIdiom() == UIUserInterfaceIdiomPad) {
 			[self.rootViewController presentModalViewController:navController animated:animated];
 		}
 		else {
-			[parentController presentModalViewController:navController animated:animated];
+			[aParentController presentModalViewController:navController animated:animated];
 		}
 	}
 }

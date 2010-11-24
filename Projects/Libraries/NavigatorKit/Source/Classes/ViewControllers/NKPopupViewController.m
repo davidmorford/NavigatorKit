@@ -7,9 +7,11 @@
 #pragma mark Initializer
 
 -(id) init {
-	if (self = [super init]) {
-		self.statusBarStyle = [UIApplication sharedApplication].statusBarStyle;
+	self = [super init];
+	if (!self) {
+		return nil;
 	}
+	self.statusBarStyle = [UIApplication sharedApplication].statusBarStyle;
 	return self;
 }
 
@@ -42,14 +44,14 @@
 
 @implementation NKPopupView
 
-@synthesize popupViewController;
-
 #pragma mark Initializer
 
 -(id) initWithFrame:(CGRect)frame {
-	if (self = [super initWithFrame:frame]) {
-		popupViewController = nil;
+	self = [super initWithFrame:frame];
+	if (!self) {
+		return nil;
 	}
+	self.popupViewController = nil;
 	return self;
 }
 
@@ -67,7 +69,7 @@
 #pragma mark Memory
 
 -(void) dealloc {
-	[popupViewController release]; popupViewController = nil;
+	self.popupViewController = nil;
 	[super dealloc];
 }
 

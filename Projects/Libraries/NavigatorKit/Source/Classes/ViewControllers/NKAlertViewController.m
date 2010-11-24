@@ -2,22 +2,18 @@
 #import <NavigatorKit/NKAlertViewController.h>
 #import <NavigatorKit/NKNavigator.h>
 
-@interface NKAlertView : UIAlertView {
-	UIViewController *popupViewController;
-}
-
+@interface NKAlertView : UIAlertView
 @property (nonatomic, retain) UIViewController *popupViewController;
-
 @end
 
 @implementation NKAlertView
 
-@synthesize popupViewController;
-
 -(id) initWithFrame:(CGRect)frame {
-	if (self = [super initWithFrame:frame]) {
-		popupViewController = nil;
+	self = [super initWithFrame:frame];
+	if (!self) {
+		return nil;
 	}
+	self.popupViewController = nil;
 	return self;
 }
 
@@ -25,15 +21,15 @@
 
 -(void) didMoveToSuperview {
 	if (!self.superview) {
-		[popupViewController autorelease];
-		popupViewController = nil;
+		[self.popupViewController autorelease];
+		self.popupViewController = nil;
 	}
 }
 
 #pragma mark -
 
 -(void) dealloc {
-	[popupViewController release]; popupViewController = nil;
+	self.popupViewController = nil;
 	[super dealloc];
 }
 
@@ -41,9 +37,7 @@
 
 #pragma mark -
 
-@interface NKAlertViewController () {
-
-}
+@interface NKAlertViewController ()
 	@property (nonatomic, copy) NSString *message;
 	@property (nonatomic, retain) NSMutableArray *URLs;
 @end

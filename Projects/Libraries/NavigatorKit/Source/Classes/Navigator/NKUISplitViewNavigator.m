@@ -6,8 +6,7 @@
 #import <NavigatorKit/NKNavigatorMap.h>
 #import <NavigatorKit/NKNavigationController.h>
 
-@interface NKNavigator () {
-}
+@interface NKNavigator ()
 
 -(id) initWithWindowClass:(Class)windowCls navigationControllerClass:(Class)navControllerCls;
 
@@ -37,11 +36,6 @@ static NKUISplitViewNavigator *gSharedUISplitViewNavigator = nil;
 
 @implementation NKUISplitViewNavigator
 
-@synthesize navigators;
-@synthesize popoverController;
-@synthesize masterPopoverButtonItem;
-@synthesize masterPopoverButtonTitle;
-
 #pragma mark Shared Constructor
 
 +(NKUISplitViewNavigator *) UISplitViewNavigator {
@@ -61,10 +55,10 @@ static NKUISplitViewNavigator *gSharedUISplitViewNavigator = nil;
 	}
 	NSMutableArray *mutableNavigators = [[NSMutableArray alloc] initWithCapacity:2];
 	for (NSUInteger index = 0; index < 2; ++index) {
-		NKNavigator *navigator		= [[NKNavigator alloc] init];
-		navigator.parentNavigator	= self;
-		navigator.window			= self.window;
-		navigator.uniquePrefix		= [NSString stringWithFormat:@"NKUISplitViewNavigator%d", index];
+		NKNavigator *navigator = [[NKNavigator alloc] init];
+		navigator.parentNavigator = self;
+		navigator.window = self.window;
+		navigator.uniquePrefix = [NSString stringWithFormat:@"NKUISplitViewNavigator%d", index];
 		[mutableNavigators addObject:navigator];
 		[navigator release];
 	}
@@ -76,7 +70,7 @@ static NKUISplitViewNavigator *gSharedUISplitViewNavigator = nil;
 #pragma mark API
 
 -(void) setViewControllersWithNavigationURLs:(NSArray *)aURLArray {
-	NSUInteger count				= [self.navigators count];
+	NSUInteger count = [self.navigators count];
 	NSMutableArray *viewControllers = [[NSMutableArray alloc] initWithCapacity:count];
 	for (NSUInteger currentIndex = 0; currentIndex < count; ++currentIndex) {
 		NKNavigator *navigator = [self navigatorAtIndex:currentIndex];
@@ -235,10 +229,10 @@ static NKUISplitViewNavigator *gSharedUISplitViewNavigator = nil;
 #pragma mark -
 
 -(void) dealloc {
-	[navigators release]; navigators = nil;
-	[popoverController release]; popoverController = nil;
-	[masterPopoverButtonItem release]; masterPopoverButtonItem = nil;
-	[masterPopoverButtonTitle release]; masterPopoverButtonTitle = nil;
+	self.navigators = nil;
+	self.popoverController = nil;
+	self.masterPopoverButtonItem = nil;
+	self.masterPopoverButtonTitle = nil;
 	[super dealloc];
 }
 

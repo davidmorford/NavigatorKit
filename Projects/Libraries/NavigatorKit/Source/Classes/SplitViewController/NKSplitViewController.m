@@ -182,6 +182,9 @@ static NSString* NK_ANIMATION_CHANGE_SUBVIEWS_ORDER	   = @"ChangeSubviewsOrder";
 #pragma mark View Management
 
 -(BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+	if (self.detailViewController) {
+		return [self.detailViewController shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+	}
 	return YES;
 }
 
