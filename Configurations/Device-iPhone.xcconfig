@@ -1,0 +1,7 @@
+
+//
+// Device-iPhone.xcconfig
+// (c) 2010, Semantap
+//
+
+TARGETED_DEVICE_FAMILY = 1

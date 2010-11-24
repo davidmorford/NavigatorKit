@@ -94,6 +94,14 @@
 		638439131040F24D00D29404 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		6384392B1040F3BE00D29404 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Developer/Library/Frameworks/SenTestingKit.framework; sourceTree = SDKROOT; };
 		638F2F1A108AD8DF0021685E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = Source/Resources/Bundles/Settings.bundle; sourceTree = SOURCE_ROOT; };
+		639FBF8512726A9900194D6F /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		639FBF8712726A9900194D6F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		639FBF8912726A9900194D6F /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		639FBF8B12726A9900194D6F /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		639FBF8D12726A9900194D6F /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
+		639FBF8F12726A9900194D6F /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		639FBF9112726A9900194D6F /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		639FBF9312726A9900194D6F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		63A8D84211B81D8100232AA8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63A8D95A11B8237200232AA8 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		63AB83FE1243BA6A00BD8093 /* ___PROJECTNAMEASIDENTIFIER___DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "___PROJECTNAMEASIDENTIFIER___DetailViewController.h"; path = "Source/Classes/Controllers/Classes/___PROJECTNAMEASIDENTIFIER___DetailViewController.h"; sourceTree = SOURCE_ROOT; };
@@ -162,11 +170,15 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				639FBF8512726A9900194D6F /* Accelerate.framework */,
 				63DF3BA411DE51DC00A70D91 /* AddressBook.framework */,
 				63DF3BA611DE51DC00A70D91 /* AddressBookUI.framework */,
 				63DF3BA811DE51DC00A70D91 /* AssetsLibrary.framework */,
+				639FBF8712726A9900194D6F /* AudioToolbox.framework */,
+				639FBF8912726A9900194D6F /* AudioUnit.framework */,
 				6384382A1040F1D700D29404 /* AVFoundation.framework */,
 				6384382C1040F1D700D29404 /* CFNetwork.framework */,
+				639FBF8B12726A9900194D6F /* CoreAudio.framework */,
 				6384382E1040F1D700D29404 /* CoreData.framework */,
 				638438301040F1D700D29404 /* CoreFoundation.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
@@ -178,13 +190,17 @@
 				63DF3BB411DE51DC00A70D91 /* CoreVideo.framework */,
 				63DF3BB611DE51DC00A70D91 /* EventKit.framework */,
 				63DF3BB811DE51DC00A70D91 /* EventKitUI.framework */,
+				639FBF8D12726A9900194D6F /* ExternalAccessory.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				638438341040F1D700D29404 /* GameKit.framework */,
+				639FBF8F12726A9900194D6F /* iAd.framework */,
 				63DF3BBB11DE51DC00A70D91 /* ImageIO.framework */,
 				638438361040F1D700D29404 /* MapKit.framework */,
 				638438381040F1D700D29404 /* MediaPlayer.framework */,
 				6384383A1040F1D700D29404 /* MessageUI.framework */,
 				6384383C1040F1D700D29404 /* MobileCoreServices.framework */,
+				639FBF9112726A9900194D6F /* OpenAL.framework */,
+				639FBF9312726A9900194D6F /* OpenGLES.framework */,
 				6384383E1040F1D700D29404 /* QuartzCore.framework */,
 				63DF3BC011DE51DC00A70D91 /* QuickLook.framework */,
 				638438401040F1D700D29404 /* Security.framework */,
@@ -587,7 +603,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 638438071040EB4100D29404 /* Project.xcconfig */;
 			buildSettings = {
-				SDKROOT = iphoneos4.1;
 			};
 			name = Profile;
 		};
@@ -605,7 +620,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 638438071040EB4100D29404 /* Project.xcconfig */;
 			buildSettings = {
-				SDKROOT = iphoneos4.1;
 			};
 			name = Distribution;
 		};
@@ -621,7 +635,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 638438071040EB4100D29404 /* Project.xcconfig */;
 			buildSettings = {
-				SDKROOT = iphoneos4.1;
 			};
 			name = AdHoc;
 		};
@@ -638,7 +651,6 @@
 			baseConfigurationReference = 638438071040EB4100D29404 /* Project.xcconfig */;
 			buildSettings = {
 				GCC_OPTIMIZATION_LEVEL = 0;
-				SDKROOT = iphoneos4.1;
 			};
 			name = Debug;
 		};
@@ -646,7 +658,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 638438071040EB4100D29404 /* Project.xcconfig */;
 			buildSettings = {
-				SDKROOT = iphoneos4.1;
 			};
 			name = Release;
 		};

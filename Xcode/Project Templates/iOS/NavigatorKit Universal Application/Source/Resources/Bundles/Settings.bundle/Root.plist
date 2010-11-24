@@ -54,7 +54,7 @@
 			<key>Title</key>
 			<string>NavigationKit Version</string>
 			<key>DefaultValue</key>
-			<string>4B10</string>
+			<string>4C20</string>
 			<key>Key</key>
 			<string>NavigationKitLibraryVersionKey</string>
 		</dict>

@@ -13,10 +13,6 @@
 
 @implementation ___PROJECTNAMEASIDENTIFIER___ApplicationDelegate
 
-@synthesize window;
-@synthesize splitViewController;
-@synthesize applicationDocumentsDirectoryPath;
-
 +(void) initialize {
 	NSDictionary *defaults = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"UserDefaults" ofType:@"plist"]];
 	[[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
@@ -32,7 +28,6 @@
 
 -(BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	if (NKUIDeviceUserIntefaceIdiom() == UIUserInterfaceIdiomPad) {
-		
 		//
 		// Split View Navigator
 		//
@@ -175,8 +170,8 @@
 #pragma mark -
 
 -(void) dealloc {
-	[splitViewController release];
-	[window release];
+	self.splitViewController = nil;
+	self.window = nil;
 	[super dealloc];
 }
 

@@ -6,22 +6,24 @@
 # 
 # iOS Application and Libraries Build Script
 #
-# Created: Aug. 12, 2009 - david [at] semantap
-# Updated: Sep. 08, 2009 - david [at] semantap
-# Updated: Mar. 17, 2010 - david [at] semantap
-# Updated: Apr. 12, 2010 - david [at] semantap
-# Updated: Jun. 20, 2010 - david [at] semantap
-# Updated: Sept. 4, 2010 - david [at] semantap
-# Updated: Sept. 15, 2010 - david [at] semantap
-# Updated: Sept. 19, 2010 - david [at] semantap
+# Created: Aug. 12, 2009
+# Updated: Sep. 08, 2009
+# Updated: Mar. 17, 2010
+# Updated: Apr. 12, 2010
+# Updated: Jun. 20, 2010
+# Updated: Sept. 4, 2010
+# Updated: Sept. 15, 2010
+# Updated: Sept. 27, 2010
+# Updated: Oct.  16, 2010
+# Updated: Nov.  23, 2010
 # ================================================================================
 
 Usage()
 {
-    builtin echo "iPhone Build Script, version 1.0\n"
+    builtin echo "iPhone Build Script, version 4.2\n"
     builtin echo "Usage: Build.command <SDKVersion> <BuildConfiguration>"
     builtin echo "\t<SDKVersion>         = A SDK Version"
-    builtin echo "\t\tAvailable          = [3.2 | 4.1 | 4.2]"
+    builtin echo "\t\tAvailable          = [4.2]"
     builtin echo "\t<BuildConfiguration> = A Build Configuration"
     builtin echo "\t\tAvailable          = [Debug | Profile | Release | Adhoc | Distribution]"
     builtin echo "\n"
@@ -115,7 +117,7 @@ echo "\n"
 
 
 # ================================================================================
-# Libraries
+# Library Building
 # ================================================================================ 
 
 CleanDeployedLibrary()
@@ -125,14 +127,7 @@ CleanDeployedLibrary()
     rm -dRfv $BUILD_SDK_DIR/$BUILD_CONFIGURATION/$BUILD_SIMULATOR_SDK_NAME$BUILD_SDK_VERSION/$1
 }
 
-CleanDeployedLibrary NavigatorKit
-
-# Add libraries to clean
-
-# ================================================================================
-# Libraries
-# ================================================================================ 
-
+# arg1 = Project Directory Path, arg2 = Xcode Project, arg3 = Project Target
 BuildLibrary()
 {
     echo "Building " $2
@@ -147,11 +142,9 @@ BuildLibrary()
 }
 
 # ================================================================================
-# arg1 = Project Directory Path
-# arg2 = Xcode Project
-# arg3 = Project Target
-# ================================================================================
+# Add Library projects to clean and build
+# ================================================================================ 
+
+CleanDeployedLibrary NavigatorKit
 
 BuildLibrary $LIBRARIES_ROOT NavigatorKit NavigatorKit
-
-# Add libraries

@@ -128,6 +128,12 @@ The project, via BuildKit xcconfigs, currently works with Xcode 3.2.4 and the us
 
 ## History
 
+### November 2010
+
+* November 23
+  * Updated with latest BuildKit changes for iOS 4.2 SDK.
+  * Begin cleanup targeting iOS 4.2 and later including use of clang and modern runtime switch.
+
 ### October 2010
 
 * October 7
