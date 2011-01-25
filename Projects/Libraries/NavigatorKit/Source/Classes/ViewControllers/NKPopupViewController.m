@@ -1,17 +1,15 @@
 
 #import <NavigatorKit/NKPopupViewController.h>
-#import <NavigatorKit/NKUIViewController.h>
+#import <NavigatorKit/UIViewController+NKNavigator.h>
 
 @implementation NKPopupViewController
 
 #pragma mark Initializer
 
 -(id) init {
-	self = [super init];
-	if (!self) {
-		return nil;
+	if (self = [super init]) {
+		self.statusBarStyle = [UIApplication sharedApplication].statusBarStyle;
 	}
-	self.statusBarStyle = [UIApplication sharedApplication].statusBarStyle;
 	return self;
 }
 
@@ -44,14 +42,14 @@
 
 @implementation NKPopupView
 
+@synthesize popupViewController;
+
 #pragma mark Initializer
 
 -(id) initWithFrame:(CGRect)frame {
-	self = [super initWithFrame:frame];
-	if (!self) {
-		return nil;
+	if (self = [super initWithFrame:frame]) {
+		popupViewController = nil;
 	}
-	self.popupViewController = nil;
 	return self;
 }
 

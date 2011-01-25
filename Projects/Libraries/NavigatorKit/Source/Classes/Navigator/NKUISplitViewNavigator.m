@@ -1,50 +1,30 @@
 
 #import <NavigatorKit/NKUISplitViewNavigator.h>
-#import <NavigatorKit/NKUISplitViewController.h>
+#import <NavigatorKit/NKNavigator+Internal.h>
+
 #import <NavigatorKit/NKSplitViewPopoverButtonDelegate.h>
 #import <NavigatorKit/NKNavigatorAction.h>
 #import <NavigatorKit/NKNavigatorMap.h>
 #import <NavigatorKit/NKNavigationController.h>
 
-@interface NKNavigator ()
-
--(id) initWithWindowClass:(Class)windowCls navigationControllerClass:(Class)navControllerCls;
-
-#pragma mark -
-
-@property (nonatomic, retain, readwrite) NKNavigatorMap *navigationMap;	
-@property (nonatomic, retain, readwrite) UIViewController *rootViewController;
-
--(void) setRootNavigationController:(UINavigationController *)aController;
-+(UIViewController *) frontViewControllerForController:(UIViewController *)controller;
--(UINavigationController *) frontNavigationController;
--(UIViewController *) frontViewController;
--(UIViewController *) visibleChildControllerForController:(UIViewController *)controller;
-
-#pragma mark -
-
-@property (nonatomic, assign, readwrite) NKNavigator *parentNavigator;
--(void) navigator:(NKNavigator *)navigator didDisplayController:(UIViewController *)controller;
-
-@end
-
-#pragma mark -
-
-static NKUISplitViewNavigator *gSharedUISplitViewNavigator = nil;
-
-#pragma mark -
+#import <NavigatorKit/UIApplication+NKNavigator.h>
+#import <NavigatorKit/UISplitViewController+NKNavigator.h>
 
 @implementation NKUISplitViewNavigator
+
+@synthesize navigators;
+@synthesize popoverController;
+@synthesize masterPopoverButtonItem;
+@synthesize masterPopoverButtonTitle;
 
 #pragma mark Shared Constructor
 
 +(NKUISplitViewNavigator *) UISplitViewNavigator {
-	if (!gSharedUISplitViewNavigator) {
-		gSharedUISplitViewNavigator = [[[self class] alloc] init];
+	if (![UIApplication sharedApplication].applicationNavigator) {
+		[UIApplication sharedApplication].applicationNavigator = [[[self class] alloc] init];
 	}
-	return gSharedUISplitViewNavigator;
+	return (NKUISplitViewNavigator *)[UIApplication sharedApplication].applicationNavigator;
 }
-
 
 #pragma mark Initializers
 
@@ -55,10 +35,10 @@ static NKUISplitViewNavigator *gSharedUISplitViewNavigator = nil;
 	}
 	NSMutableArray *mutableNavigators = [[NSMutableArray alloc] initWithCapacity:2];
 	for (NSUInteger index = 0; index < 2; ++index) {
-		NKNavigator *navigator = [[NKNavigator alloc] init];
-		navigator.parentNavigator = self;
-		navigator.window = self.window;
-		navigator.uniquePrefix = [NSString stringWithFormat:@"NKUISplitViewNavigator%d", index];
+		NKNavigator *navigator		= [[NKNavigator alloc] init];
+		navigator.parentNavigator	= self;
+		navigator.window			= self.window;
+		navigator.uniquePrefix		= [NSString stringWithFormat:@"NKUISplitViewNavigator%d", index];
 		[mutableNavigators addObject:navigator];
 		[navigator release];
 	}
@@ -70,7 +50,7 @@ static NKUISplitViewNavigator *gSharedUISplitViewNavigator = nil;
 #pragma mark API
 
 -(void) setViewControllersWithNavigationURLs:(NSArray *)aURLArray {
-	NSUInteger count = [self.navigators count];
+	NSUInteger count				= [self.navigators count];
 	NSMutableArray *viewControllers = [[NSMutableArray alloc] initWithCapacity:count];
 	for (NSUInteger currentIndex = 0; currentIndex < count; ++currentIndex) {
 		NKNavigator *navigator = [self navigatorAtIndex:currentIndex];
@@ -229,10 +209,10 @@ static NKUISplitViewNavigator *gSharedUISplitViewNavigator = nil;
 #pragma mark -
 
 -(void) dealloc {
-	self.navigators = nil;
-	self.popoverController = nil;
-	self.masterPopoverButtonItem = nil;
-	self.masterPopoverButtonTitle = nil;
+	[navigators release]; navigators = nil;
+	[popoverController release]; popoverController = nil;
+	[masterPopoverButtonItem release]; masterPopoverButtonItem = nil;
+	[masterPopoverButtonTitle release]; masterPopoverButtonTitle = nil;
 	[super dealloc];
 }
 

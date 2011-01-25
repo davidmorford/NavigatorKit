@@ -3,7 +3,7 @@
 @project    NavigatorKit
 @header     NKNavigatorAction.h
 @copyright  (c) 2010, Three20
-@copyright  (c) 2010, Dave Morford
+@copyright  (c) 2010 - 2011, Dave Morford
 */
 
 #import <UIKit/UIKit.h>

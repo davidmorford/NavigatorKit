@@ -2,8 +2,8 @@
 /*!
 @project    NavigatorKit
 @header     NKNavigator.h
-@copyright  (c) 2009-2010, Three20
-@changes    (c) 2009-2010, Dave Morford
+@copyright  (c) 2009, Three20
+@changes    (c) 2009 - 2011, Dave Morford
 */
 
 #import <Foundation/Foundation.h>

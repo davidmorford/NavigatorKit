@@ -8,12 +8,12 @@
 
 @implementation NKAlertView
 
+@synthesize popupViewController;
+
 -(id) initWithFrame:(CGRect)frame {
-	self = [super initWithFrame:frame];
-	if (!self) {
-		return nil;
+	if (self = [super initWithFrame:frame]) {
+		popupViewController = nil;
 	}
-	self.popupViewController = nil;
 	return self;
 }
 
@@ -21,8 +21,8 @@
 
 -(void) didMoveToSuperview {
 	if (!self.superview) {
-		[self.popupViewController autorelease];
-		self.popupViewController = nil;
+		[popupViewController autorelease];
+		popupViewController = nil;
 	}
 }
 
@@ -38,13 +38,18 @@
 #pragma mark -
 
 @interface NKAlertViewController ()
-	@property (nonatomic, copy) NSString *message;
-	@property (nonatomic, retain) NSMutableArray *URLs;
+@property (nonatomic, copy) NSString *message;
+@property (nonatomic, retain) NSMutableArray *URLs;
 @end
 
 #pragma mark -
 
 @implementation NKAlertViewController
+
+@synthesize delegate;
+@synthesize message;
+@synthesize URLs;
+@synthesize userInfo;
 
 #pragma mark Initializers
 
@@ -177,6 +182,7 @@
 
 -(void) dealloc {
 	[(UIAlertView *)self.view setDelegate:nil];
+	self.message = nil;
 	self.URLs = nil;
 	self.userInfo = nil;
 	[super dealloc];

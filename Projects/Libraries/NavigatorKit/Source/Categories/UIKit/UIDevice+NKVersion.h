@@ -1,13 +1,13 @@
 
 /*!
 @project    NavigatorKit
-@header     NKUIDevice.h
-@changes	(c) 2009-2010, Dave Morford
+@header     UIDevice+NKVersion.h
+@changes	(c) 2009 - 2011, Dave Morford
 */
 
 #import <UIKit/UIKit.h>
 
-@interface UIDevice (NKSystemVersionValue)
+@interface UIDevice (NKVersion)
 @property (nonatomic, readonly) NSNumber *systemVersionNumber;
 @end
 

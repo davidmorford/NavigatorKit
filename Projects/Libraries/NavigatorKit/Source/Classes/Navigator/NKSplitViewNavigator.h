@@ -2,7 +2,7 @@
 /*!
 @project    NavigatorKit
 @header     NKSplitViewNavigator.h
-@changes    (c) 2010, Dave Morford
+@changes    (c) 2010 - 2011, Dave Morford
 */
 
 #import <UIKit/UIKit.h>

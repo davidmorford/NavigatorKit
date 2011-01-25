@@ -172,7 +172,6 @@
 #pragma mark Interaction
 
 -(void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-	NSLog(@"%@ %@ %@", NSStringFromSelector(_cmd), touches, event);
 	UITouch *touch = [touches anyObject];
 	if (touch) {
 		CGPoint lastPt	= [touch previousLocationInView:self];

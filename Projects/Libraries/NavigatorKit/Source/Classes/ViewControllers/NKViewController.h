@@ -2,8 +2,8 @@
 /*!
 @project    NavigatorKit
 @header     NKViewController.h
-@copyright  (c) 2009-2010, Three20
-@changes    (c) 2009-2010, Dave Morford
+@copyright  (c) 2009, Three20
+@changes    (c) 2009 - 2011, Dave Morford
 */
 
 #import <UIKit/UIKit.h>
@@ -36,12 +36,12 @@ controller is pushed onto a navigation controller.
 /*!
 @abstract The view has appeared at least once.
 */
-@property (nonatomic, readonly) BOOL hasViewAppeared;
+@property (nonatomic, assign, readonly) BOOL hasViewAppeared;
 
 /*!
 @abstract The view is currently visible.
 */
-@property (nonatomic, readonly) BOOL isViewAppearing;
+@property (nonatomic, assign, readonly) BOOL isViewAppearing;
 
 /*!
 @abstract Determines if the view will be resized automatically to fit the keyboard.

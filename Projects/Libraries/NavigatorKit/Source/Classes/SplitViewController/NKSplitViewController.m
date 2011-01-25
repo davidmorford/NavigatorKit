@@ -172,7 +172,7 @@ static NSString* NK_ANIMATION_CHANGE_SUBVIEWS_ORDER	   = @"ChangeSubviewsOrder";
 }
 
 
-#pragma mark NKUIViewController
+#pragma mark UIViewController+NKNavigator
 
 -(BOOL) canContainControllers {
 	return TRUE;
@@ -590,7 +590,9 @@ static NSString* NK_ANIMATION_CHANGE_SUBVIEWS_ORDER	   = @"ChangeSubviewsOrder";
 	}
 	else if (!inPopover && _hiddenPopoverController && _barButtonItem) {
 		// I know this looks strange, but it fixes a bizarre issue with UIPopoverController leaving masterViewController's views in disarray.
-		[_hiddenPopoverController presentPopoverFromRect:CGRectZero inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:NO];
+		if (self.view.window) {
+			[_hiddenPopoverController presentPopoverFromRect:CGRectZero inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:NO];
+		}
 		
 		// Remove master from popover and destroy popover, if it exists.
 		[_hiddenPopoverController dismissPopoverAnimated:NO];

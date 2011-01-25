@@ -1,14 +1,14 @@
 
 /*!
 @project    NavigatorKit
-@header     NKUINavigationController.h
-@copyright	(c) 2010, Dave Morford
+@header     UINavigationController+NKNavigator.h
+@copyright	(c) 2010 - 2011, Dave Morford
 */
 
 #import <UIKit/UIKit.h>
 
 /*!
-@category UINavigationController (NKNavigator)
+@category UINavigationController+NKNavigator
 @abstract
 @discussion
 */

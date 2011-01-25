@@ -1,8 +1,17 @@
 
 #import <NavigatorKit/NKNavigatorAction.h>
-#import <NavigatorKit/NKUIDevice.h>
+#import <NavigatorKit/UIDevice+NKVersion.h>
 
 @implementation NKNavigatorAction
+
+@synthesize URLPath;
+@synthesize parentURLPath;
+@synthesize query;
+@synthesize sender;
+@synthesize animated;
+@synthesize withDelay;
+@synthesize transition;
+@synthesize modalPresentationStyle;
 
 #pragma mark Constructor
 
@@ -23,9 +32,9 @@
 	self.withDelay	= FALSE;
 	self.transition = UIViewAnimationTransitionNone;
 	if (NKUIDeviceUserIntefaceIdiom() == UIUserInterfaceIdiomPad) {
-		self.modalPresentationStyle = UIModalPresentationCurrentContext;
+		self.modalPresentationStyle = UIModalPresentationFormSheet;
 	}
-	else if (NKUIDeviceUserIntefaceIdiom() == UIUserInterfaceIdiomPhone) {
+	else {
 		self.modalPresentationStyle = UIModalPresentationFullScreen;
 	}
 	return self;
@@ -87,10 +96,10 @@
 #pragma mark -
 
 -(void) dealloc {
+	self.sender = nil;
 	self.URLPath = nil;
 	self.parentURLPath = nil;
 	self.query = nil;
-	self.sender = nil;
 	[super dealloc];
 }
 

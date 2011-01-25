@@ -1,7 +1,7 @@
 
 #import <NavigatorKit/NKActionSheetController.h>
 #import <NavigatorKit/NKNavigator.h>
-#import <NavigatorKit/NKUIDevice.h>
+#import <NavigatorKit/UIDevice+NKVersion.h>
 
 @interface NKActionSheet : UIActionSheet
 @property (nonatomic, retain) UIViewController *popupViewController;
@@ -14,16 +14,18 @@
 @synthesize popupViewController;
 
 -(id) initWithFrame:(CGRect)frame {
-	if (self = [super initWithFrame:frame]) {
-		self.popupViewController = nil;
+	self = [super initWithFrame:frame];
+	if (!self) {
+		return nil;
 	}
+	popupViewController = nil;
 	return self;
 }
 
 -(void) didMoveToSuperview {
 	if (!self.superview) {
 		[popupViewController autorelease];
-		self.popupViewController = nil;
+		popupViewController = nil;
 	}
 }
 
@@ -37,12 +39,16 @@
 #pragma mark -
 
 @interface NKActionSheetController ()
-	@property (nonatomic, retain) NSMutableArray *URLs;
+@property (nonatomic, retain) NSMutableArray *URLs;
 @end
 
 #pragma mark -
 
 @implementation NKActionSheetController
+
+@synthesize delegate;
+@synthesize URLs;
+@synthesize userInfo;
 
 #pragma mark Initializers
 
@@ -55,17 +61,19 @@
 }
 
 -(id) initWithTitle:(NSString *)aTitle delegate:(id <NKActionSheetControllerDelegate> )aDelegate {
-	if (self = [super init]) {
-		self.delegate	= aDelegate;
-		self.userInfo	= nil;
-		self.URLs		= [[NSMutableArray alloc] init];
-		self.title		= aTitle;
-		/*
-		if (aTitle) {
-			self.actionSheet.title = aTitle;
-		}
-		*/
+	self = [super init];
+	if (!self) {
+		return nil;
 	}
+	self.delegate	= aDelegate;
+	self.userInfo	= nil;
+	self.URLs		= [[NSMutableArray alloc] init];
+	self.title		= aTitle;
+	/*
+	if (aTitle) {
+		self.actionSheet.title = aTitle;
+	}
+	*/
 	return self;
 }
 
@@ -89,6 +97,8 @@
 -(void) showInView:(UIView *)aView animated:(BOOL)animated {
 	[self viewWillAppear:animated];
 	if (NKUIDeviceUserIntefaceIdiom() == UIUserInterfaceIdiomPad) {
+		//[self.actionSheet showInView:aView.window];
+		//[self.actionSheet showFromBarButtonItem:<#(UIBarButtonItem *)item#> animated:<#(BOOL)animated#> InView:aView.window];
 	}
 	else {
 		[self.actionSheet showInView:aView.window];

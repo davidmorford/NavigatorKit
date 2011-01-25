@@ -1,8 +1,8 @@
 
 /*!
 @project    NavigatorKit
-@header     NKUISplitViewController.h
-@copyright	(c) 2010, Dave Morford
+@header     UISplitViewController+NKNavigator.h
+@copyright	(c) 2010 - 2011, Dave Morford
 */
 
 #import <UIKit/UIKit.h>

@@ -5,4 +5,4 @@
 
 #include "../../../Configurations/Settings.xcconfig"
 
-INFOPLIST_ORGANIZATION_NAME	= semantap
+INFOPLIST_ORGANIZATION_NAME	= 

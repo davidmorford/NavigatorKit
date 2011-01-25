@@ -2,7 +2,7 @@
 /*!
 @project    NavigatorKit
 @header     NKViewControllerProxy.h
-@copyright  (c) 2010, Dave Morford
+@copyright  (c) 2010 - 2011, Dave Morford
 */
 
 #import <UIKit/UIKit.h>
@@ -14,8 +14,6 @@
 */
 @interface NKViewControllerProxy : NSProxy
 
-@property (nonatomic, retain) UIViewController *viewController;
-
--(id) initWithViewController:(UIViewController *)controller;
+-(id) initWithViewController:(UIViewController *)aCcontroller;
 
 @end

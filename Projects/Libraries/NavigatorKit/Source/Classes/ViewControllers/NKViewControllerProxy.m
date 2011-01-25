@@ -2,9 +2,17 @@
 #import <NavigatorKit/NKViewControllerProxy.h>
 #import <NavigatorKit/NKNavigator.h>
 #import <NavigatorKit/NKNavigatorMap.h>
-#import <NavigatorKit/NKUIViewController.h>
+#import <NavigatorKit/UIViewController+NKNavigator.h>
+
+@interface NKViewControllerProxy ()
+@property (nonatomic, retain) UIViewController *viewController;
+@end
+
+#pragma mark -
 
 @implementation NKViewControllerProxy
+
+@synthesize viewController;
 
 #pragma mark -
 
@@ -16,25 +24,25 @@
 #pragma mark NSObject
 
 -(void) forwardInvocation:(NSInvocation *)anInvocation {
-	[anInvocation setTarget:self.viewController];
+	[anInvocation setTarget:viewController];
 	[anInvocation invoke];
 	return;
 }
 
 -(NSMethodSignature *) methodSignatureForSelector:(SEL)aSelector {
-	return [self.viewController methodSignatureForSelector:aSelector];
+	return [viewController methodSignatureForSelector:aSelector];
 }
 
 #pragma mark -
 
 -(void) dealloc {
-	NSString *URL = [self.viewController originalNavigatorURL];
+	NSString *URL = [viewController originalNavigatorURL];
 	if (URL) {
 		[[NKNavigator navigator].navigationMap removeObjectForURL:URL];
 	}
-	[self.viewController setSuperController:nil];
-	[self.viewController setPopupViewController:nil];
-	self.viewController = nil;
+	[viewController setSuperController:nil];
+	[viewController setPopupViewController:nil];
+	[viewController release];/* viewController = nil;*/
 	[super dealloc];
 }
 

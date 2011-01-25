@@ -2,8 +2,8 @@
 /*!
 @project    NavigatorKit
 @header     NKNavigatorMap.h
-@copyright  (c) 2009-2010, Three20
-@copyright  (c) 2010, Dave Morford
+@copyright  (c) 2009, Three20
+@changes    (c) 2010 - 2011, Dave Morford
 */
 
 #import <Foundation/Foundation.h>
@@ -42,10 +42,10 @@ enum {
 */
 @interface NKNavigatorMap : NSObject
 
-@property (nonatomic, retain, readonly) NSDictionary *objectMappings;
-@property (nonatomic, retain, readonly) NSArray *objectPatterns;
-@property (nonatomic, retain, readonly) NSArray *fragmentPatterns;
-@property (nonatomic, retain, readonly) NSDictionary *stringPatterns;
+@property (nonatomic, readonly) NSDictionary *objectMappings;
+@property (nonatomic, readonly) NSArray *objectPatterns;
+@property (nonatomic, readonly) NSArray *fragmentPatterns;
+@property (nonatomic, readonly) NSDictionary *stringPatterns;
 
 #pragma mark -
 

@@ -1,9 +1,9 @@
 
 /*!
 @project	NavigatorKit
-@header		NKUIViewController.h
-@copyright	(c) 2009-2010, Three20
-@changes	(c) 2009-2010, Dave Morford
+@header		UIViewController+NKNavigator.h
+@copyright	(c) 2009, Three20
+@changes	(c) 2009 - 2011, Dave Morford
 */
 
 #import <Foundation/Foundation.h>
@@ -12,10 +12,10 @@
 @class NKNavigator;
 
 /*!
-@category UIViewController (NKUIViewController)
+@category UIViewController (NKNavigator)
 @abstract
 */
-@interface UIViewController (NKViewController)
+@interface UIViewController (NKNavigator)
 
 /*!
 @abstract The view controller that contains this view controller.
@@ -134,10 +134,10 @@ and endDelay, then this will be called after endDelay.
 #pragma mark -
 
 /*!
-@category UIViewController (NKNavigator)
+@category UIViewController (NKNavigatorURL)
 @abstract
 */
-@interface UIViewController (NKNavigator)
+@interface UIViewController (NKNavigatorURL)
 
 /*!
 @abstract The current URL that this view controller represents.

@@ -1,22 +1,22 @@
 
 #import <NavigatorKit/NKPathUtilities.h>
 
-BOOL
+BOOL 
 NKPathIsInternalURL(NSString *aURLString) {
 	return NKPathIsBundleURL(aURLString) || NKPathIsDocumentsURL(aURLString) || NKPathIsFileURL(aURLString);
 }
 
-BOOL
+BOOL 
 NKPathIsBundleURL(NSString *aURLString) {
 	return [aURLString hasPrefix:@"bundle://"];
 }
 
-BOOL
+BOOL 
 NKPathIsDocumentsURL(NSString *aURLString) {
 	return [aURLString hasPrefix:@"documents://"];
 }
 
-BOOL
+BOOL 
 NKPathIsFileURL(NSString *aURLString) {
 	return [aURLString hasPrefix:@"file://"];
 }
@@ -33,7 +33,7 @@ NKPathForBundleResource(NSString *bundleResourceFilePath) {
 	return nil;
 }
 
-NSString *
+NSString * 
 NKPathForFileResource(NSString *bundleFilePath) {
 	if (NKPathIsFileURL(bundleFilePath) == TRUE) {
 		NSString *localFilePath	= [bundleFilePath substringFromIndex:7];
@@ -43,7 +43,7 @@ NKPathForFileResource(NSString *bundleFilePath) {
 	return nil;
 }
 
-NSString *
+NSString * 
 NKPathForDocumentsResource(NSString *filePath) {
 	static NSString *documentsPath = nil;
 	if (!documentsPath) {

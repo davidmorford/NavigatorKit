@@ -1,15 +1,15 @@
 
 /*!
-@project    NetworkKit
+@project    NavigatorKit
 @header     NKPathUtilities.h
-@copyright  (c) 2009-2010, Dave Morford
-@copyright  (c) 2009-2010, Three20
+@copyright  (c) 2009, Three20
+@copyright  (c) 2009 - 2011, Dave Morford
 */
 
 #import <Foundation/Foundation.h>
 
 /*!
-Returns TRUE if the URL begins with "bundle://" , "documents://" or "temp://"
+@abstract Returns TRUE if the URL begins with "bundle://" , "documents://" or "temp://"
 */
 BOOL 
 NKPathIsInternalURL(NSString *URLString);

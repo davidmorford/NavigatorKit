@@ -1,17 +1,26 @@
 
 #import <NavigatorKit/NKViewController.h>
-#import <NavigatorKit/NKUIViewController.h>
+#import <NavigatorKit/UIViewController+NKNavigator.h>
 #import <NavigatorKit/NKNavigator.h>
 #import <NavigatorKit/NKNavigatorMap.h>
-#import <NavigatorKit/NKUIDevice.h>
+#import <NavigatorKit/UIDevice+NKVersion.h>
 
 @interface NKViewController ()
-	-(void) resizeForKeyboard:(NSNotification *)notification appearing:(BOOL)appearing;
+@property (nonatomic, assign, readwrite) BOOL isViewAppearing;
+@property (nonatomic, assign, readwrite) BOOL hasViewAppeared;
+-(void) resizeForKeyboard:(NSNotification *)notification appearing:(BOOL)appearing;
 @end
 
 #pragma mark -
 
 @implementation NKViewController
+
+@synthesize navigationBarStyle;
+@synthesize navigationBarTintColor;
+@synthesize statusBarStyle;
+@synthesize isViewAppearing;
+@synthesize hasViewAppeared;
+@synthesize autoresizesForKeyboard;
 
 #pragma mark <NSObject>
 
@@ -20,12 +29,12 @@
 	if (!self) {
 		return nil;
 	}
-	navigationBarStyle		= UIBarStyleDefault;
-	navigationBarTintColor	= nil;
-	statusBarStyle			= [[UIApplication sharedApplication] statusBarStyle];
-	hasViewAppeared			= FALSE;
-	isViewAppearing			= FALSE;
-	autoresizesForKeyboard	= FALSE;
+	self.navigationBarStyle = UIBarStyleDefault;
+	self.navigationBarTintColor	= nil;
+	self.statusBarStyle = [[UIApplication sharedApplication] statusBarStyle];
+	self.hasViewAppeared = FALSE;
+	self.isViewAppearing = FALSE;
+	self.autoresizesForKeyboard	= FALSE;
 	return self;
 }
 
@@ -35,7 +44,7 @@
 		return nil;
 	}
 	self.navigationBarStyle = UIBarStyleDefault;
-	self.statusBarStyle		= UIStatusBarStyleDefault;
+	self.statusBarStyle = UIStatusBarStyleDefault;
 	return self;
 }
 
@@ -44,19 +53,19 @@
 
 -(void) loadView {
 	[super loadView];
-	self.view.autoresizesSubviews	= TRUE;
-	self.view.autoresizingMask		= UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+	self.view.autoresizesSubviews = TRUE;
+	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 }
 
 -(void) viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	isViewAppearing = TRUE;
-	hasViewAppeared = TRUE;
+	self.isViewAppearing = TRUE;
+	self.hasViewAppeared = TRUE;
 	if (!self.popupViewController) {
-		UINavigationBar *bar	= self.navigationController.navigationBar;
-		bar.tintColor			= navigationBarTintColor;
-		bar.barStyle			= navigationBarStyle;
-		[[UIApplication sharedApplication] setStatusBarStyle:statusBarStyle animated:YES];
+		UINavigationBar *bar = self.navigationController.navigationBar;
+		bar.tintColor = self.navigationBarTintColor;
+		bar.barStyle = self.navigationBarStyle;
+		[[UIApplication sharedApplication] setStatusBarStyle:self.statusBarStyle animated:YES];
 	}
 }
 
@@ -66,11 +75,11 @@
 
 -(void) viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
-	isViewAppearing = FALSE;
+	self.isViewAppearing = FALSE;
 }
 
 -(BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	if (NKUIDeviceHasUserIntefaceIdiom() && NKUIDeviceUserIntefaceIdiom() == UIUserInterfaceIdiomPad) {
+	if (NKUIDeviceUserIntefaceIdiom() == UIUserInterfaceIdiomPad) {
 		return TRUE;
 	}
 	else {

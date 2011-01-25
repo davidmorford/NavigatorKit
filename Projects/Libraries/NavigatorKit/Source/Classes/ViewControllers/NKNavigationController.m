@@ -1,12 +1,12 @@
 
 #import <NavigatorKit/NKNavigationController.h>
-#import <NavigatorKit/NKUIViewController.h>
+#import <NavigatorKit/UIViewController+NKNavigator.h>
 #import <NavigatorKit/NKNavigator.h>
 #import <NavigatorKit/NKNavigatorMap.h>
 
 @implementation NKNavigationController
 
-#pragma mark NKUIViewController
+#pragma mark UIViewController+NKNavigator
 
 -(UIView *) rotatingHeaderView {
 	UIViewController *popup = [self popupViewController];

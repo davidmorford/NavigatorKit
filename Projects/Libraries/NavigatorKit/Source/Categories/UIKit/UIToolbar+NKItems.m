@@ -1,7 +1,7 @@
 
-#import <NavigatorKit/NKUIToolbar.h>
+#import <NavigatorKit/UIToolbar+NKItems.h>
 
-@implementation UIToolbar (NKToolbar)
+@implementation UIToolbar (NKItems)
 
 -(UIBarButtonItem *) itemWithTag:(NSInteger)aTag {
 	for (UIBarButtonItem *button in self.items) {
@@ -25,13 +25,13 @@
 	}	
 }
 
--(void) replaceItem:(UIBarButtonItem *)oldItem withItem:(UIBarButtonItem *)newItem {
+-(void) replaceItem:(UIBarButtonItem *)anOldItem withItem:(UIBarButtonItem *)aNewItem {
 	NSMutableArray *newItems = [self.items mutableCopy];
-	if ([newItems containsObject:oldItem] == FALSE) {
+	if ([newItems containsObject:anOldItem] == FALSE) {
 		[newItems release];
 		return;
 	}
-	[newItems replaceObjectAtIndex:[newItems indexOfObject:oldItem] withObject:newItem];
+	[newItems replaceObjectAtIndex:[newItems indexOfObject:anOldItem] withObject:aNewItem];
 	self.items = newItems;
 }
 

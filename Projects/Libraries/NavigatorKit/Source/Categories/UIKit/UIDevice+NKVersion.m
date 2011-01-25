@@ -1,13 +1,13 @@
 
-#import <NavigatorKit/NKUIDevice.h>
+#import <NavigatorKit/UIDevice+NKVersion.h>
 
-@implementation UIDevice (NKSystemVersionValue)
+@implementation UIDevice (NKVersion)
 
-	@dynamic systemVersionNumber;
+@dynamic systemVersionNumber;
 
-	-(NSNumber *) systemVersionNumber {
-		return [NSNumber numberWithFloat:[[UIDevice currentDevice].systemVersion floatValue]];
-	}
+-(NSNumber *) systemVersionNumber {
+	return [NSNumber numberWithFloat:[[UIDevice currentDevice].systemVersion floatValue]];
+}
 
 @end
 
@@ -30,7 +30,7 @@ NKUIDeviceSystemVersionString() {
 
 #pragma mark -
 
-BOOL
+BOOL 
 NKUIDeviceIsPhoneSupported() {
 	return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tel://"]];
 }
