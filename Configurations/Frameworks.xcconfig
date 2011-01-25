@@ -1,7 +1,7 @@
 
 //
 // Frameworks.xcconfig
-// (c) 2008 - 2010, Semantap
+// (c) 2008 - 2011, Semantap
 //
 
 // ObjC Library / Runtime
@@ -24,6 +24,13 @@ LIBZ_LIB                = -lz
 LIBXML2_HEADERS         = /usr/include/libxml2
 LIBXML2_LIBRARY         = /usr/lib
 LIBXML2_LIB             = -lxml2
+
+// LibXML2
+
+LIBSQLITE3_HEADER_PATH	= /usr/include
+LIBSQLITE3_LIBRARY_PATH = /usr/lib
+LIBSQLITE3_LIBRARY_FLAG	= -lsqlite3
+
 
 // Frameworks - iOS 4.2
 

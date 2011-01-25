@@ -6,18 +6,18 @@ Based on Three20 TTNavigator source and UXKit UXNavigator fork source, fully sup
 
 ## iPad UI Idiom Split View Navigator Screenshots
 
-[![](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-Master-Left.png)](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-Master-Left.png)
-[![](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-Master-Right.png)](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-Master-Right.png)
-[![](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-Master-Hidden.png)](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-Master-Hidden.png)
-[![](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-Master-Hidden.png)](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-Horizontal-Orientation.png)
-[![](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-SplitDivider.png)](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-SplitDivider.png)
-[![](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-Modal.png)](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-Modal.png)
+[![](https://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-Master-Left.png)](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-Master-Left.png)
+[![](https://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-Master-Right.png)](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-Master-Right.png)
+[![](https://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-Master-Hidden.png)](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-Master-Hidden.png)
+[![](https://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-Master-Hidden.png)](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-Horizontal-Orientation.png)
+[![](https://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-SplitDivider.png)](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-SplitDivider.png)
+[![](https://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-Modal.png)](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPad-Modal.png)
 
 ## iPhone UI Idiom Navigator Screenshots
 
-[![](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPhone.png)](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPhone.png)
-[![](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPhone-OpenIn.png)](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPhone-OpenIn.png)
-[![](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPhone-UTIandFileSharing.png)](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPhone-UTIandFileSharing.png)
+[![](https://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPhone.png)](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPhone.png)
+[![](https://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPhone-OpenIn.png)](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPhone-OpenIn.png)
+[![](https://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPhone-UTIandFileSharing.png)](http://github.com/davidmorford/NavigatorKit/raw/master/Documents/Screenshots/iPhone-UTIandFileSharing.png)
 
 
 ## What's New / Better
@@ -127,6 +127,13 @@ The project, via BuildKit xcconfigs, currently works with Xcode 3.2.4 and the us
 
 
 ## History
+
+### January 2011
+
+* January 24
+  * Update master xcconfig files to latest BuildKit version.
+  * Revert changes made on assumption of availability of synthesize by default in Clang 2.0 / Xcode 4.0
+  * Refactor category naming conventions.
 
 ### November 2010
 

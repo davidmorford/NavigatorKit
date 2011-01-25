@@ -2,8 +2,7 @@
 //
 // Libraries.xcconfig
 // Local Libraries - Declarations by alpha. Order unimportant.
-// (c) 2005 - 2008, Semanteme
-// (c) 2008 - 2010, Semantap
+// (c) 2008 - 2011, Semantap
 //
 
 #include "Frameworks.xcconfig"
