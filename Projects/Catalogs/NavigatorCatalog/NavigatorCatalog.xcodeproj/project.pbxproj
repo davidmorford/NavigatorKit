@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		6307180812EE5DBF00F4D7CE /* NVCBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D446F3124C1B3F00AB7EA0 /* NVCBackgroundView.m */; };
 		6308F9B31247653D009B02E2 /* action.png in Resources */ = {isa = PBXBuildFile; fileRef = 6308F9661247653D009B02E2 /* action.png */; };
 		6308F9B41247653D009B02E2 /* action@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6308F9671247653D009B02E2 /* action@2x.png */; };
 		6308F9B51247653D009B02E2 /* at.png in Resources */ = {isa = PBXBuildFile; fileRef = 6308F9681247653D009B02E2 /* at.png */; };
@@ -79,7 +80,6 @@
 		63B38E3B1246243400060941 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		63B38F311246354900060941 /* NVCContentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B38F301246354900060941 /* NVCContentTableViewController.m */; };
 		63B5AC6311D6EB34005368DA /* UserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 63B5AC6211D6EB34005368DA /* UserDefaults.plist */; };
-		63D44744124C22C900AB7EA0 /* NVCBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D446F3124C1B3F00AB7EA0 /* NVCBackgroundView.m */; };
 		63E58AC611DED79300D122B4 /* NVCUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E58AC511DED79300D122B4 /* NVCUserDefaults.m */; };
 		63E7A03211DF7B6A0078A405 /* Default@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 63E7A02E11DF7B6A0078A405 /* Default@2x~iphone.png */; };
 		63E7A03311DF7B6A0078A405 /* Default~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 63E7A02F11DF7B6A0078A405 /* Default~iphone.png */; };
@@ -851,7 +851,7 @@
 				6308FADB124783AE009B02E2 /* NVCMappingTableViewController.m in Sources */,
 				6308FADE124783BE009B02E2 /* NVCHistoryViewController.m in Sources */,
 				63695DF2124927D700393B5A /* NVCDocumentsFolderViewController.m in Sources */,
-				63D44744124C22C900AB7EA0 /* NVCBackgroundView.m in Sources */,
+				6307180812EE5DBF00F4D7CE /* NVCBackgroundView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -134,6 +134,8 @@ The project, via BuildKit xcconfigs, currently works with Xcode 3.2.4 and the us
   * Update master xcconfig files to latest BuildKit version.
   * Revert changes made on assumption of availability of synthesize by default in Clang 2.0 / Xcode 4.0
   * Refactor category naming conventions.
+  * Add NSObject+NKAssociatedObject category for future improvements
+  * Move shared internal NKNavigator methods to NKNavigator+Internal.h that is referenced from PrivateHeaders/
 
 ### November 2010
 
