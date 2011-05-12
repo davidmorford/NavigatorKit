@@ -149,7 +149,7 @@ enum {
 -(BOOL) matchURL:(NSURL *)aURL;
 
 -(id) invoke:(id)target withURL:(NSURL *)aURL query:(NSDictionary *)aQuery;
--(id) createObjectFromURL:(NSURL *)aURL query:(NSDictionary *)aQuery /*NS_RETURNS_RETAINED*/;
+-(id) createObjectFromURL:(NSURL *)aURL query:(NSDictionary *)aQuery;
 
 @end
 

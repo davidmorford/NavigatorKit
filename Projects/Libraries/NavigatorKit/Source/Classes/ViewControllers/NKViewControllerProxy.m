@@ -42,7 +42,7 @@
 	}
 	[viewController setSuperController:nil];
 	[viewController setPopupViewController:nil];
-	[viewController release];/* viewController = nil;*/
+	self.viewController = nil;
 	[super dealloc];
 }
 

@@ -18,6 +18,8 @@
 @implementation NKNavigator
 
 @synthesize window;
+@synthesize windowClass;
+@synthesize navigationControllerClass;
 @synthesize delegate;
 @synthesize navigationMap;
 @synthesize parentNavigator;
@@ -286,7 +288,7 @@
 	return [self viewControllerForURL:aURL query:query pattern:nil];
 }
 
--(UIViewController *) viewControllerForURL:(NSString *)aURL query:(NSDictionary *)query pattern:(NKNavigatorPattern * *)pattern {
+-(UIViewController *) viewControllerForURL:(NSString *)aURL query:(NSDictionary *)query pattern:(NKNavigatorPattern **)pattern {
 	NSRange fragmentRange = [aURL rangeOfString:@"#" options:NSBackwardsSearch];
 	if (fragmentRange.location != NSNotFound) {
 		NSString *baseURL = [aURL substringToIndex:fragmentRange.location];

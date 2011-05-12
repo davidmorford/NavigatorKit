@@ -2,7 +2,6 @@
 /*!
 @project    NavigatorKit
 @header     NSObject+NKAssociatedObject.h
-@copyright  (c) 2010 - 2011, Semantap
 @shoutout	Andy Matuschak for the orginial idea.
 */
 

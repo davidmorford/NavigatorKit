@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 
 @protocol NKNavigatorDelegate;
-@class NKNavigatorMap, NKURLNavigatorPattern, NKNavigatorAction;
+@class NKNavigatorMap, NKNavigatorPattern, NKNavigatorAction;
 
 /*!
 @class NKNavigator
@@ -126,7 +126,7 @@ please start using openNavigatorAction instead.
 @abstract Gets a view controller for the URL without opening it.
 @result The view controller mapped to URL.
 */
--(UIViewController *) viewControllerForURL:(NSString *)aURL query:(NSDictionary *)query pattern:(NKURLNavigatorPattern * *)pattern;
+-(UIViewController *) viewControllerForURL:(NSString *)aURL query:(NSDictionary *)query pattern:(NKNavigatorPattern **)pattern;
 
 #pragma mark -
 

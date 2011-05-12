@@ -16,15 +16,15 @@ NSString* const NKUniversalURLPattern = @"*";
 	NSInteger argumentCount;
 	UIModalPresentationStyle modalPresentationStyle;
 }
-	-(BOOL) instantiatesClass;
-	-(BOOL) callsInstanceMethod;
-	-(void) deduceSelector;
-	-(void) analyzeArgument:(id <NKURLPatternText>)pattern method:(Method)method argNames:(NSArray *)argNames;
-	-(void) analyzeMethod;
-	-(void) analyzeProperties;
-	-(BOOL) setArgument:(NSString *)text pattern:(id <NKURLPatternText>)patternText forInvocation:(NSInvocation *)invocation;
-	-(void) setArgumentsFromURL:(NSURL *)aURL forInvocation:(NSInvocation *)invocation query:(NSDictionary *)query;
-	-(NSComparisonResult) compareSpecificity:(NKURLNavigatorPattern *)pattern2;
+-(BOOL) instantiatesClass;
+-(BOOL) callsInstanceMethod;
+-(void) deduceSelector;
+-(void) analyzeArgument:(id <NKURLPatternText>)pattern method:(Method)method argNames:(NSArray *)argNames;
+-(void) analyzeMethod;
+-(void) analyzeProperties;
+-(BOOL) setArgument:(NSString *)text pattern:(id <NKURLPatternText>)patternText forInvocation:(NSInvocation *)invocation;
+-(void) setArgumentsFromURL:(NSURL *)aURL forInvocation:(NSInvocation *)invocation query:(NSDictionary *)query;
+-(NSComparisonResult) compareSpecificity:(NKURLNavigatorPattern *)pattern2;
 @end
 
 #pragma mark -
@@ -48,119 +48,121 @@ NSString* const NKUniversalURLPattern = @"*";
 
 @implementation NKURLNavigatorPattern
 
-	@synthesize URL; 
-	@synthesize scheme;
-	@synthesize specificity;
-	@synthesize selector;
+@synthesize URL; 
+@synthesize scheme;
+@synthesize specificity;
+@synthesize selector;
 
-	#pragma mark -
+#pragma mark -
 
-	-(id) init {
-		if (self = [super init]) {
-			URL				= nil;
-			scheme			= nil;
-			path			= [[NSMutableArray alloc] init];
-			query			= nil;
-			fragment		= nil;
-			specificity		= 0;
-			selector		= nil;
-		}
-		return self;
-	}
-
-
-	#pragma mark API
-
-	-(Class) classForInvocation {
-		return nil;
-	}
-
-	-(void) setSelectorIfPossible:(SEL)aSelector {
-		Class cls = [self classForInvocation];
-		if (!cls || class_respondsToSelector(cls, aSelector) || class_getClassMethod(cls, aSelector)) {
-			selector = aSelector;
-		}
-	}
-
-	-(void) compileURL {
-		NSURL *targetURL	= [NSURL URLWithString:URL];
-		scheme				= [targetURL.scheme copy];
-		if (targetURL.host) {
-			[self parsePathComponent:targetURL.host];
-			if (targetURL.path) {
-				for (NSString *name in targetURL.path.pathComponents) {
-					if (![name isEqualToString:@"/"]) {
-						[self parsePathComponent:name];
-					}
-				}
-			}
-		}
-		
-		if (targetURL.query) {
-			NSDictionary *queryMap = [targetURL.query queryDictionaryUsingEncoding:NSUTF8StringEncoding];
-			for (NSString *name in [queryMap keyEnumerator]) {
-				NSString *value = [queryMap objectForKey:name];
-				[self parseParameter:name value:value];
-			}
-		}
-		
-		if (targetURL.fragment) {
-			fragment = [[self parseText:targetURL.fragment] retain];
-		}
-	}
+-(id) init {
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+    URL = nil;
+    scheme = nil;
+    path = [[NSMutableArray alloc] init];
+    query = nil;
+    fragment = nil;
+    specificity = 0;
+    selector = nil;
+    return self;
+}
 
 
-	#pragma mark SPI
+#pragma mark API
 
-	-(id <NKURLPatternText>) parseText:(NSString *)aTextString {
-		NSInteger len = aTextString.length;
-		if ((len >= 2) && ([aTextString characterAtIndex:0] == '(') && ([aTextString characterAtIndex:len - 1] == ')')) {
-			NSInteger endRange			= len > 3 && [aTextString characterAtIndex:len - 2] == ':' ? len - 3 : len - 2;
-			NSString *name				= len > 2 ? [aTextString substringWithRange:NSMakeRange(1, endRange)] : nil;
-			NKURLWildcard *wildcard	= [[[NKURLWildcard alloc] init] autorelease];
-			wildcard.name				= name;
-			++specificity;
-			return wildcard;
-		}
-		else {
-			NKURLLiteral *literal	= [[[NKURLLiteral alloc] init] autorelease];
-			literal.name	= aTextString;
-			specificity		+= 2;
-			return literal;
-		}
-	}
+-(Class) classForInvocation {
+    return nil;
+}
 
-	-(void) parsePathComponent:(NSString *)aValue {
-		id <NKURLPatternText> component = [self parseText:aValue];
-		[path addObject:component];
-	}
+-(void) setSelectorIfPossible:(SEL)aSelector {
+    Class cls = [self classForInvocation];
+    if (!cls || class_respondsToSelector(cls, aSelector) || class_getClassMethod(cls, aSelector)) {
+        selector = aSelector;
+    }
+}
 
-	-(void) parseParameter:(NSString *)aName value:(NSString *)aValue {
-		if (!query) {
-			query = [[NSMutableDictionary alloc] init];
-		}
-		
-		id <NKURLPatternText> component = [self parseText:aValue];
-		[query setObject:component forKey:aName];
-	}
+-(void) compileURL {
+    NSURL *targetURL	= [NSURL URLWithString:URL];
+    scheme				= [targetURL.scheme copy];
+    if (targetURL.host) {
+        [self parsePathComponent:targetURL.host];
+        if (targetURL.path) {
+            for (NSString *name in targetURL.path.pathComponents) {
+                if (![name isEqualToString:@"/"]) {
+                    [self parsePathComponent:name];
+                }
+            }
+        }
+    }
+    
+    if (targetURL.query) {
+        NSDictionary *queryMap = [targetURL.query queryDictionaryUsingEncoding:NSUTF8StringEncoding];
+        for (NSString *name in [queryMap keyEnumerator]) {
+            NSString *value = [queryMap objectForKey:name];
+            [self parseParameter:name value:value];
+        }
+    }
+    
+    if (targetURL.fragment) {
+        fragment = [[self parseText:targetURL.fragment] retain];
+    }
+}
 
-	-(void) setSelectorWithNames:(NSArray *)aNameList {
-		NSString *selectorName	= [[aNameList componentsJoinedByString:@":"] stringByAppendingString:@":"];
-		SEL namedSelector		= NSSelectorFromString(selectorName);
-		[self setSelectorIfPossible:namedSelector];
-	}
+
+#pragma mark SPI
+
+-(id <NKURLPatternText>) parseText:(NSString *)aTextString {
+    NSInteger len = aTextString.length;
+    if ((len >= 2) && ([aTextString characterAtIndex:0] == '(') && ([aTextString characterAtIndex:len - 1] == ')')) {
+        NSInteger endRange			= len > 3 && [aTextString characterAtIndex:len - 2] == ':' ? len - 3 : len - 2;
+        NSString *name				= len > 2 ? [aTextString substringWithRange:NSMakeRange(1, endRange)] : nil;
+        NKURLWildcard *wildcard	= [[[NKURLWildcard alloc] init] autorelease];
+        wildcard.name				= name;
+        ++specificity;
+        return wildcard;
+    }
+    else {
+        NKURLLiteral *literal	= [[[NKURLLiteral alloc] init] autorelease];
+        literal.name	= aTextString;
+        specificity		+= 2;
+        return literal;
+    }
+}
+
+-(void) parsePathComponent:(NSString *)aValue {
+    id <NKURLPatternText> component = [self parseText:aValue];
+    [path addObject:component];
+}
+
+-(void) parseParameter:(NSString *)aName value:(NSString *)aValue {
+    if (!query) {
+        query = [[NSMutableDictionary alloc] init];
+    }
+    
+    id <NKURLPatternText> component = [self parseText:aValue];
+    [query setObject:component forKey:aName];
+}
+
+-(void) setSelectorWithNames:(NSArray *)aNameList {
+    NSString *selectorName	= [[aNameList componentsJoinedByString:@":"] stringByAppendingString:@":"];
+    SEL namedSelector		= NSSelectorFromString(selectorName);
+    [self setSelectorIfPossible:namedSelector];
+}
 
 
-	#pragma mark -
+#pragma mark -
 
-	-(void) dealloc {
-		[URL release]; URL = nil;
-		[scheme release]; scheme = nil;
-		[path release]; path = nil;
-		[query release]; query = nil;
-		[fragment release]; fragment = nil;
-		[super dealloc];
-	}
+-(void) dealloc {
+    [URL release]; URL = nil;
+    [scheme release]; scheme = nil;
+    [path release]; path = nil;
+    [query release]; query = nil;
+    [fragment release]; fragment = nil;
+    [super dealloc];
+}
 
 @end
 
@@ -212,85 +214,87 @@ NKNavigatorArgumentTypeForProperty(Class cls, NSString *propertyName) {
 
 @implementation NKURLSelector
 
-	@synthesize name;
-	@synthesize next;
+@synthesize name;
+@synthesize next;
 
-	#pragma mark -
+#pragma mark -
 
-	-(id) initWithName:(NSString *)aName {
-		if (self = [super init]) {
-			name		= [aName copy];
-			selector	= NSSelectorFromString(name);
-			next		= nil;
-		}
-		return self;
-	}
-	
-	#pragma mark -
+-(id) initWithName:(NSString *)aName {
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+    name = [aName copy];
+    selector = NSSelectorFromString(name);
+    next = nil;
+    return self;
+}
 
-	-(NSString *) perform:(id)anObject returnType:(NKNavigatorArgumentType)aReturnType {
-		if (next) {
-			id value = [anObject performSelector:selector];
-			return [next perform:value returnType:aReturnType];
-		}
-		else {
-			NSMethodSignature *sig		= [anObject methodSignatureForSelector:selector];
-			NSInvocation *invocation	= [NSInvocation invocationWithMethodSignature:sig];
-			[invocation setTarget:anObject];
-			[invocation setSelector:selector];
-			[invocation invoke];
-			
-			if (!aReturnType) {
-				aReturnType = NKNavigatorArgumentTypeForProperty([anObject class], name);
-			}
-			
-			switch (aReturnType) {
-				case NKNavigatorArgumentTypeNone: {
-					return @"";
-				}
-				case NKNavigatorArgumentTypeInteger: {
-					int val = 0;
-					[invocation getReturnValue:&val];
-					return [NSString stringWithFormat:@"%d", val];
-				}
-				case NKNavigatorArgumentTypeLongLong: {
-					long long val = 0;
-					[invocation getReturnValue:&val];
-					return [NSString stringWithFormat:@"%lld", val];
-				}
-				case NKNavigatorArgumentTypeFloat: {
-					float val = 0.0;
-					[invocation getReturnValue:&val];
-					return [NSString stringWithFormat:@"%f", val];
-				}
-				case NKNavigatorArgumentTypeDouble: {
-					double val = 0.0;
-					[invocation getReturnValue:&val];
-					return [NSString stringWithFormat:@"%f", val];
-				}
-				case NKNavigatorArgumentTypeBool: {
-					BOOL val = FALSE;
-					[invocation getReturnValue:&val];
-					return [NSString stringWithFormat:@"%d", val];
-				}
-				default: {
-					id val = nil;
-					[invocation getReturnValue:&val];
-					return [NSString stringWithFormat:@"%@", val];
-				}
-			}
-			return @"";
-		}
-	}
+#pragma mark -
+
+-(NSString *) perform:(id)anObject returnType:(NKNavigatorArgumentType)aReturnType {
+    if (next) {
+        id value = [anObject performSelector:selector];
+        return [next perform:value returnType:aReturnType];
+    }
+    else {
+        NSMethodSignature *sig		= [anObject methodSignatureForSelector:selector];
+        NSInvocation *invocation	= [NSInvocation invocationWithMethodSignature:sig];
+        [invocation setTarget:anObject];
+        [invocation setSelector:selector];
+        [invocation invoke];
+        
+        if (!aReturnType) {
+            aReturnType = NKNavigatorArgumentTypeForProperty([anObject class], name);
+        }
+        
+        switch (aReturnType) {
+            case NKNavigatorArgumentTypeNone: {
+                return @"";
+            }
+            case NKNavigatorArgumentTypeInteger: {
+                int val = 0;
+                [invocation getReturnValue:&val];
+                return [NSString stringWithFormat:@"%d", val];
+            }
+            case NKNavigatorArgumentTypeLongLong: {
+                long long val = 0;
+                [invocation getReturnValue:&val];
+                return [NSString stringWithFormat:@"%lld", val];
+            }
+            case NKNavigatorArgumentTypeFloat: {
+                float val = 0.0;
+                [invocation getReturnValue:&val];
+                return [NSString stringWithFormat:@"%f", val];
+            }
+            case NKNavigatorArgumentTypeDouble: {
+                double val = 0.0;
+                [invocation getReturnValue:&val];
+                return [NSString stringWithFormat:@"%f", val];
+            }
+            case NKNavigatorArgumentTypeBool: {
+                BOOL val = FALSE;
+                [invocation getReturnValue:&val];
+                return [NSString stringWithFormat:@"%d", val];
+            }
+            default: {
+                id val = nil;
+                [invocation getReturnValue:&val];
+                return [NSString stringWithFormat:@"%@", val];
+            }
+        }
+        return @"";
+    }
+}
 
 
-	#pragma mark -
+#pragma mark -
 
-	-(void) dealloc {
-		[name release]; name = nil;
-		[next release]; next = nil;
-		[super dealloc];
-	}
+-(void) dealloc {
+    [name release]; name = nil;
+    [next release]; next = nil;
+    [super dealloc];
+}
 
 @end
 
@@ -304,35 +308,36 @@ NKNavigatorArgumentTypeForProperty(Class cls, NSString *propertyName) {
 
 @implementation NKURLLiteral
 
-	@synthesize name;
+@synthesize name;
 
-	#pragma mark -
+#pragma mark -
 
-	-(id) init {
-		if (self = [super init]) {
-			name = nil;
-		}
-		return self;
+-(id) init {
+	self = [super init];
+	if (!self) {
+		return nil;
 	}
+	name = nil;
+	return self;
+}
+
+#pragma mark API
+
+-(BOOL) match:(NSString *)aTextString {
+    return [aTextString isEqualToString:name];
+}
+
+-(NSString *) convertPropertyOfObject:(id)anObject {
+    return name;
+}
 
 
-	#pragma mark API
+#pragma mark -
 
-	-(BOOL) match:(NSString *)aTextString {
-		return [aTextString isEqualToString:name];
-	}
-
-	-(NSString *) convertPropertyOfObject:(id)anObject {
-		return name;
-	}
-
-
-	#pragma mark -
-
-	-(void) dealloc {
-		[name release]; name = nil;
-		[super dealloc];
-	}
+-(void) dealloc {
+    [name release]; name = nil;
+    [super dealloc];
+}
 
 @end
 
@@ -349,68 +354,69 @@ NKNavigatorArgumentTypeForProperty(Class cls, NSString *propertyName) {
 
 @implementation NKURLWildcard
 
-	@synthesize name;
-	@synthesize argIndex; 
-	@synthesize argType; 
-	@synthesize selector;
+@synthesize name;
+@synthesize argIndex; 
+@synthesize argType; 
+@synthesize selector;
 
-	#pragma mark -
+#pragma mark -
 
-	-(id) init {
-		if (self = [super init]) {
-			name		= nil;
-			argIndex	= NSNotFound;
-			argType		= NKNavigatorArgumentTypeNone;
-			selector	= nil;
-		}
-		return self;
+-(id) init {
+	self = [super init];
+	if (!self) {
+		return nil;
 	}
+    name = nil;
+    argIndex = NSNotFound;
+    argType = NKNavigatorArgumentTypeNone;
+    selector = nil;
+	return self;
+}
+
+#pragma mark API
+
+-(BOOL) match:(NSString *)aTextString {
+    return TRUE;
+}
+
+-(NSString *) convertPropertyOfObject:(id)anObject {
+    if (selector) {
+        return [selector perform:anObject returnType:argType];
+    }
+    else {
+        return @"";
+    }
+}
+
+-(void) deduceSelectorForClass:(Class)aClass {
+    NSArray *names = [name componentsSeparatedByString:@"."];
+    if (names.count > 1) {
+        NKURLSelector *URLSelector = nil;
+        for (NSString *selectorName in names) {
+            NKURLSelector *newSelector = [[[NKURLSelector alloc] initWithName:selectorName] autorelease];
+            if (URLSelector) {
+                URLSelector.next = newSelector;
+            }
+            else {
+                self.selector = newSelector;
+            }
+            URLSelector = newSelector;
+        }
+    }
+    else {
+        self.argType	= NKNavigatorArgumentTypeForProperty(aClass, name);
+        self.selector	= [[[NKURLSelector alloc] initWithName:name] autorelease];
+    }
+}
 
 
-	#pragma mark API
+#pragma mark -
 
-	-(BOOL) match:(NSString *)aTextString {
-		return TRUE;
-	}
-
-	-(NSString *) convertPropertyOfObject:(id)anObject {
-		if (selector) {
-			return [selector perform:anObject returnType:argType];
-		}
-		else {
-			return @"";
-		}
-	}
-
-	-(void) deduceSelectorForClass:(Class)aClass {
-		NSArray *names = [name componentsSeparatedByString:@"."];
-		if (names.count > 1) {
-			NKURLSelector *URLSelector = nil;
-			for (NSString *selectorName in names) {
-				NKURLSelector *newSelector = [[[NKURLSelector alloc] initWithName:selectorName] autorelease];
-				if (URLSelector) {
-					URLSelector.next = newSelector;
-				}
-				else {
-					self.selector = newSelector;
-				}
-				URLSelector = newSelector;
-			}
-		}
-		else {
-			self.argType	= NKNavigatorArgumentTypeForProperty(aClass, name);
-			self.selector	= [[[NKURLSelector alloc] initWithName:name] autorelease];
-		}
-	}
-
-
-	#pragma mark -
-
-	-(void) dealloc {
-		[name release]; name = nil;
-		[selector release]; selector = nil;
-		[super dealloc];
-	}
+-(void) dealloc {
+    [name release]; name = nil;
+    [selector release]; selector = nil;
+    [super dealloc];
+}
 
 @end
 
@@ -432,9 +438,11 @@ NKNavigatorArgumentTypeForProperty(Class cls, NSString *propertyName) {
 }
 
 -(id) initWithTargetClass:(id)aTargetClass {
-	if (self = [super init]) {
-		targetClass = aTargetClass;
+    self = [super init];
+	if (!self) {
+		return nil;
 	}
+    targetClass = aTargetClass;
 	return self;
 }
 
@@ -527,21 +535,22 @@ NKNavigatorArgumentTypeForProperty(Class cls, NSString *propertyName) {
 }
 
 -(id) initWithTarget:(id)aTarget mode:(NKNavigatorMode)aNavigationMode {
-	if (self = [super init]) {
-		targetClass		= nil;
-		targetObject	= nil;
-		navigationMode	= aNavigationMode;
-		parentURL		= nil;
-		transition		= 0;
-		argumentCount	= 0;
-		
-		if (([aTarget class] == aTarget) && aNavigationMode) {
-			targetClass = aTarget;
-		}
-		else {
-			targetObject = aTarget;
-		}
+    self = [super init];
+	if (!self) {
+        return nil;
 	}
+    targetClass = nil;
+    targetObject = nil;
+    navigationMode = aNavigationMode;
+    parentURL = nil;
+    transition = 0;
+    argumentCount = 0;
+    if (([aTarget class] == aTarget) && aNavigationMode) {
+        targetClass = aTarget;
+    }
+    else {
+        targetObject = aTarget;
+    }
 	return self;
 }
 
@@ -642,26 +651,37 @@ NKNavigatorArgumentTypeForProperty(Class cls, NSString *propertyName) {
 	return returnValue;
 }
 
--(id) createObjectFromURL:(NSURL *)aURL query:(NSDictionary *)aQuery {
-	id target = nil;
-	if (self.instantiatesClass) {
-		target = [targetClass alloc];
-	}
-	else {
-		target = [targetObject retain];
-	}
-	
+/*-(id) createObjectFromURL:(NSURL *)aURL query:(NSDictionary *)aQuery {
 	id returnValue = nil;
-	if (selector) {
-		returnValue = [self invoke:target withURL:aURL query:aQuery];
+    if (self.instantiatesClass && !self.selector) {
+		returnValue = [[targetClass alloc] init];
 	}
-	else if (self.instantiatesClass) {
-		returnValue = [target init];
+	else if (!self.instantiatesClass && self.targetObject && self.selector) {
+        returnValue = [self invoke:targetObject withURL:aURL query:aQuery];
 	}
-	[target autorelease]; // Damn clang analyzer... I know!
-	return returnValue;
+	return [returnValue autorelease];
 }
+*/
 
+-(id) createObjectFromURL:(NSURL *)aURL query:(NSDictionary *)aQuery {
+    id target = nil;
+    if (self.instantiatesClass) {
+        target = [targetClass alloc];
+    }
+    else {
+        target = [targetObject retain];
+    }
+     
+    id returnValue = nil;
+    if (selector) {
+        returnValue = [self invoke:target withURL:aURL query:aQuery];
+    }
+    else if (self.instantiatesClass) {
+        returnValue = [target init];
+    }
+    [target autorelease]; // Damn clang analyzer... I know!
+    return returnValue;
+}
 
 #pragma mark SPI
 

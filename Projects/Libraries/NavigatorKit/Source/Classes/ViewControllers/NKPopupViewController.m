@@ -7,9 +7,11 @@
 #pragma mark Initializer
 
 -(id) init {
-	if (self = [super init]) {
-		self.statusBarStyle = [UIApplication sharedApplication].statusBarStyle;
+    self = [super init];
+	if (!self) {
+		return nil;
 	}
+    self.statusBarStyle = [UIApplication sharedApplication].statusBarStyle;
 	return self;
 }
 
@@ -47,9 +49,11 @@
 #pragma mark Initializer
 
 -(id) initWithFrame:(CGRect)frame {
-	if (self = [super initWithFrame:frame]) {
-		popupViewController = nil;
+    self = [super initWithFrame:frame];
+	if (!self) {
+        return nil;
 	}
+    popupViewController = nil;
 	return self;
 }
 

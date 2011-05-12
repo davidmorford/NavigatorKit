@@ -83,6 +83,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		632D40DF137AECD60030B9BF /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		632D40E0137AECD60030B9BF /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		634EC8C311966F44003426E7 /* NavigatorKitLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigatorKitLibrary.h; sourceTree = "<group>"; };
 		634EC8C411966F44003426E7 /* NavigatorKitLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigatorKitLibrary.m; sourceTree = "<group>"; };
 		63843AB91041214400D29404 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Developer/Library/Frameworks/SenTestingKit.framework; sourceTree = SDKROOT; };
@@ -122,7 +124,6 @@
 		63AB87D8124587D100BD8093 /* NKNavigatorPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKNavigatorPath.m; sourceTree = "<group>"; };
 		63AB87D9124587D100BD8093 /* NKPathUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NKPathUtilities.h; path = Source/Classes/Map/NKPathUtilities.h; sourceTree = SOURCE_ROOT; };
 		63AB87DA124587D100BD8093 /* NKPathUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKPathUtilities.m; sourceTree = "<group>"; };
-		63B6A8911041465B0049EC9C /* Settings.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Settings.xcconfig; path = Configurations/Settings.xcconfig; sourceTree = SOURCE_ROOT; };
 		63BFC979120521D30048F1D3 /* NKNavigatorMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKNavigatorMap.h; sourceTree = "<group>"; };
 		63BFC97A120521D30048F1D3 /* NKNavigatorMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKNavigatorMap.m; sourceTree = "<group>"; };
 		63BFC97D120521D30048F1D3 /* NKNavigatorPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKNavigatorPattern.h; sourceTree = "<group>"; };
@@ -215,13 +216,6 @@
 			name = UnitTest;
 			sourceTree = "<group>";
 		};
-		63843AB81041213200D29404 /* Project */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Project;
-			sourceTree = "<group>";
-		};
 		638654001204C703002ED89B /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -301,8 +295,6 @@
 			isa = PBXGroup;
 			children = (
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
-				63894C11103BE467007C9CC9 /* Libraries */,
-				63843AB81041213200D29404 /* Project */,
 				63843AB71041212700D29404 /* UnitTest */,
 			);
 			name = References;
@@ -311,9 +303,10 @@
 		63894BE2103BD59B007C9CC9 /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
-				63894BE4103BD59B007C9CC9 /* Library.xcconfig */,
-				63B6A8911041465B0049EC9C /* Settings.xcconfig */,
 				63894BE5103BD59B007C9CC9 /* Project.xcconfig */,
+				63894BE4103BD59B007C9CC9 /* Library.xcconfig */,
+				632D40DF137AECD60030B9BF /* Debug.xcconfig */,
+				632D40E0137AECD60030B9BF /* Release.xcconfig */,
 			);
 			path = Configurations;
 			sourceTree = SOURCE_ROOT;
@@ -345,13 +338,6 @@
 			name = Bundles;
 			path = Source/Resources/Bundles;
 			sourceTree = SOURCE_ROOT;
-		};
-		63894C11103BE467007C9CC9 /* Libraries */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Libraries;
-			sourceTree = "<group>";
 		};
 		639ED1C9120A0D6B00119A97 /* SplitViewController */ = {
 			isa = PBXGroup;
@@ -594,16 +580,14 @@
 /* Begin XCBuildConfiguration section */
 		1DEB921F08733DC00010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 63894BE4103BD59B007C9CC9 /* Library.xcconfig */;
+			baseConfigurationReference = 632D40DF137AECD60030B9BF /* Debug.xcconfig */;
 			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
 			};
 			name = Debug;
 		};
 		1DEB922008733DC00010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 63894BE4103BD59B007C9CC9 /* Library.xcconfig */;
+			baseConfigurationReference = 632D40E0137AECD60030B9BF /* Release.xcconfig */;
 			buildSettings = {
 			};
 			name = Release;
@@ -612,7 +596,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 63894BE5103BD59B007C9CC9 /* Project.xcconfig */;
 			buildSettings = {
-				GCC_OPTIMIZATION_LEVEL = 0;
 			};
 			name = Debug;
 		};
@@ -623,37 +606,6 @@
 			};
 			name = Release;
 		};
-		63894C01103BE1FD007C9CC9 /* Profile */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 63894BE5103BD59B007C9CC9 /* Project.xcconfig */;
-			buildSettings = {
-				GCC_OPTIMIZATION_LEVEL = 0;
-			};
-			name = Profile;
-		};
-		63894C02103BE1FD007C9CC9 /* Profile */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 63894BE4103BD59B007C9CC9 /* Library.xcconfig */;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-			};
-			name = Profile;
-		};
-		63894C04103BE202007C9CC9 /* Distribution */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 63894BE5103BD59B007C9CC9 /* Project.xcconfig */;
-			buildSettings = {
-			};
-			name = Distribution;
-		};
-		63894C05103BE202007C9CC9 /* Distribution */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 63894BE4103BD59B007C9CC9 /* Library.xcconfig */;
-			buildSettings = {
-			};
-			name = Distribution;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -661,9 +613,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1DEB921F08733DC00010E9CD /* Debug */,
-				63894C02103BE1FD007C9CC9 /* Profile */,
 				1DEB922008733DC00010E9CD /* Release */,
-				63894C05103BE202007C9CC9 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -672,9 +622,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1DEB922308733DC00010E9CD /* Debug */,
-				63894C01103BE1FD007C9CC9 /* Profile */,
 				1DEB922408733DC00010E9CD /* Release */,
-				63894C04103BE202007C9CC9 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

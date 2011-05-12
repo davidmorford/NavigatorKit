@@ -11,9 +11,11 @@
 @synthesize popupViewController;
 
 -(id) initWithFrame:(CGRect)frame {
-	if (self = [super initWithFrame:frame]) {
-		popupViewController = nil;
+    self = [super initWithFrame:frame];
+	if (!self) {
+        return nil;
 	}
+    popupViewController = nil;
 	return self;
 }
 

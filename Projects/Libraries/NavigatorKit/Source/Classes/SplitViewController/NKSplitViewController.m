@@ -91,6 +91,7 @@ static NSString* NK_ANIMATION_CHANGE_SUBVIEWS_ORDER	   = @"ChangeSubviewsOrder";
 @synthesize splitWidth;
 @synthesize allowsDraggingDivider;
 @synthesize dividerStyle;
+@synthesize orientationChangeHidesPopover;
 
 
 #pragma mark -
