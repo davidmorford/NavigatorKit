@@ -1,0 +1,9 @@
+
+//
+// NavigatorCatalog/Configurations/Release.xcconfig
+//
+// Customize with settings specific to release mode
+//
+
+#include "Application.xcconfig"
+#include "../../../Configurations/Release.xcconfig"

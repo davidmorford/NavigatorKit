@@ -2,7 +2,7 @@
 /*!
 @file		main.m
 @project	NavigatorCatalog
-@copyright	(c) 2010, Semantap
+@copyright	(c) 2010, Dave Morford
 @created	9/19/2010
 */
 
