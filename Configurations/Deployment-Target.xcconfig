@@ -1,7 +1,0 @@
-
-//
-// Deployment-Target.xcconfig
-// (c) 2010 - 2011, Semantap
-//
-
-IPHONEOS_DEPLOYMENT_TARGET = 4.2

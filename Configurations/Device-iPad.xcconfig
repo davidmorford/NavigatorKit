@@ -1,7 +1,0 @@
-
-//
-// Device-iPad.xcconfig
-// (c) 2010 - 2011, Semantap
-//
-
-TARGETED_DEVICE_FAMILY = 2
