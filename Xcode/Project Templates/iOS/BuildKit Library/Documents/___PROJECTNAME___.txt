@@ -1,5 +1,0 @@
-
-___PROJECTNAME___ Library
-
-Author:		___FULLUSERNAME___
-Created:	___DATE___
