@@ -21,7 +21,7 @@
 
 +(NKUISplitViewNavigator *) UISplitViewNavigator {
 	if (![UIApplication sharedApplication].applicationNavigator) {
-		[UIApplication sharedApplication].applicationNavigator = [[[self class] alloc] init];
+		[UIApplication sharedApplication].applicationNavigator = [[[[self class] alloc] init] autorelease];
 	}
 	return (NKUISplitViewNavigator *)[UIApplication sharedApplication].applicationNavigator;
 }

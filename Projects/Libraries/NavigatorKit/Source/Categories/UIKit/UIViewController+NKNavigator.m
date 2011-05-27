@@ -7,7 +7,7 @@
 static NSMutableDictionary *gResponsibleNavigators	= nil;
 static NSMutableDictionary *gSuperControllers		= nil;
 static NSMutableDictionary *gPopupViewControllers	= nil;
-static NSMutableDictionary *gPopoverControllers		= nil;
+//static NSMutableDictionary *gPopoverControllers		= nil;
 
 #pragma mark -
 
